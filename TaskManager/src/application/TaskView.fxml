@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <SplitPane dividerPositions="0.7525083612040134" prefHeight="400.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="250.0">
+               <children>
+                  <Button layoutX="31.0" layoutY="116.0" mnemonicParsing="false" text="Crear Tarea" />
+                  <Button layoutX="22.0" layoutY="45.0" mnemonicParsing="false" text="Crear Proyecto" />
+                  <Button layoutX="30.0" layoutY="187.0" mnemonicParsing="false" text="Vista Tareas" />
+                  <Button layoutX="21.0" layoutY="264.0" mnemonicParsing="false" text="Vista Proyectos" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
