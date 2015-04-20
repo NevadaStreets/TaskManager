@@ -21,10 +21,6 @@ public class Control implements Initializable {
 	private Button CProyecto;
 	
 	
-	
-	@FXML
-	private Label xd;
-	
 	public void changeText(ActionEvent event){
 		
 		
