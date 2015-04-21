@@ -1,5 +1,7 @@
 package application;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -7,19 +9,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Model class for a Person.
  *
- * @author Marco Jakob
  */
-public class Proyecto {
+public class Proyecto implements Comparable<Proyecto> {
 
     private final StringProperty Name;
-    
+    public final ObservableList<Tarea> Tasks;
     private final StringProperty description;
     private final IntegerProperty priority;
     private final StringProperty context;
+    private final ObjectProperty<LocalDate> inicio;
     private final ObjectProperty<LocalDate> deadline;
 
     /**
@@ -42,7 +46,14 @@ public class Proyecto {
         this.description = new SimpleStringProperty("some description");
         this.priority = new SimpleIntegerProperty(1234);
         this.context = new SimpleStringProperty("amska");
-        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
+        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.of(2015, 4, 19));
+        this.Tasks = FXCollections.observableArrayList();
+    }
+    
+    @Override
+    public String toString(){
+    	return Name.get();
     }
 
     public String getName() {
@@ -104,4 +115,24 @@ public class Proyecto {
     public ObjectProperty<LocalDate> deadlineProperty() {
         return deadline;
     }
+    
+    public LocalDate getInicio() {
+        return inicio.get();
+    }
+
+    public void setInicio(LocalDate birthday) {
+        this.inicio.set(birthday);
+    }
+
+    public ObjectProperty<LocalDate> inicioProperty() {
+        return inicio;
+    }
+    
+
+    @Override
+    public int compareTo(Proyecto o) {
+       String a=new String(String.valueOf(this.priorityProperty())+this.getName());
+       String b=new String(String.valueOf(o.priorityProperty())+o.getName());
+       return a.compareTo(b);
+   }
 }

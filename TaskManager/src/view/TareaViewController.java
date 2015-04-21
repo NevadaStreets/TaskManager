@@ -2,25 +2,25 @@ package view;
 
 import org.controlsfx.dialog.Dialogs;
 
+import util.DateUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 import application.Main;
 import application.Proyecto;
 import application.Tarea;
-import util.DateUtil;
 
-public class TaskViewController {
+public class TareaViewController {
+	@FXML
+    private TableView<Tarea> taskTable;
     @FXML
-    private TableView<Proyecto> proyectTable;
-    @FXML
-    private TableColumn<Proyecto, String> firstName;
+    private TableColumn<Tarea, String> firstName;
 
     @FXML
     private Label firstNameLabel;
-
+    @FXML
+    private Label projectLabel;
     @FXML
     private Label descriptionLabel;
     @FXML
@@ -34,12 +34,8 @@ public class TaskViewController {
 
     // Reference to the main application.
     private Main mainApp;
-
-    /**
-     * The constructor.
-     * The constructor is called before the initialize() method.
-     */
-    public TaskViewController() {
+    
+    public TareaViewController() {
     }
 
     /**
@@ -52,13 +48,11 @@ public class TaskViewController {
         firstName.setCellValueFactory(cellData -> cellData.getValue().NameProperty());
         
      // borrar.
-        showProjectDetails(null);
+        showTaskDetails(null);
 
         // Espera a ingresar cambios y mostrarlos cuando se modifique.
-        proyectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProjectDetails(newValue));
+        taskTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showTaskDetails(newValue));
     }
-    
-
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -69,13 +63,15 @@ public class TaskViewController {
         this.mainApp = mainApp;
 
         // Add observable list data to the table
-        proyectTable.setItems(mainApp.getProyectData());
+        taskTable.setItems(mainApp.getTaskData());
     }
     /**
      * Llena los campos de texto para mostrar detalles del proyecto.
-     *
+     * If the specified person is null, all text fields are cleared.
+     * 
+     * @param person the person or null
      */
-    private void showProjectDetails(Proyecto proyect) {
+    private void showTaskDetails(Tarea proyect) {
         if (proyect != null) {
             // Fill the labels with info from the person object.
             firstNameLabel.setText(proyect.getName());
@@ -84,6 +80,7 @@ public class TaskViewController {
             contextLabel.setText(proyect.getContext());
             inicioLabel.setText(DateUtil.format(proyect.getInicio()));
             deadlineLabel.setText(DateUtil.format(proyect.getDeadline()));
+            projectLabel.setText(proyect.getProject().getName());
 
             // birthdayLabel.setText(...);
         } else {
@@ -94,30 +91,28 @@ public class TaskViewController {
             contextLabel.setText("");
             inicioLabel.setText("");
             deadlineLabel.setText("");
+            projectLabel.setText("");
         }
     }
     /**
      * Se llama al presionar el boton de eliminar proyecto
      */
-    
     @FXML
-    private void handleTaskView() {
-    	
-        mainApp.showTareaView();   
+    private void handleProjectView() {
+    	 mainApp.showTaskView();   
     }
     
-    
     @FXML
-    private void handleDeleteProject() {
-        int selectedIndex = proyectTable.getSelectionModel().getSelectedIndex();
+    private void handleDeleteTask() {
+    	Tarea task = taskTable.getSelectionModel().getSelectedItem();
+        int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-        	Proyecto p = proyectTable.getSelectionModel().getSelectedItem();
-        	while(p.Tasks.isEmpty() == false){
-        		mainApp.getTaskData().remove(p.Tasks.get(0));
-        		p.Tasks.remove(0);
-        	}
-        	mainApp.getProyectData().get(selectedIndex).Tasks.clear();
-            proyectTable.getItems().remove(selectedIndex);
+            taskTable.getItems().remove(selectedIndex);
+            mainApp.getTaskData().remove(task);
+            int largo = mainApp.getProyectData().size();
+            for (int i=0; i < largo; i++){
+            	mainApp.getProyectData().get(i).Tasks.remove(task);
+            }
         } else {
             // Nothing selected.
             Dialogs.create()
@@ -133,31 +128,13 @@ public class TaskViewController {
      * details for a new person.
      */
     @FXML
-    private void handleNewProject() {
-        Proyecto tempProyect = new Proyecto();
-        boolean okClicked = mainApp.showProjectEditDialog(tempProyect);
+    private void handleNewTask() {
+        Tarea tempTask = new Tarea();
+        boolean okClicked = mainApp.showTaskEditDialog(tempTask);
         if (okClicked) {
-            mainApp.getProyectData().add(tempProyect);
-            mainApp.ordenar();
+            mainApp.getTaskData().add(tempTask);
+            mainApp.ordenarT();
         }
-    }
-    
-    //Toma como referencia el proyecto clickeado en la ventana de proyectos
-    @FXML
-    private void handleTasksInProject() {
-    	int selectedIndex = proyectTable.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            Proyecto tempProyect = proyectTable.getSelectionModel().getSelectedItem();
-            boolean okClicked = mainApp.showTasksInProject(tempProyect);
-        } else {
-            // Nothing selected.
-            Dialogs.create()
-                .title("No Selection")
-                .masthead("No hay proyecto seleccionado")
-                .message("Selecciona un proyecto de la lista pls")
-                .showWarning();
-        }
-
     }
 
     /**
@@ -165,12 +142,12 @@ public class TaskViewController {
      * details for the selected person.
      */
     @FXML
-    private void handleEditProject() {
-        Proyecto selectedPerson = proyectTable.getSelectionModel().getSelectedItem();
+    private void handleEditTask() {
+        Tarea selectedPerson = taskTable.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            boolean okClicked = mainApp.showProjectEditDialog(selectedPerson);
+            boolean okClicked = mainApp.showTaskEditDialog(selectedPerson);
             if (okClicked) {
-                showProjectDetails(selectedPerson);
+                showTaskDetails(selectedPerson);
             }
 
         } else {
