@@ -1,6 +1,15 @@
 package application;
 	
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import view.ProjectEditDialogController;
 import view.TareaViewController;
@@ -19,31 +28,84 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 
-public class Main extends Application {
+public class Main extends Application implements Serializable{
 	
 	private ObservableList<Proyecto> projectData = FXCollections.observableArrayList();
+	private ArrayList<Proyecto> respaldoproject;
 	private ObservableList<Tarea> taskData = FXCollections.observableArrayList();
+	private ArrayList<Tarea> respaldotask;
 	private Stage ps;
 	private BorderPane bv;
 	
 	
 	@Override
 	public void start(Stage primaryStage) {
+		File archivo = new File("media.obj");
+		
 		this.ps = primaryStage;
 		this.ps.setTitle("Task Manager");
-		
-		projectData.add(new Proyecto("Proyecto de Software"));
-		projectData.add(new Proyecto("Proyecto de Vida"));
-		projectData.add(new Proyecto("Electro pls"));
-		Tarea t = new Tarea("A fluir con Fluidos", projectData.get(2));
-		taskData.add(t);
-		projectData.get(2).Tasks.add(t);
+		if(archivo.exists()){
+			try {
+				desereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	}
+		else{
+		//projectData.add(new Proyecto("Proyecto de Software"));
+		//projectData.add(new Proyecto("Proyecto de Vida"));
+		//projectData.add(new Proyecto("Electro pls"));
+		//Tarea t = new Tarea("A fluir con Fluidos", projectData.get(2));
+		//taskData.add(t);
+		//projectData.get(2).Tasks.add(t);
+			}
 		initBigView();
 		ordenar();
 
         showTaskView();
 	}
 	
+		private void desereal() throws FileNotFoundException, IOException, ClassNotFoundException{
+			ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("media.obj"));
+			ArrayList<Proyecto> obj1=(ArrayList<Proyecto>)entrada.readObject();
+			
+			/*ObservableList<Proyecto> paj = FXCollections.observableArrayList();
+		    Proyecto aux=paj.get(0);
+			paj.add(new Proyecto("BElectro pls"));*/
+			
+			projectData = FXCollections.observableArrayList(obj1);
+			for(int i=0;i<projectData.size();i++){
+				projectData.get(i).ajust();
+			}
+			
+		}
+		
+		
+		public void sereal() throws FileNotFoundException, IOException{
+			//respaldoproject;
+			ordenar();
+			Object[] cosas=projectData.toArray();
+			ArrayList<Object> listOfStrings = new ArrayList<Object>((Arrays.asList(cosas).size()));
+			listOfStrings.addAll(Arrays.asList(cosas));
+			
+			respaldoproject=(ArrayList)(listOfStrings);
+
+		//	respaldoproject.addAll((Collection<? extends Proyecto>) a);
+			
+			//ObservableList lista1= FXCollections.observableArrayList(new int[]{12, 15, 11, 4, 32});
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("media.obj"));
+			//ObjectOutputStream oos = new ObjectOutputStream(oks);
+			oos.writeObject(respaldoproject);
+			oos.close();
+		}		
+		
+		
 	public void ordenar(){
 		FXCollections.sort(projectData);
 	}

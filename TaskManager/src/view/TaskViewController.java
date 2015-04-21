@@ -1,5 +1,9 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
+
 import org.controlsfx.dialog.Dialogs;
 
 import javafx.fxml.FXML;
@@ -12,7 +16,7 @@ import application.Proyecto;
 import application.Tarea;
 import util.DateUtil;
 
-public class TaskViewController {
+public class TaskViewController implements Serializable {
     @FXML
     private TableView<Proyecto> proyectTable;
     @FXML
@@ -118,6 +122,16 @@ public class TaskViewController {
         	}
         	mainApp.getProyectData().get(selectedIndex).Tasks.clear();
             proyectTable.getItems().remove(selectedIndex);
+            try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
         } else {
             // Nothing selected.
             Dialogs.create()
@@ -138,7 +152,15 @@ public class TaskViewController {
         boolean okClicked = mainApp.showProjectEditDialog(tempProyect);
         if (okClicked) {
             mainApp.getProyectData().add(tempProyect);
-            mainApp.ordenar();
+            try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
     
@@ -171,6 +193,15 @@ public class TaskViewController {
             boolean okClicked = mainApp.showProjectEditDialog(selectedPerson);
             if (okClicked) {
                 showProjectDetails(selectedPerson);
+                try {
+    				mainApp.sereal();
+    			} catch (FileNotFoundException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
             }
 
         } else {
