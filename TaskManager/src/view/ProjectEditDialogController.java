@@ -21,9 +21,17 @@ public class ProjectEditDialogController {
     @FXML
     private TextField contextField;
     @FXML
-    private TextField startField;
+    private TextField startDayField;
     @FXML
-    private TextField deadlineField;
+    private TextField startMonthField;
+    @FXML
+    private TextField startYearField;
+    @FXML
+    private TextField deadlineDayField;
+    @FXML
+    private TextField deadlineMonthField;
+    @FXML
+    private TextField deadlineYearField;
 
 
     private Stage dialogStage;
@@ -59,10 +67,16 @@ public class ProjectEditDialogController {
         descriptionField.setText(proyect.getDescription());
         priorityField.setText(Integer.toString(proyect.getPriority()));
         contextField.setText(proyect.getContext());
-        startField.setText(DateUtil.format(proyect.getInicio()));
-        deadlineField.setText(DateUtil.format(proyect.getDeadline()));
-        startField.setPromptText("dd.mm.yyyy");
-        deadlineField.setPromptText("dd.mm.yyyy");
+        String s = DateUtil.format(proyect.getInicio());
+        String d = DateUtil.format(proyect.getDeadline());
+        startDayField.setText(s.substring(0, s.indexOf('.')));
+        startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
+        startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
+        deadlineDayField.setText(d.substring(0, d.indexOf('.')));
+        deadlineMonthField.setText(d.substring(d.indexOf('.')+1, d.lastIndexOf('.')));
+        deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.length()));
+        //startDayField.setPromptText("dd.mm.yyyy");
+        //deadlineField.setPromptText("dd.mm.yyyy");
     }
 
     /**
@@ -84,8 +98,8 @@ public class ProjectEditDialogController {
             proyect.setDescription(descriptionField.getText());
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
             proyect.setContext(contextField.getText());
-            proyect.setDeadline(DateUtil.parse(deadlineField.getText()));
-            proyect.setInicio(DateUtil.parse(startField.getText()));
+            proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
+            proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
 
             okClicked = true;
             dialogStage.close();
@@ -107,6 +121,20 @@ public class ProjectEditDialogController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
+        if (startDayField.getText().length()==1){
+        	startDayField.setText("0"+startDayField.getText());
+        }
+        if (startMonthField.getText().length()==1){
+        	startMonthField.setText("0"+startMonthField.getText());
+        }
+        if (deadlineDayField.getText().length()==1){
+        	deadlineDayField.setText("0"+deadlineDayField.getText());
+        }
+        if (deadlineMonthField.getText().length()==1){
+        	deadlineMonthField.setText("0"+deadlineMonthField.getText());
+        }
+        String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
+        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
@@ -119,7 +147,7 @@ public class ProjectEditDialogController {
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 
         } else {
-            // try to parse the postal code into an int.
+            
             try {
                 Integer.parseInt(priorityField.getText());
             } catch (NumberFormatException e) {
@@ -130,28 +158,33 @@ public class ProjectEditDialogController {
         if (contextField.getText() == null || contextField.getText().length() == 0) {
             errorMessage += "Contexto no valido!\n"; 
         }
-
-        if (startField.getText() == null || startField.getText().length() == 0) {
+        
+        //validar fecha de inicio
+        if (Start == null || Start.length() == 0) {
             errorMessage += "fecha inicio no valida!\n";
         } else {
-            if (!DateUtil.validDate(deadlineField.getText())) {
-                errorMessage += "Fecha inicio no valida. Usa el formato dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(Start)) {
+                errorMessage += "Fecha inicio no valida. Usa el formato dd mm yyyy!\n";
             }
         }
 
-
-        if (deadlineField.getText() == null || deadlineField.getText().length() == 0) {
+        //validar fecha de fin
+        if (Deadline == null || Deadline.length() == 0) {
             errorMessage += "deadline no valido!\n";
         } else {
-            if (!DateUtil.validDate(deadlineField.getText())) {
-                errorMessage += "Deadline no valido. Usa el formato dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(Deadline)) {
+                errorMessage += "Deadline no valido. Usa el formato dd mm yyyy!\n";
+            }
+            //Compara fechas solo si estas estan bien creadas
+            if (DateUtil.validDate(Deadline) && DateUtil.validDate(Start)){
+            	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
+                    errorMessage += "fecha de inicio debe venir antes del deadline!\n";
+                } 
+
             }
         }
         
-        if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
-            errorMessage += "fecha de inicio debe venir antes del deadline!\n";
-        } 
-
+        
         if (errorMessage.length() == 0) {
             return true;
         } else {

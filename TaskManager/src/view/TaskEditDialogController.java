@@ -25,9 +25,17 @@ public class TaskEditDialogController {
     @FXML
     private TextField contextField;
     @FXML
-    private TextField startField;
+    private TextField startDayField;
     @FXML
-    private TextField deadlineField;
+    private TextField startMonthField;
+    @FXML
+    private TextField startYearField;
+    @FXML
+    private TextField deadlineDayField;
+    @FXML
+    private TextField deadlineMonthField;
+    @FXML
+    private TextField deadlineYearField;
     @FXML
     private ComboBox<Proyecto> projectBox;
     
@@ -74,10 +82,14 @@ public class TaskEditDialogController {
         descriptionField.setText(task.getDescription());
         priorityField.setText(Integer.toString(task.getPriority()));
         contextField.setText(task.getContext());
-        deadlineField.setText(DateUtil.format(task.getDeadline()));
-        deadlineField.setPromptText("dd.mm.yyyy");
-        startField.setText(DateUtil.format(task.getInicio()));
-        startField.setPromptText("dd.mm.yyyy");
+        String s = DateUtil.format(task.getInicio());
+        String d = DateUtil.format(task.getDeadline());
+        startDayField.setText(s.substring(0, s.indexOf('.')));
+        startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
+        startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
+        deadlineDayField.setText(d.substring(0, d.indexOf('.')));
+        deadlineMonthField.setText(d.substring(d.indexOf('.')+1, d.lastIndexOf('.')));
+        deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.length()));
     }
 
     /**
@@ -99,8 +111,8 @@ public class TaskEditDialogController {
             tarea.setDescription(descriptionField.getText());
             tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
-            tarea.setDeadline(DateUtil.parse(deadlineField.getText()));
-            tarea.setInicio(DateUtil.parse(startField.getText()));
+            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
+            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
                 for (int i=0; i < largo; i++){
@@ -144,6 +156,21 @@ public class TaskEditDialogController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
+        
+        if (startDayField.getText().length()==1){
+        	startDayField.setText("0"+startDayField.getText());
+        }
+        if (startMonthField.getText().length()==1){
+        	startMonthField.setText("0"+startMonthField.getText());
+        }
+        if (deadlineDayField.getText().length()==1){
+        	deadlineDayField.setText("0"+deadlineDayField.getText());
+        }
+        if (deadlineMonthField.getText().length()==1){
+        	deadlineMonthField.setText("0"+deadlineMonthField.getText());
+        }
+        String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
+        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
@@ -156,7 +183,7 @@ public class TaskEditDialogController {
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 
         } else {
-            // try to parse the postal code into an int.
+            
             try {
                 Integer.parseInt(priorityField.getText());
             } catch (NumberFormatException e) {
@@ -168,36 +195,39 @@ public class TaskEditDialogController {
             errorMessage += "Contexto no valido!\n"; 
         }
 
-        if (startField.getText() == null || startField.getText().length() == 0) {
+        //validar fecha de inicio
+        if (Start == null || Start.length() == 0) {
             errorMessage += "fecha inicio no valida!\n";
         } else {
-            if (!DateUtil.validDate(deadlineField.getText())) {
-                errorMessage += "Fecha inicio no valida. Usa el formato dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(Start)) {
+                errorMessage += "Fecha inicio no valida. Usa el formato dd mm yyyy!\n";
             }
         }
 
-
-        if (deadlineField.getText() == null || deadlineField.getText().length() == 0) {
+      //validar fecha de fin
+        if (Deadline == null || Deadline.length() == 0) {
             errorMessage += "deadline no valido!\n";
         } else {
-            if (!DateUtil.validDate(deadlineField.getText())) {
-                errorMessage += "Deadline no valido. Usa el formato dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(Deadline)) {
+                errorMessage += "Deadline no valido. Usa el formato dd mm yyyy!\n";
+            }
+            //Compara fechas solo si estas estan bien creadas
+            if (DateUtil.validDate(Deadline) && DateUtil.validDate(Start)){
+            	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
+                    errorMessage += "fecha de inicio debe venir antes del deadline!\n";
+                }
+            	//Plazo de tareas debe estar entre los plazos del proyecto
+                if (DateUtil.parse(Deadline).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
+                    errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
+                }
+                
+                if (DateUtil.parse(Start).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
+                    errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
+                }
+
             }
         }
-        
-        //Fecha fin debe ser posterior a fecha inicio
-        if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
-            errorMessage += "fecha de inicio debe venir antes del deadline!\n";
-        }
-        
-        //Plazo de tareas debe estar entre los plazos del proyecto
-        if (DateUtil.parse(deadlineField.getText()).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
-            errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
-        }
-        
-        if (DateUtil.parse(startField.getText()).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
-            errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
-        }
+                
         
         if (projectBox.getValue() == null) {
             errorMessage += "Proyecto no seleccionado!\n"; 
