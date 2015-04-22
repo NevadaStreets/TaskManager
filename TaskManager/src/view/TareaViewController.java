@@ -167,7 +167,7 @@ public class TareaViewController {
     private void handleEditTask() {
         Tarea selectedPerson = taskTable.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            boolean okClicked = mainApp.showTaskEditDialog(selectedPerson);
+            boolean okClicked = mainApp.showEditTaskButtonDialog(selectedPerson);
             if (okClicked) {
                 showTaskDetails(selectedPerson);
         		try {

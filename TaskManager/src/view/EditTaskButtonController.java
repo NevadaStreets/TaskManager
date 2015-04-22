@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -15,7 +14,7 @@ import application.Main;
 import application.Proyecto;
 import application.Tarea;
 
-public class TaskEditDialogController {
+public class EditTaskButtonController {
 	@FXML
     private TextField firstNameField;
     @FXML
@@ -28,8 +27,6 @@ public class TaskEditDialogController {
     private TextField startField;
     @FXML
     private TextField deadlineField;
-    @FXML
-    private ComboBox<Proyecto> projectBox;
     
     private Main mainApp;
 
@@ -49,8 +46,6 @@ public class TaskEditDialogController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
 
-        //Mostramos una lista con los proyectos disponibles
-        projectBox.setItems(mainApp.getProyectData());
     }
 
     /**
@@ -101,18 +96,7 @@ public class TaskEditDialogController {
             tarea.setContext(contextField.getText());
             tarea.setDeadline(DateUtil.parse(deadlineField.getText()));
             tarea.setInicio(DateUtil.parse(startField.getText()));
-            if (tarea.getProject()!=null){
-            	int largo = mainApp.getProyectData().size();
-                for (int i=0; i < largo; i++){
-                	mainApp.getProyectData().get(i).Tasks.remove(tarea);
-                }
-            }
 
-            Proyecto project = projectBox.getValue();
-            int indice = mainApp.getProyectData().indexOf(project);
-            tarea.setProject(mainApp.getProyectData().get(indice));
-    		mainApp.getProyectData().get(indice).Tasks.add(tarea);
-    		mainApp.getProyectData().get(indice).taskear();
     		
             //mainApp.getProyectData();
             okClicked = true;
@@ -185,22 +169,19 @@ public class TaskEditDialogController {
             }
         }
         
-        //Fecha fin debe ser posterior a fecha inicio
+        //deadline debe venir posterior a la fecha de inicio
         if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
             errorMessage += "fecha de inicio debe venir antes del deadline!\n";
         }
         
-        //Plazo de tareas debe estar entre los plazos del proyecto
-        if (DateUtil.parse(deadlineField.getText()).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
+        //deadline debe estar entre los plazos del proyecto
+        if (DateUtil.parse(deadlineField.getText()).compareTo(tarea.getProject().getDeadline()) > 0) {
             errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
         }
         
-        if (DateUtil.parse(startField.getText()).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
+        //fecha inicio debe estar entre los plazos del proyecto
+        if (DateUtil.parse(startField.getText()).compareTo(tarea.getProject().getInicio()) < 0) {
             errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
-        }
-        
-        if (projectBox.getValue() == null) {
-            errorMessage += "Proyecto no seleccionado!\n"; 
         }
 
         if (errorMessage.length() == 0) {
