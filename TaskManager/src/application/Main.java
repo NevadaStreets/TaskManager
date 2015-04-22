@@ -82,15 +82,7 @@ public class Main extends Application implements Serializable{
 			projectData = FXCollections.observableArrayList(obj1);
 			for(int i=0;i<projectData.size();i++){
 				projectData.get(i).ajust();
-				taskData.addAll(projectData.get(i).gettask());
-				
 			}
-			for(int i=0;i<taskData.size();i++){
-				taskData.get(i).ajust();
-				
-			}
-			
-			
 			
 		}
 		

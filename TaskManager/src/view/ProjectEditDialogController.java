@@ -9,11 +9,7 @@ import org.controlsfx.dialog.Dialogs;
 import application.Proyecto;
 import util.DateUtil;
 
-/**
- * Dialog to edit details of a person.
- * 
- * @author Marco Jakob
- */
+
 public class ProjectEditDialogController {
 
     @FXML
@@ -24,6 +20,8 @@ public class ProjectEditDialogController {
     private TextField priorityField;
     @FXML
     private TextField contextField;
+    @FXML
+    private TextField startField;
     @FXML
     private TextField deadlineField;
 
@@ -61,7 +59,9 @@ public class ProjectEditDialogController {
         descriptionField.setText(proyect.getDescription());
         priorityField.setText(Integer.toString(proyect.getPriority()));
         contextField.setText(proyect.getContext());
+        startField.setText(DateUtil.format(proyect.getInicio()));
         deadlineField.setText(DateUtil.format(proyect.getDeadline()));
+        startField.setPromptText("dd.mm.yyyy");
         deadlineField.setPromptText("dd.mm.yyyy");
     }
 
@@ -85,6 +85,7 @@ public class ProjectEditDialogController {
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
             proyect.setContext(contextField.getText());
             proyect.setDeadline(DateUtil.parse(deadlineField.getText()));
+            proyect.setInicio(DateUtil.parse(startField.getText()));
 
             okClicked = true;
             dialogStage.close();
@@ -129,6 +130,15 @@ public class ProjectEditDialogController {
         if (contextField.getText() == null || contextField.getText().length() == 0) {
             errorMessage += "Contexto no valido!\n"; 
         }
+        
+        if (startField.getText() == null || startField.getText().length() == 0) {
+            errorMessage += "fecha inicio no valida!\n";
+        } else {
+            if (!DateUtil.validDate(deadlineField.getText())) {
+                errorMessage += "Fecha inicio no valida. Usa el formato dd.mm.yyyy!\n";
+            }
+        }
+
 
         if (deadlineField.getText() == null || deadlineField.getText().length() == 0) {
             errorMessage += "deadline no valido!\n";
@@ -137,6 +147,11 @@ public class ProjectEditDialogController {
                 errorMessage += "Deadline no valido. Usa el formato dd.mm.yyyy!\n";
             }
         }
+        
+        if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
+            errorMessage += "fecha de inicio debe venir antes del deadline!\n";
+        } 
+
 
         if (errorMessage.length() == 0) {
             return true;
@@ -144,7 +159,7 @@ public class ProjectEditDialogController {
             // Show the error message.
             Dialogs.create()
                 .title("Campos invalidos")
-                .masthead("Corrige los campos invalidos pls")
+                .masthead("Por favor cambiar los campos invalidos")
                 .message(errorMessage)
                 .showError();
             return false;

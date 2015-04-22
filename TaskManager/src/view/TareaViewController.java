@@ -1,8 +1,5 @@
 package view;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.controlsfx.dialog.Dialogs;
 
 import util.DateUtil;
@@ -115,23 +112,13 @@ public class TareaViewController {
             int largo = mainApp.getProyectData().size();
             for (int i=0; i < largo; i++){
             	mainApp.getProyectData().get(i).Tasks.remove(task);
-            	mainApp.getProyectData().get(i).taskear();
             }
-    		try {
-				mainApp.sereal();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
         } else {
             // Nothing selected.
             Dialogs.create()
-                .title("No Selection")
-                .masthead("No hay proyecto seleccionado")
-                .message("Selecciona un proyecto de la lista pls")
+                .title("No hay seleccion")
+                .masthead("No elegiste tarea")
+                .message("Por favor selecciona una tarea de la lista")
                 .showWarning();
         }
     }
@@ -148,15 +135,6 @@ public class TareaViewController {
             mainApp.getTaskData().add(tempTask);
             mainApp.ordenarT();
         }
-		try {
-			mainApp.sereal();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
     /**
@@ -170,23 +148,14 @@ public class TareaViewController {
             boolean okClicked = mainApp.showTaskEditDialog(selectedPerson);
             if (okClicked) {
                 showTaskDetails(selectedPerson);
-        		try {
-    				mainApp.sereal();
-    			} catch (FileNotFoundException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			} catch (IOException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}
             }
 
         } else {
             // Nothing selected.
             Dialogs.create()
                 .title("No hay seleccion")
-                .masthead("No elegiste proyecto")
-                .message("Selecciona un proyecto de la tabla pls.")
+                .masthead("No elegiste tarea")
+                .message("Por favor selecciona una tarea de la tabla.")
                 .showWarning();
         }
     }

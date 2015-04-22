@@ -1,8 +1,5 @@
 package view;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -24,6 +21,8 @@ public class TaskEditDialogController {
     private TextField priorityField;
     @FXML
     private TextField contextField;
+    @FXML
+    private TextField startField;
     @FXML
     private TextField deadlineField;
     @FXML
@@ -72,6 +71,8 @@ public class TaskEditDialogController {
         descriptionField.setText(task.getDescription());
         priorityField.setText(Integer.toString(task.getPriority()));
         contextField.setText(task.getContext());
+        startField.setText(DateUtil.format(task.getInicio()));
+        startField.setPromptText("dd.mm.yyyy");
         deadlineField.setText(DateUtil.format(task.getDeadline()));
         deadlineField.setPromptText("dd.mm.yyyy");
     }
@@ -96,6 +97,7 @@ public class TaskEditDialogController {
             tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
             tarea.setDeadline(DateUtil.parse(deadlineField.getText()));
+            tarea.setInicio(DateUtil.parse(startField.getText()));
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
                 for (int i=0; i < largo; i++){
@@ -107,19 +109,8 @@ public class TaskEditDialogController {
             int indice = mainApp.getProyectData().indexOf(project);
             tarea.setProject(mainApp.getProyectData().get(indice));
     		mainApp.getProyectData().get(indice).Tasks.add(tarea);
-    		mainApp.getProyectData().get(indice).taskear();
-    		
             //mainApp.getProyectData();
             okClicked = true;
-    		try {
-				mainApp.sereal();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
             dialogStage.close();
         }
     }
@@ -163,6 +154,15 @@ public class TaskEditDialogController {
             errorMessage += "Contexto no valido!\n"; 
         }
 
+        if (startField.getText() == null || startField.getText().length() == 0) {
+            errorMessage += "fecha inicio no valida!\n";
+        } else {
+            if (!DateUtil.validDate(deadlineField.getText())) {
+                errorMessage += "Fecha inicio no valida. Usa el formato dd.mm.yyyy!\n";
+            }
+        }
+
+
         if (deadlineField.getText() == null || deadlineField.getText().length() == 0) {
             errorMessage += "deadline no valido!\n";
         } else {
@@ -170,6 +170,11 @@ public class TaskEditDialogController {
                 errorMessage += "Deadline no valido. Usa el formato dd.mm.yyyy!\n";
             }
         }
+        
+        if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
+            errorMessage += "fecha de inicio debe venir antes del deadline!\n";
+        } 
+
         
         if (projectBox.getValue() == null) {
             errorMessage += "Proyecto no seleccionado!\n"; 
@@ -181,7 +186,7 @@ public class TaskEditDialogController {
             // Show the error message.
             Dialogs.create()
                 .title("Campos invalidos")
-                .masthead("Corrige los campos invalidos pls")
+                .masthead("Por favor cambiar los campos invalidos")
                 .message(errorMessage)
                 .showError();
             return false;

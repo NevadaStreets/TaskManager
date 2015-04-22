@@ -135,9 +135,9 @@ public class TaskViewController implements Serializable {
         } else {
             // Nothing selected.
             Dialogs.create()
-                .title("No Selection")
-                .masthead("No hay proyecto seleccionado")
-                .message("Selecciona un proyecto de la lista pls")
+                .title("No hay seleccion")
+                .masthead("No elegiste proyecto")
+                .message("Por favor selecciona un proyecto de la lista")
                 .showWarning();
         }
     }
@@ -171,21 +171,12 @@ public class TaskViewController implements Serializable {
         if (selectedIndex >= 0) {
             Proyecto tempProyect = proyectTable.getSelectionModel().getSelectedItem();
             boolean okClicked = mainApp.showTasksInProject(tempProyect);
-    		try {
-				mainApp.sereal();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
         } else {
             // Nothing selected.
             Dialogs.create()
-                .title("No Selection")
-                .masthead("No hay proyecto seleccionado")
-                .message("Selecciona un proyecto de la lista pls")
+                .title("No hay Seleccion")
+                .masthead("No elegiste proyecto")
+                .message("Por favor selecciona un proyecto de la lista")
                 .showWarning();
         }
 
@@ -218,7 +209,7 @@ public class TaskViewController implements Serializable {
             Dialogs.create()
                 .title("No hay seleccion")
                 .masthead("No elegiste proyecto")
-                .message("Selecciona un proyecto de la tabla pls.")
+                .message("Por favor selecciona un proyecto de la lista.")
                 .showWarning();
         }
     }
