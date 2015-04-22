@@ -148,9 +148,9 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 
 	    @Override
 	    public int compareTo(Tarea o) {
-	       String a=new String(String.valueOf(this.priorityProperty())+this.getName());
-	       String b=new String(String.valueOf(o.priorityProperty())+o.getName());
-	       return b.compareTo(a);
+	       int a=this.priorityProperty().get();
+	       int b=o.priorityProperty().get();
+	       return b-a;
 	   }
 
 	    public void ajust(){

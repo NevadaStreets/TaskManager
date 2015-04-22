@@ -197,9 +197,9 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     
     @Override
     public int compareTo(Proyecto o) {
-       String a=new String(String.valueOf(this.prioridad()));
-       String b=new String(String.valueOf(o.prioridad()));
-       return b.compareTo(a);
+       int a=this.prioridad();
+       int b=o.prioridad();
+       return b-a;
    }
     
     public void ajust(){
