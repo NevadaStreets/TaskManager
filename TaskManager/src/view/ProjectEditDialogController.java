@@ -130,7 +130,7 @@ public class ProjectEditDialogController {
         if (contextField.getText() == null || contextField.getText().length() == 0) {
             errorMessage += "Contexto no valido!\n"; 
         }
-        
+
         if (startField.getText() == null || startField.getText().length() == 0) {
             errorMessage += "fecha inicio no valida!\n";
         } else {
@@ -151,7 +151,6 @@ public class ProjectEditDialogController {
         if (DateUtil.parse(deadlineField.getText()).compareTo(DateUtil.parse(startField.getText())) < 0) {
             errorMessage += "fecha de inicio debe venir antes del deadline!\n";
         } 
-
 
         if (errorMessage.length() == 0) {
             return true;

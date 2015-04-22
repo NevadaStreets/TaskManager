@@ -1,20 +1,33 @@
 package application;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 
-public class Tarea implements Comparable<Tarea> {
-	 private final StringProperty Name;
-	 private final StringProperty description;
-	 private final IntegerProperty priority;
-	 private final StringProperty context;
-	 private final ObjectProperty<LocalDate> inicio;
-	 private final ObjectProperty<LocalDate> deadline;
+public class Tarea implements Comparable<Tarea> , Serializable {
+	
+	private  String Namex;
+	 private  String descriptionx;
+	 private  int priorityx;
+	 private  String contextx;
+	 private  LocalDate iniciox;
+	 private  LocalDate deadlinex;
+	
+	
+	
+	private transient StringProperty Name;
+	 private transient StringProperty description;
+	 private transient IntegerProperty priority;
+	 private transient StringProperty context;
+	 private transient ObjectProperty<LocalDate> inicio;
+	 private transient ObjectProperty<LocalDate> deadline;
 	 private Proyecto project;
 	 
 	 public Tarea() {
@@ -31,12 +44,20 @@ public class Tarea implements Comparable<Tarea> {
 	        this.Name = new SimpleStringProperty(Name);
 	        
 	        // Some initial dummy data, just for convenient testing.
-	        this.description = new SimpleStringProperty("some description");
-	        this.priority = new SimpleIntegerProperty(1234);
-	        this.context = new SimpleStringProperty("amska");
+	        this.description = new SimpleStringProperty("Ingrese descripcion");
+	        this.priority = new SimpleIntegerProperty(1);
+	        this.context = new SimpleStringProperty("Ingrese contexto");
 	        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
-	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.of(2015, 4, 19));
+	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.project = P;
+	        
+	        Namex=this.Name.get();
+	        descriptionx= this.description.get() ;
+	        priorityx= this.priority.get() ;
+	        contextx=this.context.get();
+	        iniciox=this.inicio.get() ;
+	        deadlinex=this.deadline.get();
+	        
 	    }
 	    
 	    public Proyecto getProject() {
@@ -52,6 +73,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setName(String Name) {
+	    	Namex=Name;
 	        this.Name.set(Name);
 	    }
 
@@ -64,6 +86,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setDescription(String street) {
+	    	descriptionx=street;
 	        this.description.set(street);
 	    }
 
@@ -76,6 +99,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setPriority(int postalCode) {
+	    	priorityx=postalCode;
 	        this.priority.set(postalCode);
 	    }
 
@@ -88,6 +112,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setContext(String city) {
+	    	contextx=city;
 	        this.context.set(city);
 	    }
 
@@ -100,6 +125,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setDeadline(LocalDate birthday) {
+	    	deadlinex=birthday;
 	        this.deadline.set(birthday);
 	    }
 
@@ -112,6 +138,7 @@ public class Tarea implements Comparable<Tarea> {
 	    }
 
 	    public void setInicio(LocalDate birthday) {
+	    	iniciox=birthday;
 	        this.inicio.set(birthday);
 	    }
 
@@ -123,8 +150,25 @@ public class Tarea implements Comparable<Tarea> {
 	    public int compareTo(Tarea o) {
 	       String a=new String(String.valueOf(this.priorityProperty())+this.getName());
 	       String b=new String(String.valueOf(o.priorityProperty())+o.getName());
-	       return a.compareTo(b);
+	       return b.compareTo(a);
 	   }
 
+	    public void ajust(){
+	    	if(Namex!=null){
+	       	 //setName(Namex);
+	    		 this.Name = new SimpleStringProperty(Namex);
+	    		this.description = new SimpleStringProperty(descriptionx);
+	            this.priority = new SimpleIntegerProperty(priorityx);
+	            this.context = new SimpleStringProperty("contextx");
+	            this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
+	            this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
+	            
+	       	 setDescription(descriptionx);
+	       	 setPriority(priorityx);
+	       	 setContext(contextx);
+	       	 setDeadline(deadlinex);
+	       	setInicio(iniciox);
+	        }
+	    }
 
 }
