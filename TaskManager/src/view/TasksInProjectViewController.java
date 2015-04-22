@@ -59,6 +59,7 @@ public class TasksInProjectViewController {
 	     * @return
 	     */
 	    public boolean isOkClicked() {
+	    	
 	        return okClicked;
 	    }
 

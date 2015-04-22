@@ -1,10 +1,16 @@
 package application;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import view.TaskEditDialogController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -13,6 +19,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * Model class for a Person.
@@ -26,6 +37,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
 	    private  String contextx;
 	    private  LocalDate deadlinex;
 	    private  LocalDate iniciox;
+	    private ArrayList<Tarea> tasksx;
 	    
     private transient StringProperty Name;
     public transient ObservableList<Tarea> Tasks;
@@ -85,8 +97,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     
     
     public String getDescription() {
-       // return description.get();
-    	return ""+prioridad();
+        return description.get();
+    	//return ""+prioridad();
     }
 
     public void setDescription(String street) {
@@ -165,11 +177,26 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         return inicio;
     }
     
-
+    public ObservableList<Tarea> gettask(){
+    
+    	return Tasks;
+    }
+    
+    public void taskear() {
+		//respaldoproject;
+		Object[] cosas=Tasks.toArray();
+		ArrayList<Object> listOfStrings = new ArrayList<Object>((Arrays.asList(cosas).size()));
+		listOfStrings.addAll(Arrays.asList(cosas));
+		
+		tasksx=(ArrayList)(listOfStrings);
+	}		
+    
+    
+    
+    
     
     @Override
     public int compareTo(Proyecto o) {
-   
        String a=new String(String.valueOf(this.prioridad()));
        String b=new String(String.valueOf(o.prioridad()));
        return b.compareTo(a);
@@ -185,13 +212,28 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
             this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
             this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
             this.Tasks = FXCollections.observableArrayList();
-            
+            //tasksx=new ArrayList<Tarea>();
+            llenartask();
        	 setDescription(descriptionx);
        	 setPriority(priorityx);
        	 setContext(contextx);
        	 setDeadline(deadlinex);
+       	 
        	setInicio(iniciox);
         }
     }
+    
+    private void llenartask(){
+    	  try {
+    		  if(!tasksx.isEmpty())
+    		    	Tasks=FXCollections.observableArrayList(tasksx);
+	            
+	        } catch (java.lang.NullPointerException e) {
+	            e.printStackTrace();
+	           
+	        }
+    	
+    }
+    
     
 }

@@ -1,5 +1,8 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -104,8 +107,19 @@ public class TaskEditDialogController {
             int indice = mainApp.getProyectData().indexOf(project);
             tarea.setProject(mainApp.getProyectData().get(indice));
     		mainApp.getProyectData().get(indice).Tasks.add(tarea);
+    		mainApp.getProyectData().get(indice).taskear();
+    		
             //mainApp.getProyectData();
             okClicked = true;
+    		try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             dialogStage.close();
         }
     }

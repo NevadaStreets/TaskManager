@@ -1,5 +1,8 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.controlsfx.dialog.Dialogs;
 
 import util.DateUtil;
@@ -112,7 +115,17 @@ public class TareaViewController {
             int largo = mainApp.getProyectData().size();
             for (int i=0; i < largo; i++){
             	mainApp.getProyectData().get(i).Tasks.remove(task);
+            	mainApp.getProyectData().get(i).taskear();
             }
+    		try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } else {
             // Nothing selected.
             Dialogs.create()
@@ -135,6 +148,15 @@ public class TareaViewController {
             mainApp.getTaskData().add(tempTask);
             mainApp.ordenarT();
         }
+		try {
+			mainApp.sereal();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -148,6 +170,15 @@ public class TareaViewController {
             boolean okClicked = mainApp.showTaskEditDialog(selectedPerson);
             if (okClicked) {
                 showTaskDetails(selectedPerson);
+        		try {
+    				mainApp.sereal();
+    			} catch (FileNotFoundException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
             }
 
         } else {
