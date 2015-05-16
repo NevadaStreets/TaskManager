@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import view.EditTaskButtonController;
 import view.ProjectEditDialogController;
 import view.TareaViewController;
 import view.TaskEditDialogController;
@@ -44,6 +46,8 @@ public class Main extends Application implements Serializable{
 		
 		this.ps = primaryStage;
 		this.ps.setTitle("Task Manager");
+		this.ps.setMinHeight(400);
+		this.ps.setMinWidth(600);
 		if(archivo.exists()){
 			try {
 				desereal();
@@ -65,6 +69,8 @@ public class Main extends Application implements Serializable{
 		//taskData.add(t);
 		//projectData.get(2).Tasks.add(t);
 			}
+		//projectData.add(new Proyecto("Proyecto de Software"+LocalDate.now()));
+		
 		initBigView();
 		ordenar();
 
@@ -193,6 +199,8 @@ public class Main extends Application implements Serializable{
 
 	            // Create the dialog Stage.
 	            Stage dialogStage = new Stage();
+	            dialogStage.setMaxHeight(457);
+	            dialogStage.setMaxWidth(350);
 	            dialogStage.setTitle("Editar Proyecto");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(ps);
@@ -203,7 +211,11 @@ public class Main extends Application implements Serializable{
 	            ProjectEditDialogController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
 	            controller.setPerson(proyect);
+	            
+	            
+	            //controller.setMainApp(this); //Tirar main a ProjectEditDialog, revisar!!
 
+	            
 	            // Show the dialog and wait until the user closes it
 	            dialogStage.showAndWait();
 
@@ -261,6 +273,37 @@ public class Main extends Application implements Serializable{
 
 	            // Set the person into the controller.
 	            TaskEditDialogController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setPerson(proyect);
+	            controller.setMainApp(this);
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isOkClicked();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	    
+	    public boolean showEditTaskButtonDialog(Tarea proyect) {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(Main.class.getResource("../view/EditTaskButtonDialog.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Editar Tarea");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(ps);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            EditTaskButtonController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
 	            controller.setPerson(proyect);
 	            controller.setMainApp(this);

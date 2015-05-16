@@ -34,6 +34,8 @@ public class TareaViewController {
     private Label inicioLabel;
     @FXML
     private Label deadlineLabel;
+    @FXML
+    private Label stateLabel;
 
     // Reference to the main application.
     private Main mainApp;
@@ -69,14 +71,10 @@ public class TareaViewController {
         taskTable.setItems(mainApp.getTaskData());
     }
     /**
-     * Llena los campos de texto para mostrar detalles del proyecto.
-     * If the specified person is null, all text fields are cleared.
-     * 
-     * @param person the person or null
+     * Llena los campos de texto para mostrar detalles de las tareas.
      */
     private void showTaskDetails(Tarea proyect) {
         if (proyect != null) {
-            // Fill the labels with info from the person object.
             firstNameLabel.setText(proyect.getName());
             descriptionLabel.setText(proyect.getDescription());
             priorityLabel.setText(Integer.toString(proyect.getPriority()));
@@ -84,6 +82,7 @@ public class TareaViewController {
             inicioLabel.setText(DateUtil.format(proyect.getInicio()));
             deadlineLabel.setText(DateUtil.format(proyect.getDeadline()));
             projectLabel.setText(proyect.getProject().getName());
+            stateLabel.setText(proyect.getEstado());
 
             // birthdayLabel.setText(...);
         } else {

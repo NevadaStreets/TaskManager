@@ -171,6 +171,7 @@ public class TaskViewController implements Serializable {
         if (selectedIndex >= 0) {
             Proyecto tempProyect = proyectTable.getSelectionModel().getSelectedItem();
             boolean okClicked = mainApp.showTasksInProject(tempProyect);
+            showProjectDetails(tempProyect);
     		try {
 				mainApp.sereal();
 			} catch (FileNotFoundException e) {

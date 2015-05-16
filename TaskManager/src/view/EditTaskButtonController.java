@@ -3,10 +3,7 @@ package view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,7 +14,7 @@ import application.Main;
 import application.Proyecto;
 import application.Tarea;
 
-public class TaskEditDialogController {
+public class EditTaskButtonController {
 	@FXML
     private TextField firstNameField;
     @FXML
@@ -38,11 +35,7 @@ public class TaskEditDialogController {
     private TextField deadlineMonthField;
     @FXML
     private TextField deadlineYearField;
-    @FXML
-    private ComboBox<Proyecto> projectBox;
-    @FXML
-    private ComboBox<String> stateBox;
-    
+
     private Main mainApp;
 
 
@@ -61,13 +54,6 @@ public class TaskEditDialogController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
 
-        //Mostramos una lista con los proyectos disponibles
-        projectBox.setItems(mainApp.getProyectData());
-        ObservableList <String> states = FXCollections.observableArrayList();
-        states.add("Activa");
-        states.add("En Pausa");
-        states.add("Completada");
-        stateBox.setItems(states);
     }
 
     /**
@@ -93,8 +79,6 @@ public class TaskEditDialogController {
         contextField.setText(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
-        projectBox.setValue(task.getProject());
-        stateBox.setValue(task.getEstado());
         startDayField.setText(s.substring(0, s.indexOf('.')));
         startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
         startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
@@ -122,21 +106,8 @@ public class TaskEditDialogController {
             tarea.setDescription(descriptionField.getText());
             tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
-            if (tarea.getProject()!=null){
-            	int largo = mainApp.getProyectData().size();
-                for (int i=0; i < largo; i++){
-                	mainApp.getProyectData().get(i).Tasks.remove(tarea);
-                }
-            }
-            Proyecto project = projectBox.getValue();
-            int indice = mainApp.getProyectData().indexOf(project);
-            tarea.setProject(mainApp.getProyectData().get(indice));
-    		mainApp.getProyectData().get(indice).Tasks.add(tarea);
-    		mainApp.getProyectData().get(indice).taskear();
             tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
-
-            tarea.setEstado(stateBox.getValue());
 
     		
             //mainApp.getProyectData();
@@ -169,7 +140,6 @@ public class TaskEditDialogController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
-        
         if (startDayField.getText().length()==1){
         	startDayField.setText("0"+startDayField.getText());
         }
@@ -185,6 +155,7 @@ public class TaskEditDialogController {
         String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
         String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();
 
+
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
         }
@@ -196,7 +167,7 @@ public class TaskEditDialogController {
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 
         } else {
-            
+            // try to parse the postal code into an int.
             try {
                 Integer.parseInt(priorityField.getText());
             } catch (NumberFormatException e) {
@@ -217,7 +188,7 @@ public class TaskEditDialogController {
             }
         }
 
-      //validar fecha de fin
+        //validar fecha de fin
         if (Deadline == null || Deadline.length() == 0) {
             errorMessage += "deadline no valido!\n";
         } else {
@@ -228,29 +199,20 @@ public class TaskEditDialogController {
             if (DateUtil.validDate(Deadline) && DateUtil.validDate(Start)){
             	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
                     errorMessage += "fecha de inicio debe venir antes del deadline!\n";
-                }
-            	/*//Plazo de tareas debe estar entre los plazos del proyecto
-                if (DateUtil.parse(Deadline).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
+                } 
+            	//Plazo de tareas debe estar entre los plazos del proyecto
+                if (DateUtil.parse(Deadline).compareTo(tarea.getProject().getDeadline()) > 0) {
                     errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
                 }
                 
-                if (DateUtil.parse(Start).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
+                if (DateUtil.parse(Start).compareTo(tarea.getProject().getInicio()) < 0) {
                     errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
-                }*/
-
-            }
-        }
-                
-        
-        if (projectBox.getValue() == null) {
-            errorMessage += "Proyecto no seleccionado!\n"; 
+                }
+            }            
         }
         
-        if (stateBox.getValue() == null) {
-            errorMessage += "Estado no seleccionado!\n"; 
-        }
-
-
+        
+        
         if (errorMessage.length() == 0) {
             return true;
         } else {
