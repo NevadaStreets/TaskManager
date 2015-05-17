@@ -5,7 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="440.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskEditDialogController">
+=======
+<AnchorPane prefHeight="525.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskEditDialogController">
+>>>>>>> develop
    <children>
       <GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="224.0" prefWidth="292.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -29,8 +33,13 @@
             <TextField fx:id="contextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
+<<<<<<< HEAD
       <Button layoutX="116.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />
       <Button layoutX="192.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
+=======
+      <Button layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />
+      <Button layoutX="193.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
+>>>>>>> develop
       <ComboBox fx:id="projectBox" layoutX="94.0" layoutY="332.0" prefHeight="25.0" prefWidth="198.0" />
       <Label layoutX="14.0" layoutY="327.0" prefHeight="25.0" prefWidth="85.0" text=" Proyecto" />
       <Label layoutX="14.0" layoutY="345.0" text=" Asociado" />
@@ -45,5 +54,10 @@
       <TextField fx:id="startYearField" layoutX="203.0" layoutY="253.0" prefHeight="25.0" prefWidth="98.0" text="Año" />
       <TextField fx:id="startMonthField" layoutX="145.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" text="Mes" />
       <TextField fx:id="startDayField" layoutX="88.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" text="Dia" />
+<<<<<<< HEAD
+=======
+      <Label layoutX="17.0" layoutY="404.0" prefHeight="17.0" prefWidth="61.0" text="Estado" />
+      <ComboBox fx:id="stateBox" layoutX="93.0" layoutY="400.0" prefHeight="25.0" prefWidth="198.0" />
+>>>>>>> develop
    </children>
 </AnchorPane>

@@ -5,7 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="407.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProjectEditDialogController">
+=======
+<AnchorPane prefHeight="286.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProjectEditDialogController">
+>>>>>>> develop
    <children>
       <GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="211.0" prefWidth="292.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -29,6 +33,7 @@
             <TextField fx:id="contextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
+<<<<<<< HEAD
       <Button layoutX="120.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />
       <Button layoutX="196.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
       <TextField fx:id="startDayField" layoutX="79.0" layoutY="255.0" prefHeight="25.0" prefWidth="46.0" text="Dia" />
@@ -42,5 +47,9 @@
       <TextField fx:id="deadlineMonthField" layoutX="136.0" layoutY="296.0" prefHeight="25.0" prefWidth="46.0" text="Mes" />
       <TextField fx:id="deadlineYearField" layoutX="195.0" layoutY="296.0" prefHeight="25.0" prefWidth="98.0" text="Año" />
       <Label layoutX="15.0" layoutY="259.0" prefHeight="17.0" prefWidth="46.0" text="Inicio" />
+=======
+      <Button layoutX="120.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />
+      <Button layoutX="197.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
+>>>>>>> develop
    </children>
 </AnchorPane>

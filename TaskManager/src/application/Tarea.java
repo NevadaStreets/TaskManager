@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import util.DateUtil;
 
 public class Tarea implements Comparable<Tarea> , Serializable {
 	
@@ -19,7 +20,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	 private  String contextx;
 	 private  LocalDate iniciox;
 	 private  LocalDate deadlinex;
-	
+	 
+	 private String estado;
 	
 	
 	private transient StringProperty Name;
@@ -50,6 +52,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.project = P;
+	        this.estado = "Activo";
 	        
 	        Namex=this.Name.get();
 	        descriptionx= this.description.get() ;
@@ -68,6 +71,21 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    public void setProject(Proyecto p) {
 	        project = p;
 	    }
+	    
+	    public String getEstado(){
+	    	if (LocalDate.now().compareTo(deadlinex)>0){
+	    		estado = "Vencida";
+	    	}
+	    	return estado;
+	    }
+	    
+	    public void setEstado(String state){
+	    	estado =  state;
+	    	if (LocalDate.now().compareTo(deadlinex)>0){
+	    		estado = "Vencida";
+	    	}
+	    }
+	    
 	    public String getName() {
 	        return Name.get();
 	    }
@@ -126,7 +144,19 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 
 	    public void setDeadline(LocalDate birthday) {
 	    	deadlinex=birthday;
-	        this.deadline.set(birthday);
+    		this.deadline.set(birthday);
+	    	if (project.getDeadline().compareTo(deadlinex)<0){
+	        	project.setDeadline(deadlinex);
+	        }
+	    	else if (project.getDeadline().compareTo(birthday)>0){
+	    		LocalDate max = DateUtil.parse("01.01.2000");
+	    		for (int i=0;i<project.gettask().size(); i ++){
+	    			if(max.compareTo(project.gettask().get(i).getDeadline())<0){
+	    				max = project.gettask().get(i).getDeadline();
+	    			}
+	    		}
+	        	project.setDeadline(max);
+	        }
 	    }
 
 	    public ObjectProperty<LocalDate> deadlineProperty() {
@@ -139,6 +169,10 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 
 	    public void setInicio(LocalDate birthday) {
 	    	iniciox=birthday;
+	        if (project.getInicio().compareTo(iniciox)>0){
+	        	project.setInicio(iniciox);
+	        }
+	        
 	        this.inicio.set(birthday);
 	    }
 

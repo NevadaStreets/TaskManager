@@ -3,6 +3,8 @@ package view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -38,6 +40,8 @@ public class TaskEditDialogController {
     private TextField deadlineYearField;
     @FXML
     private ComboBox<Proyecto> projectBox;
+    @FXML
+    private ComboBox<String> stateBox;
     
     private Main mainApp;
 
@@ -59,6 +63,11 @@ public class TaskEditDialogController {
 
         //Mostramos una lista con los proyectos disponibles
         projectBox.setItems(mainApp.getProyectData());
+        ObservableList <String> states = FXCollections.observableArrayList();
+        states.add("Activa");
+        states.add("En Pausa");
+        states.add("Completada");
+        stateBox.setItems(states);
     }
 
     /**
@@ -84,6 +93,11 @@ public class TaskEditDialogController {
         contextField.setText(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
+<<<<<<< HEAD
+=======
+        projectBox.setValue(task.getProject());
+        stateBox.setValue(task.getEstado());
+>>>>>>> develop
         startDayField.setText(s.substring(0, s.indexOf('.')));
         startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
         startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
@@ -111,20 +125,27 @@ public class TaskEditDialogController {
             tarea.setDescription(descriptionField.getText());
             tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
+<<<<<<< HEAD
             tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+=======
+>>>>>>> develop
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
                 for (int i=0; i < largo; i++){
                 	mainApp.getProyectData().get(i).Tasks.remove(tarea);
                 }
             }
-
             Proyecto project = projectBox.getValue();
             int indice = mainApp.getProyectData().indexOf(project);
             tarea.setProject(mainApp.getProyectData().get(indice));
     		mainApp.getProyectData().get(indice).Tasks.add(tarea);
     		mainApp.getProyectData().get(indice).taskear();
+            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
+            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+
+            tarea.setEstado(stateBox.getValue());
+
     		
             //mainApp.getProyectData();
             okClicked = true;
@@ -216,14 +237,22 @@ public class TaskEditDialogController {
             	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
                     errorMessage += "fecha de inicio debe venir antes del deadline!\n";
                 }
+<<<<<<< HEAD
             	//Plazo de tareas debe estar entre los plazos del proyecto
+=======
+            	/*//Plazo de tareas debe estar entre los plazos del proyecto
+>>>>>>> develop
                 if (DateUtil.parse(Deadline).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
                     errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
                 }
                 
                 if (DateUtil.parse(Start).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
                     errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
+<<<<<<< HEAD
                 }
+=======
+                }*/
+>>>>>>> develop
 
             }
         }
@@ -232,6 +261,11 @@ public class TaskEditDialogController {
         if (projectBox.getValue() == null) {
             errorMessage += "Proyecto no seleccionado!\n"; 
         }
+        
+        if (stateBox.getValue() == null) {
+            errorMessage += "Estado no seleccionado!\n"; 
+        }
+
 
         if (errorMessage.length() == 0) {
             return true;
