@@ -93,11 +93,8 @@ public class TaskEditDialogController {
         contextField.setText(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
-<<<<<<< HEAD
-=======
         projectBox.setValue(task.getProject());
         stateBox.setValue(task.getEstado());
->>>>>>> develop
         startDayField.setText(s.substring(0, s.indexOf('.')));
         startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
         startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
@@ -125,11 +122,6 @@ public class TaskEditDialogController {
             tarea.setDescription(descriptionField.getText());
             tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
-<<<<<<< HEAD
-            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
-            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
-=======
->>>>>>> develop
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
                 for (int i=0; i < largo; i++){
@@ -237,22 +229,14 @@ public class TaskEditDialogController {
             	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
                     errorMessage += "fecha de inicio debe venir antes del deadline!\n";
                 }
-<<<<<<< HEAD
-            	//Plazo de tareas debe estar entre los plazos del proyecto
-=======
             	/*//Plazo de tareas debe estar entre los plazos del proyecto
->>>>>>> develop
                 if (DateUtil.parse(Deadline).compareTo(projectBox.getSelectionModel().getSelectedItem().getDeadline()) > 0) {
                     errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
                 }
                 
                 if (DateUtil.parse(Start).compareTo(projectBox.getSelectionModel().getSelectedItem().getInicio()) < 0) {
                     errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
-<<<<<<< HEAD
-                }
-=======
                 }*/
->>>>>>> develop
 
             }
         }
