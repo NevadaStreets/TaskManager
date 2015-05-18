@@ -11,6 +11,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
+<<<<<<< HEAD
                   <AnchorPane layoutX="38.0" layoutY="28.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="28.0">
                      <children>
                         <TableView fx:id="taskTable" prefHeight="308.0" prefWidth="153.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -41,6 +42,38 @@
                   <Label fx:id="projectLabel" layoutX="290.0" layoutY="118.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" AnchorPane.rightAnchor="28.0" />
                   <Label layoutX="217.0" layoutY="235.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="180.0" />
                   <Label fx:id="stateLabel" layoutX="290.0" layoutY="235.0" prefHeight="17.0" prefWidth="128.0" AnchorPane.rightAnchor="28.0" />
+=======
+                  <TableView fx:id="taskTable" layoutX="40.0" layoutY="46.0" prefHeight="308.0" prefWidth="153.0">
+                    <columns>
+                      <TableColumn fx:id="firstName" prefWidth="75.0" text="Lista de Tareas" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="91.0" prefWidth="207.0" text="Descripcion" />
+                  <Label fx:id="firstNameLabel" layoutX="220.0" layoutY="46.0" prefHeight="17.0" prefWidth="193.0" text="Nombre" />
+                  <Label fx:id="contextLabel" layoutX="290.0" layoutY="215.0" prefHeight="17.0" prefWidth="128.0" text="Contexto" />
+                  <Label fx:id="deadlineLabel" layoutX="290.0" layoutY="305.0" prefHeight="17.0" prefWidth="128.0" text="Deadline" />
+                  <Label layoutX="218.0" layoutY="305.0" prefHeight="17.0" prefWidth="54.0" text="Deadline" />
+                  <Label layoutX="218.0" layoutY="215.0" text="Contexto" />
+                  <Label layoutX="218.0" layoutY="264.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" />
+                  <Label fx:id="inicioLabel" layoutX="290.0" layoutY="264.0" prefHeight="17.0" prefWidth="128.0" />
+                  <Label layoutX="220.0" layoutY="173.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" />
+                  <Label fx:id="projectLabel" layoutX="290.0" layoutY="173.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
+>>>>>>> origin/arreglos
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="250.0">
                <children>
