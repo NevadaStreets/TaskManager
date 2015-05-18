@@ -26,8 +26,8 @@ public class TareaViewController {
     private Label projectLabel;
     @FXML
     private Label descriptionLabel;
-    @FXML
-    private Label priorityLabel;
+  // @FXML
+  //  private Label priorityLabel;
     @FXML
     private Label contextLabel;
     @FXML
@@ -77,7 +77,7 @@ public class TareaViewController {
         if (proyect != null) {
             firstNameLabel.setText(proyect.getName());
             descriptionLabel.setText(proyect.getDescription());
-            priorityLabel.setText(Integer.toString(proyect.getPriority()));
+           // priorityLabel.setText(Integer.toString(proyect.getPriority()));
             contextLabel.setText(proyect.getContext());
             inicioLabel.setText(DateUtil.format(proyect.getInicio()));
             deadlineLabel.setText(DateUtil.format(proyect.getDeadline()));
@@ -89,7 +89,7 @@ public class TareaViewController {
             // Person is null, remove all the text.
             firstNameLabel.setText("");
             descriptionLabel.setText("");
-            priorityLabel.setText("");
+       //     priorityLabel.setText("");
             contextLabel.setText("");
             inicioLabel.setText("");
             deadlineLabel.setText("");
@@ -169,6 +169,7 @@ public class TareaViewController {
             boolean okClicked = mainApp.showTaskEditDialog(selectedPerson);
             if (okClicked) {
                 showTaskDetails(selectedPerson);
+                mainApp.ordenarT();
         		try {
     				mainApp.sereal();
     			} catch (FileNotFoundException e) {

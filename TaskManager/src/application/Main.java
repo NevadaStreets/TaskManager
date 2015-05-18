@@ -9,8 +9,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
+import java.time.temporal.ChronoUnit;
+>>>>>>> 016512e... Tareas no priorizadas con email
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 
 import view.EditTaskButtonController;
 import view.ProjectEditDialogController;
@@ -29,6 +34,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.controlsfx.dialog.Dialogs;
 
 public class Main extends Application implements Serializable{
 	
@@ -41,7 +55,7 @@ public class Main extends Application implements Serializable{
 	
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws MessagingException {
 		File archivo = new File("media.obj");
 		
 		this.ps = primaryStage;
@@ -75,6 +89,14 @@ public class Main extends Application implements Serializable{
 		ordenar();
 
         showTaskView();
+
+
+        try {
+			mensajear();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 		private void desereal() throws FileNotFoundException, IOException, ClassNotFoundException{
@@ -118,6 +140,122 @@ public class Main extends Application implements Serializable{
 			oos.writeObject(respaldoproject);
 			oos.close();
 		}		
+		
+		public void mensajear() throws IOException, MessagingException {
+			
+			/*final String username = "taskmanager@outlook.es";
+		    final String password = "Soyunprocesador";
+
+		    Properties props = new Properties();
+		    props.put("mail.smtp.auth", "true");
+		    props.put("mail.smtp.starttls.enable", "true");
+		    props.put("mail.smtp.host", "outlook.office365.com");
+		    props.put("mail.smtp.port", "587");
+
+		    Session session = Session.getInstance(props,
+		      new javax.mail.Authenticator() {
+		        protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
+		        }
+		      });
+
+		    try {
+
+		        Message message = new MimeMessage(session);
+		        message.setFrom(new InternetAddress("taskmanager@outlook.es"));
+		        message.setRecipients(Message.RecipientType.TO,
+		            InternetAddress.parse("rorroes@gmail.com"));
+		        message.setSubject("Test");
+		        message.setText("HI");
+
+		        Transport.send(message);
+
+		        System.out.println("Done");
+		        
+
+		        Dialogs.create()
+                .title("Campos validos")
+                .masthead("todo bn")
+                .message("todito bn")
+                .showError();
+        		        
+		        
+		    } catch (MessagingException e) {
+		        Dialogs.create()
+                .title("Campos NO validos")
+                .masthead("todo NO bn")
+                .message("todito MAAAL")
+                .showError();
+		        throw new RuntimeException(e);
+		        
+		    }
+		    
+		    */
+			
+	        String mensaje="";
+	        mensaje= "<table style="+'"'+""+'"'+ "> <tr>  <td><strong>N°</strong></td>  <td><strong>Nombre de tarea</strong></td>  <td><strong>Deadline</strong></td>"+
+	        "</tr>";
+	        int proximas=0;
+	        
+	        for(Tarea tata : taskData){
+	        	int count= (int) -tata.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS) ;
+	        	if(count<=1)
+	        	{
+	        		proximas++;
+	        		mensaje+="<tr> <td>"+ proximas + "</td><td>" + tata.getName() + "</td><td> " +  tata.getDeadline() + "</td></tr>" ;
+
+	        	}
+	        	
+	        }
+	        mensaje= mensaje +"</table>";
+	        if(proximas!=0){
+			Properties props = new Properties();
+
+			// Nombre del host de correo, es smtp.gmail.com
+			props.setProperty("mail.smtp.host", "smtp.gmail.com");
+
+			// TLS si está disponible
+			props.setProperty("mail.smtp.starttls.enable", "true");
+
+			// Puerto de gmail para envio de correos
+			props.setProperty("mail.smtp.port","587");
+
+			// Nombre del usuario
+			props.setProperty("mail.smtp.user", "taskmanager2015@gmail.com");
+
+			// Si requiere o no usuario y password para conectarse.
+			props.setProperty("mail.smtp.auth", "true");
+			
+			Session session = Session.getDefaultInstance(props);
+			//session.setDebug(true);
+			
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("taskmanager2015@gmail.com"));
+
+			// A quien va dirigido
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("vidominguez@uc.cl"));
+			message.setSubject("Perrito");
+			
+
+
+			message.setText(
+					"<head> <style> table, th, td {    border: 1px solid black;    border-collapse: collapse;}</style> </head>"+""
+							+ "Tareas que vencen hoy o mañana:<br> <br>"+ mensaje+" <br> Este email fue enviado automáticamente por <i>ProcesaTask</i>.",
+					"ISO-8859-1",
+					"html");
+			
+			
+			Transport t = session.getTransport("smtp");
+			t.connect("taskmanager2015@gmail.com","Soyunprocesador");
+			t.sendMessage(message,message.getAllRecipients());
+	        Dialogs.create()
+            .title("Campos validos")
+            .masthead("todo bn")
+            .message("todito bn")
+            .showError();
+		}
+	        }
+		
 		
 		
 	public void ordenar(){

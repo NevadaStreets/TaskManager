@@ -22,8 +22,8 @@ public class TaskEditDialogController {
     private TextField firstNameField;
     @FXML
     private TextField descriptionField;
-    @FXML
-    private TextField priorityField;
+  //  @FXML
+  //  private TextField priorityField;
     @FXML
     private TextField contextField;
     @FXML
@@ -89,7 +89,7 @@ public class TaskEditDialogController {
 
         firstNameField.setText(task.getName());
         descriptionField.setText(task.getDescription());
-        priorityField.setText(Integer.toString(task.getPriority()));
+    //    priorityField.setText(Integer.toString(task.getPriority()));
         contextField.setText(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
@@ -120,7 +120,7 @@ public class TaskEditDialogController {
         if (isInputValid()) {
             tarea.setName(firstNameField.getText());
             tarea.setDescription(descriptionField.getText());
-            tarea.setPriority(Integer.parseInt(priorityField.getText()));
+      //      tarea.setPriority(Integer.parseInt(priorityField.getText()));
             tarea.setContext(contextField.getText());
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
@@ -193,7 +193,7 @@ public class TaskEditDialogController {
             errorMessage += "Descripcion no valida!\n"; 
         }
 
-        if (priorityField.getText() == null || priorityField.getText().length() == 0) {
+        /*if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 
         } else {
             
@@ -202,7 +202,7 @@ public class TaskEditDialogController {
             } catch (NumberFormatException e) {
                 errorMessage += "Prioridad no valida (debe ser un entero)!\n"; 
             }
-        }
+        }*/
 
         if (contextField.getText() == null || contextField.getText().length() == 0) {
             errorMessage += "Contexto no valido!\n"; 

@@ -119,15 +119,29 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         this.priority.set(postalCode);
     }
     
-    private int prioridad(){
+    public int prioridad(){
     	int finale=0;
+    	if(Tasks.size()!=0){
     	if(deadline!=null){
     	long  a=- deadline.get().until(LocalDate.now(), ChronoUnit.DAYS);
     	int b= (int)a;
     	
-    	int expon= (int) Math.exp((100-b)/14.137);
-    	int priorUser=priority.get();
-    	finale=(int)(expon*0.50+ priorUser*0.50);
+    	int Fin_de_pro= (int) Math.exp((100-b)/14.137); // prioridad según tiempo que le queda al proyecto
+    	int priorUser=priority.get(); // Entrega la prioridad del proyecto según usuario
+    
+    	ObservableList<Tarea> aux = FXCollections.observableArrayList();
+    	aux.addAll(Tasks);
+    	FXCollections.sort(aux);
+    	Tarea cortita= aux.get(0) ;
+    	int corto= (int) Math.exp((100+cortita.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS))/14.137); //tiempo de la tarea más proxima a terminar
+    
+    	int n_tareas= Tasks.size();
+    	int propor = (int) b / n_tareas; // Proporción de tiempo/tareas
+    	int time_propor= (int) Math.exp((100-propor)/14.137); //prioridad según la relación tiempo_dispobile/cantidad_de_tareas
+    	
+    	
+    	finale=(int)(Fin_de_pro*0.25+ priorUser*0.25 +corto*0.25 + time_propor*0.25);
+    	}
     	}
         return finale;
     }
