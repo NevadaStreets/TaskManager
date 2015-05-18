@@ -61,6 +61,9 @@
                   <Label fx:id="inicioLabel" layoutX="290.0" layoutY="264.0" prefHeight="17.0" prefWidth="128.0" />
                   <Label layoutX="220.0" layoutY="173.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" />
                   <Label fx:id="projectLabel" layoutX="290.0" layoutY="173.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" />
+<<<<<<< HEAD
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
 >>>>>>> 016512e... Tareas no priorizadas con email
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="250.0">
