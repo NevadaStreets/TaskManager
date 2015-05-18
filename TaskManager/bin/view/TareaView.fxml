@@ -44,10 +44,11 @@
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="250.0">
                <children>
-                  <Button layoutX="35.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleNewTask" text="Crear Tarea" />
+                  <Button layoutX="25.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="25.0" prefWidth="97.0" text="Crear Tarea" />
                   <Button layoutX="25.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleProjectView" text="Vista Proyectos" AnchorPane.bottomAnchor="61.0" />
-                  <Button layoutX="25.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="25.0" prefWidth="97.0" text="Eliminar Tarea" />
+                  <Button layoutX="25.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="25.0" prefWidth="97.0" text="Eliminar Tarea" />
                   <Button layoutX="25.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="25.0" prefWidth="97.0" text="Editar Tarea" />
+                  <Button layoutX="25.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="25.0" prefWidth="97.0" text="Finalizar Tarea" />
                </children>
             </AnchorPane>
         </items>

@@ -69,6 +69,14 @@ public class TareaViewController {
 
         // Add observable list data to the table
         taskTable.setItems(mainApp.getTaskData());
+        int largo = mainApp.getTaskData().size();
+        for (int i=largo-1;i>=0;i--){
+        	if(taskTable.getItems().get(i).getEstado().equals("Completada")){
+        		taskTable.getItems().remove(i);
+        	}
+        }
+        
+        
     }
     /**
      * Llena los campos de texto para mostrar detalles de las tareas.
@@ -114,6 +122,7 @@ public class TareaViewController {
             int largo = mainApp.getProyectData().size();
             for (int i=0; i < largo; i++){
             	mainApp.getProyectData().get(i).Tasks.remove(task);
+            	mainApp.getProyectData().get(i).setDeadline2();
             	mainApp.getProyectData().get(i).taskear();
             }
     		try {
@@ -156,6 +165,37 @@ public class TareaViewController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    @FXML
+    private void handleFinishTask() {
+        Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
+        int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            taskTable.getItems().remove(selectedIndex);
+            tempTask.setEstado("Completada");
+            showTaskDetails(tempTask);
+            //mainApp.getTaskData().remove(tempTask);
+            
+            try {
+    			mainApp.sereal();
+    		} catch (FileNotFoundException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+        }
+		
+		else {
+            // Nothing selected.
+            Dialogs.create()
+                .title("No hay seleccion")
+                .masthead("No elegiste tarea")
+                .message("Por favor selecciona una tarea de la tabla.")
+                .showWarning();
+        }
     }
 
     /**

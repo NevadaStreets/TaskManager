@@ -46,13 +46,13 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        this.Name = new SimpleStringProperty(Name);
 	        
 	        // Some initial dummy data, just for convenient testing.
-	        this.description = new SimpleStringProperty("Ingrese descripcion");
+	        this.description = new SimpleStringProperty("Ingrese descripción");
 	        this.priority = new SimpleIntegerProperty(1);
 	        this.context = new SimpleStringProperty("Ingrese contexto");
 	        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.project = P;
-	        this.estado = "Activo";
+	        this.estado = "Activa";
 	        
 	        Namex=this.Name.get();
 	        descriptionx= this.description.get() ;
@@ -139,13 +139,14 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    }
 
 	    public LocalDate getDeadline() {
-	        return deadline.get();
+	        //return deadline.get();
+	    	return deadlinex;
 	    }
 
 	    public void setDeadline(LocalDate birthday) {
 	    	deadlinex=birthday;
     		this.deadline.set(birthday);
-	    	if (project.getDeadline().compareTo(deadlinex)<0){
+	    	/*if (project.getDeadline().compareTo(deadlinex)<0){
 	        	project.setDeadline(deadlinex);
 	        }
 	    	else if (project.getDeadline().compareTo(birthday)>0){
@@ -156,7 +157,9 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    			}
 	    		}
 	        	project.setDeadline(max);
-	        }
+	        }*/
+    		
+    		project.setDeadline2();
 	    }
 
 	    public ObjectProperty<LocalDate> deadlineProperty() {
