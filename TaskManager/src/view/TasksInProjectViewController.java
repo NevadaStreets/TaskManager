@@ -114,6 +114,13 @@ public class TasksInProjectViewController {
 	                .message("Operación inválida para esta tarea")
 	                .showWarning();
 	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
 	            else{
 		            tempTask.setDeadline(tempTask.getDeadline().plusDays(1));
 		            showTaskDetails(tempTask);
@@ -147,6 +154,13 @@ public class TasksInProjectViewController {
 	            	Dialogs.create()
 	                .title("Tarea finalizada")
 	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
 	                .message("Operación inválida para esta tarea")
 	                .showWarning();
 	            }
@@ -186,7 +200,13 @@ public class TasksInProjectViewController {
 	                .message("Operación inválida para esta tarea")
 	                .showWarning();
 	            }
-	            
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
 	            else if (tempTask.getInicio().compareTo(tempTask.getDeadline())<0){
 	            	tempTask.setDeadline(tempTask.getDeadline().minusDays(1));
 		            showTaskDetails(tempTask);
@@ -228,6 +248,13 @@ public class TasksInProjectViewController {
 	            	Dialogs.create()
 	                .title("Tarea finalizada")
 	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
 	                .message("Operación inválida para esta tarea")
 	                .showWarning();
 	            }
