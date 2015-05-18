@@ -107,8 +107,25 @@ public class TasksInProjectViewController {
 	    	int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
 	        if (selectedIndex >= 0) {
 	            Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
-	            tempTask.setDeadline(tempTask.getDeadline().plusDays(1));
-	            showTaskDetails(tempTask);
+	            if (tempTask.getEstado().equals("Completada")){
+	            	Dialogs.create()
+	                .title("Tarea finalizada")
+	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else{
+		            tempTask.setDeadline(tempTask.getDeadline().plusDays(1));
+		            showTaskDetails(tempTask);
+	            }
+
 	    		/*try {
 					mainApp.sereal();
 				} catch (FileNotFoundException e) {
@@ -133,8 +150,24 @@ public class TasksInProjectViewController {
 	    	int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
 	        if (selectedIndex >= 0) {
 	            Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
-	            tempTask.setDeadline(tempTask.getDeadline().plusWeeks(1));
-	            showTaskDetails(tempTask);
+	            if (tempTask.getEstado().equals("Completada")){
+	            	Dialogs.create()
+	                .title("Tarea finalizada")
+	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else{
+	            	tempTask.setDeadline(tempTask.getDeadline().plusWeeks(1));
+		            showTaskDetails(tempTask);
+	            }
 	    		/*try {
 					mainApp.sereal();
 				} catch (FileNotFoundException e) {
@@ -160,7 +193,21 @@ public class TasksInProjectViewController {
 	    	int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
 	        if (selectedIndex >= 0) {
 	            Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
-	            if (tempTask.getInicio().compareTo(tempTask.getDeadline())<0){
+	            if (tempTask.getEstado().equals("Completada")){
+	            	Dialogs.create()
+	                .title("Tarea finalizada")
+	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getInicio().compareTo(tempTask.getDeadline())<0){
 	            	tempTask.setDeadline(tempTask.getDeadline().minusDays(1));
 		            showTaskDetails(tempTask);
 		    		/*try {
@@ -197,7 +244,21 @@ public class TasksInProjectViewController {
 	    	int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
 	        if (selectedIndex >= 0) {
 	            Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
-	            if (tempTask.getInicio().compareTo(tempTask.getDeadline())<-6){
+	            if (tempTask.getEstado().equals("Completada")){
+	            	Dialogs.create()
+	                .title("Tarea finalizada")
+	                .masthead("Tarea en estado Completada escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getEstado().equals("Vencida")){
+	            	Dialogs.create()
+	                .title("Tarea vencida")
+	                .masthead("Tarea en estado Vencida escogida")
+	                .message("Operación inválida para esta tarea")
+	                .showWarning();
+	            }
+	            else if (tempTask.getInicio().compareTo(tempTask.getDeadline())<-6){
 	            	tempTask.setDeadline(tempTask.getDeadline().minusWeeks(1));
 		            showTaskDetails(tempTask);
 		    		/*try {

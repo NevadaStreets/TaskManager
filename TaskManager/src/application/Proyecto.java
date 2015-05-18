@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import util.DateUtil;
 import view.TaskEditDialogController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -170,6 +171,17 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     public void setDeadline(LocalDate birthday) {
     	deadlinex=birthday;
         this.deadline.set(birthday);
+    }
+    
+    public void setDeadline2(){
+    	LocalDate max = DateUtil.parse("01.01.1000");
+		for (int i=0;i<Tasks.size(); i ++){
+			if(max.compareTo(Tasks.get(i).getDeadline())<0){
+				max = Tasks.get(i).getDeadline();
+			}
+		}
+		deadlinex=max;
+    	setDeadline(max);
     }
 
     public ObjectProperty<LocalDate> deadlineProperty() {

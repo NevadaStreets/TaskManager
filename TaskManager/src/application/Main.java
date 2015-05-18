@@ -295,6 +295,8 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
+	            this.ps.setWidth(600);
+	    		this.ps.setHeight(450);
 	            
 	            // Give the controller access to the main app.
 	            TaskViewController controller = loader.getController();
@@ -313,6 +315,8 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
+	            this.ps.setWidth(600);
+	    		this.ps.setHeight(450);
 	            
 	            // Give the controller access to the main app.
 	            TareaViewController controller = loader.getController();
@@ -338,8 +342,10 @@ public class Main extends Application implements Serializable{
 
 	            // Create the dialog Stage.
 	            Stage dialogStage = new Stage();
-	            dialogStage.setMaxHeight(457);
+	            dialogStage.setMaxHeight(325);
 	            dialogStage.setMaxWidth(350);
+	            dialogStage.setMinHeight(325);
+	            dialogStage.setMinWidth(350);
 	            dialogStage.setTitle("Editar Proyecto");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(ps);
@@ -379,6 +385,8 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
+	            dialogStage.setMinWidth(400);
+	            dialogStage.setMinHeight(430);
 
 	            // Set the person into the controller.
 	            TasksInProjectViewController controller = loader.getController();
@@ -409,6 +417,10 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
+	            dialogStage.setMinWidth(340);
+	            dialogStage.setMinHeight(550);
+	            dialogStage.setMaxWidth(340);
+	            dialogStage.setMaxHeight(550);
 
 	            // Set the person into the controller.
 	            TaskEditDialogController controller = loader.getController();
