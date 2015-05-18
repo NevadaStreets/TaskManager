@@ -13,6 +13,7 @@ import java.time.LocalDate;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.time.temporal.ChronoUnit;
 >>>>>>> 016512e... Tareas no priorizadas con email
@@ -25,6 +26,9 @@ import java.time.temporal.ChronoUnit;
 =======
 import java.time.temporal.ChronoUnit;
 >>>>>>> 016512e... Tareas no priorizadas con email
+=======
+import java.time.temporal.ChronoUnit;
+>>>>>>> origin/arreglos
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
