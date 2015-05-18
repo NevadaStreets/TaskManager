@@ -2,6 +2,7 @@ package application;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -148,8 +149,18 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 
 	    @Override
 	    public int compareTo(Tarea o) {
-	       int a=this.priorityProperty().get();
-	       int b=o.priorityProperty().get();
+
+	        	long  c=- deadline.get().until(LocalDate.now(), ChronoUnit.DAYS);
+	        	int d= (int)c;
+	        	int Fin_de_proa= (int) Math.exp((100-d)/14.137);
+	        	
+	       int a=Fin_de_proa;
+	       
+       	long  e=- o.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS);
+       	int f= (int)e;
+       	int Fin_de_prob= (int) Math.exp((100-f)/14.137);
+	       
+	       int b=Fin_de_prob;
 	       return b-a;
 	   }
 

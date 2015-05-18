@@ -21,7 +21,7 @@
                   </TableView>
                   <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="88.0" prefHeight="51.0" prefWidth="207.0" text="Descripcion" />
                   <Label fx:id="firstNameLabel" layoutX="220.0" layoutY="46.0" prefHeight="17.0" prefWidth="193.0" text="Nombre" />
-                  <Label fx:id="priorityLabel" layoutX="290.0" layoutY="164.0" prefHeight="17.0" prefWidth="54.0" text="Prioridad" />
+                  <Label fx:id="priorityLabel" layoutX="290.0" layoutY="164.0" prefHeight="17.0" prefWidth="153.0" text="Prioridad" />
                   <Label fx:id="contextLabel" layoutX="290.0" layoutY="215.0" prefHeight="17.0" prefWidth="128.0" text="Contexto" />
                   <Label fx:id="deadlineLabel" layoutX="290.0" layoutY="305.0" prefHeight="17.0" prefWidth="128.0" text="Deadline" />
                   <Label layoutX="220.0" layoutY="164.0" text="Prioridad" />

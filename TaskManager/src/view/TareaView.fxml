@@ -19,18 +19,16 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="25.0" prefWidth="207.0" text="Descripcion" />
+                  <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="91.0" prefWidth="207.0" text="Descripcion" />
                   <Label fx:id="firstNameLabel" layoutX="220.0" layoutY="46.0" prefHeight="17.0" prefWidth="193.0" text="Nombre" />
-                  <Label fx:id="priorityLabel" layoutX="290.0" layoutY="164.0" prefHeight="17.0" prefWidth="54.0" text="Prioridad" />
                   <Label fx:id="contextLabel" layoutX="290.0" layoutY="215.0" prefHeight="17.0" prefWidth="128.0" text="Contexto" />
                   <Label fx:id="deadlineLabel" layoutX="290.0" layoutY="305.0" prefHeight="17.0" prefWidth="128.0" text="Deadline" />
-                  <Label layoutX="220.0" layoutY="164.0" text="Prioridad" />
                   <Label layoutX="218.0" layoutY="305.0" prefHeight="17.0" prefWidth="54.0" text="Deadline" />
                   <Label layoutX="218.0" layoutY="215.0" text="Contexto" />
                   <Label layoutX="218.0" layoutY="264.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" />
                   <Label fx:id="inicioLabel" layoutX="290.0" layoutY="264.0" prefHeight="17.0" prefWidth="128.0" />
-                  <Label layoutX="220.0" layoutY="121.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" />
-                  <Label fx:id="projectLabel" layoutX="290.0" layoutY="121.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" />
+                  <Label layoutX="220.0" layoutY="173.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" />
+                  <Label fx:id="projectLabel" layoutX="290.0" layoutY="173.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="250.0">
                <children>
