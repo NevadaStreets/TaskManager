@@ -62,6 +62,9 @@
                   <Label layoutX="220.0" layoutY="173.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" />
                   <Label fx:id="projectLabel" layoutX="290.0" layoutY="173.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 016512e... Tareas no priorizadas con email
+=======
 >>>>>>> 016512e... Tareas no priorizadas con email
 =======
 >>>>>>> 016512e... Tareas no priorizadas con email
