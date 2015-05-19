@@ -23,7 +23,7 @@
             <Label text="  Contexto" GridPane.rowIndex="2" />
             <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
             <TextField fx:id="descriptionField" prefHeight="70.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="contextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="contextField" prefHeight="25.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button layoutX="116.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />

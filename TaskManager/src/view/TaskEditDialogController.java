@@ -25,7 +25,7 @@ public class TaskEditDialogController {
   //  @FXML
   //  private TextField priorityField;
     @FXML
-    private TextField contextField;
+    private ComboBox<String> contextField;
     @FXML
     private TextField startDayField;
     @FXML
@@ -68,6 +68,12 @@ public class TaskEditDialogController {
         states.add("En Pausa");
         states.add("Completada");
         stateBox.setItems(states);
+        ObservableList <String> contexts = FXCollections.observableArrayList();
+        contexts.add("En la oficina");
+        contexts.add("En el auto");
+        contexts.add("Al teléfono");
+        contexts.add("En casa");
+        contextField.setItems(contexts);
     }
 
     /**
@@ -90,7 +96,7 @@ public class TaskEditDialogController {
         firstNameField.setText(task.getName());
         descriptionField.setText(task.getDescription());
     //    priorityField.setText(Integer.toString(task.getPriority()));
-        contextField.setText(task.getContext());
+        contextField.setValue(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
         projectBox.setValue(task.getProject());
@@ -121,7 +127,7 @@ public class TaskEditDialogController {
             tarea.setName(firstNameField.getText());
             tarea.setDescription(descriptionField.getText());
       //      tarea.setPriority(Integer.parseInt(priorityField.getText()));
-            tarea.setContext(contextField.getText());
+            tarea.setContext(contextField.getValue());
             if (tarea.getProject()!=null){
             	int largo = mainApp.getProyectData().size();
                 for (int i=0; i < largo; i++){
@@ -204,7 +210,7 @@ public class TaskEditDialogController {
             }
         }*/
 
-        if (contextField.getText() == null || contextField.getText().length() == 0) {
+        if (contextField.getValue() == null || contextField.getValue() == "Ingrese contexto" ) {
             errorMessage += "Contexto no valido!\n"; 
         }
 

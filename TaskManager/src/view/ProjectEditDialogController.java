@@ -4,7 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,7 +27,7 @@ public class ProjectEditDialogController {
     @FXML
     private TextField priorityField;
     @FXML
-    private TextField contextField;
+    private ComboBox<String> contextField;
     /*@FXML
     private TextField startDayField;
     @FXML
@@ -72,11 +75,16 @@ public class ProjectEditDialogController {
      */
     public void setPerson(Proyecto proyect) {
         this.proyect = proyect;
-
+        ObservableList <String> contexts = FXCollections.observableArrayList();
+        contexts.add("En la oficina");
+        contexts.add("En el auto");
+        contexts.add("Al teléfono");
+        contexts.add("En casa");
+        contextField.setItems(contexts);
         firstNameField.setText(proyect.getName());
         descriptionField.setText(proyect.getDescription());
         priorityField.setText(Integer.toString(proyect.getPriority()));
-        contextField.setText(proyect.getContext());
+        contextField.setValue(proyect.getContext());
         String s = DateUtil.format(proyect.getInicio());
         String d = DateUtil.format(proyect.getDeadline());
         //startDayField.setText(s.substring(0, s.indexOf('.')));
@@ -107,7 +115,7 @@ public class ProjectEditDialogController {
             proyect.setName(firstNameField.getText());
             proyect.setDescription(descriptionField.getText());
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
-            proyect.setContext(contextField.getText());
+            proyect.setContext(contextField.getValue());
             //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
             proyect.setDeadline(LocalDate.now());
@@ -181,7 +189,7 @@ public class ProjectEditDialogController {
             }
         }
 
-        if (contextField.getText() == null || contextField.getText().length() == 0) {
+        if (contextField.getValue() == null || contextField.getValue() == "Ingrese contexto") {
             errorMessage += "Contexto no valido!\n"; 
         }
         
