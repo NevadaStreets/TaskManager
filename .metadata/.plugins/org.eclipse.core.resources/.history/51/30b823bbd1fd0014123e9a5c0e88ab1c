@@ -192,7 +192,7 @@ public class Main extends Application implements Serializable{
 			oos.writeObject(respaldoproject);
 			oos.close();
 			
-			if(email!=null){
+			
 			 FileWriter fichero = null;
 		     PrintWriter pw = null;
 		        try
@@ -200,6 +200,7 @@ public class Main extends Application implements Serializable{
 		            fichero = new FileWriter("datos.txt");
 		            pw = new PrintWriter(fichero);
 		 
+		            for (int i = 0; i < 10; i++)
 		                pw.println(email);
 		 
 		        } catch (Exception e) {
@@ -213,7 +214,7 @@ public class Main extends Application implements Serializable{
 		              e2.printStackTrace();
 		           }
 		        }
-			}
+			
 			
 			
 		}		
@@ -279,11 +280,9 @@ public class Main extends Application implements Serializable{
 	        	int count= (int) -tata.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS) ;
 	        	if(count<=1)
 	        	{
-	        		if(!tata.getEstado().equals("Vencida") && !tata.getEstado().equals("Completada")){
 	        		proximas++;
 	        		mensaje+="<tr> <td>"+ proximas + "</td><td>" + tata.getName() + "</td><td> " +  tata.getDeadline() + "</td></tr>" ;
-	        		mensaje2+=proximas+".-"+ tata.getName() + " | Su deadline es: "+  tata.getDeadline() + "\n";
-	        		}
+	        		mensaje2+=proximas+".-"+ tata.getName() + " | Su deadline es: "+  tata.getDeadline();
 	        	}
 	        	
 	        }

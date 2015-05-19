@@ -279,7 +279,7 @@ public class Main extends Application implements Serializable{
 	        	int count= (int) -tata.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS) ;
 	        	if(count<=1)
 	        	{
-	        		if(!tata.getEstado().equals("Vencida") && !tata.getEstado().equals("Completada")){
+	        		if(tata.getEstado()!="Vencida"){
 	        		proximas++;
 	        		mensaje+="<tr> <td>"+ proximas + "</td><td>" + tata.getName() + "</td><td> " +  tata.getDeadline() + "</td></tr>" ;
 	        		mensaje2+=proximas+".-"+ tata.getName() + " | Su deadline es: "+  tata.getDeadline() + "\n";

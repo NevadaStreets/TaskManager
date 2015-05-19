@@ -1,0 +1,40 @@
+package view;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDate;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import org.controlsfx.dialog.Dialogs;
+
+import application.Main;
+import application.Proyecto;
+import util.DateUtil;
+
+
+public class BigViewController {
+
+    @FXML
+    private MenuItem Email;
+
+    @FXML
+    private void initialize() {
+    }
+
+
+    @FXML
+    public void isOkClicked() {
+        Dialogs.create()
+        .title("Alerta de tareas")
+        .masthead("Tareas de suma urgencia")
+        .message("holi")
+        .showConfirm();
+    	
+    }
+
+
+}
