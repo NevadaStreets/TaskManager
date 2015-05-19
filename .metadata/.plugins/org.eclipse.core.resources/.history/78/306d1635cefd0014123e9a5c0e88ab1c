@@ -1,24 +1,15 @@
 package application;
 	
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
-
-
-
-
 
 
 import javafx.collections.FXCollections;
@@ -40,16 +31,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-
-
-
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
-import view.BigViewController;
 import view.EditTaskButtonController;
 import view.ProjectEditDialogController;
 import view.TareaViewController;
@@ -68,7 +53,6 @@ public class Main extends Application implements Serializable{
 	private ArrayList<Tarea> respaldotask;
 	private Stage ps;
 	private BorderPane bv;
-	private String email;
 	
 	
 	@Override
@@ -99,7 +83,6 @@ public class Main extends Application implements Serializable{
 		//Tarea t = new Tarea("A fluir con Fluidos", projectData.get(2));
 		//taskData.add(t);
 		//projectData.get(2).Tasks.add(t);
-			email="taskmanager2015@gmail.com";
 			}
 		//projectData.add(new Proyecto("Proyecto de Software"+LocalDate.now()));
 		
@@ -136,37 +119,6 @@ public class Main extends Application implements Serializable{
 				
 			}
 			
-			File archivo = null;
-		      FileReader fr = null;
-		      BufferedReader br = null;
-		 
-		      try {
-		         // Apertura del fichero y creacion de BufferedReader para poder
-		         // hacer una lectura comoda (disponer del metodo readLine()).
-		         archivo = new File ("datos.txt");
-		         fr = new FileReader (archivo);
-		         br = new BufferedReader(fr);
-		 
-		         // Lectura del fichero
-		         String linea;
-		         while((linea=br.readLine())!=null)
-		           email=linea;
-		      }
-		      catch(Exception e){
-		         e.printStackTrace();
-		      }finally{
-		         // En el finally cerramos el fichero, para asegurarnos
-		         // que se cierra tanto si todo va bien como si salta 
-		         // una excepcion.
-		         try{                    
-		            if( null != fr ){   
-		               fr.close();     
-		            }                  
-		         }catch (Exception e2){ 
-		            e2.printStackTrace();
-		         }
-		      }
-			
 			
 			
 		}
@@ -175,9 +127,6 @@ public class Main extends Application implements Serializable{
 		public void sereal() throws FileNotFoundException, IOException{
 			//respaldoproject;
 			ordenar();
-			
-			
-			
 			Object[] cosas=projectData.toArray();
 			ArrayList<Object> listOfStrings = new ArrayList<Object>((Arrays.asList(cosas).size()));
 			listOfStrings.addAll(Arrays.asList(cosas));
@@ -191,31 +140,6 @@ public class Main extends Application implements Serializable{
 			//ObjectOutputStream oos = new ObjectOutputStream(oks);
 			oos.writeObject(respaldoproject);
 			oos.close();
-			
-			if(email!=null){
-			 FileWriter fichero = null;
-		     PrintWriter pw = null;
-		        try
-		        {
-		            fichero = new FileWriter("datos.txt");
-		            pw = new PrintWriter(fichero);
-		 
-		                pw.println(email);
-		 
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		           try {
-
-		           if (null != fichero)
-		              fichero.close();
-		           } catch (Exception e2) {
-		              e2.printStackTrace();
-		           }
-		        }
-			}
-			
-			
 		}		
 		
 		public void mensajear() throws IOException, MessagingException {
@@ -279,11 +203,9 @@ public class Main extends Application implements Serializable{
 	        	int count= (int) -tata.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS) ;
 	        	if(count<=1)
 	        	{
-	        		if(!tata.getEstado().equals("Vencida") && !tata.getEstado().equals("Completada")){
 	        		proximas++;
 	        		mensaje+="<tr> <td>"+ proximas + "</td><td>" + tata.getName() + "</td><td> " +  tata.getDeadline() + "</td></tr>" ;
-	        		mensaje2+=proximas+".-"+ tata.getName() + " | Su deadline es: "+  tata.getDeadline() + "\n";
-	        		}
+	        		mensaje2+=proximas+".-"+ tata.getName() + " | Su deadline es: "+  tata.getDeadline();
 	        	}
 	        	
 	        }
@@ -313,8 +235,8 @@ public class Main extends Application implements Serializable{
 			message.setFrom(new InternetAddress("taskmanager2015@gmail.com"));
 
 			// A quien va dirigido
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.setSubject("Notificación");
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("taskmanager2015@gmail.com"));
+			message.setSubject("Perrito");
 			
 
 
@@ -357,10 +279,6 @@ public class Main extends Application implements Serializable{
 	            Scene scene = new Scene(bv);
 	            ps.setScene(scene);
 	            ps.show();
-	            BigViewController controller = loader.getController();
-	            controller.setMainApp(this);
-	            
-	        
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -378,8 +296,6 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(600);
-	    		this.ps.setHeight(450);
 	            
 	            // Give the controller access to the main app.
 	            TaskViewController controller = loader.getController();
@@ -398,8 +314,6 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(600);
-	    		this.ps.setHeight(450);
 	            
 	            // Give the controller access to the main app.
 	            TareaViewController controller = loader.getController();
@@ -425,10 +339,8 @@ public class Main extends Application implements Serializable{
 
 	            // Create the dialog Stage.
 	            Stage dialogStage = new Stage();
-	            dialogStage.setMaxHeight(325);
+	            dialogStage.setMaxHeight(457);
 	            dialogStage.setMaxWidth(350);
-	            dialogStage.setMinHeight(325);
-	            dialogStage.setMinWidth(350);
 	            dialogStage.setTitle("Editar Proyecto");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(ps);
@@ -468,8 +380,6 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
-	            dialogStage.setMinWidth(400);
-	            dialogStage.setMinHeight(430);
 
 	            // Set the person into the controller.
 	            TasksInProjectViewController controller = loader.getController();
@@ -500,10 +410,6 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
-	            dialogStage.setMinWidth(340);
-	            dialogStage.setMinHeight(550);
-	            dialogStage.setMaxWidth(340);
-	            dialogStage.setMaxHeight(550);
 
 	            // Set the person into the controller.
 	            TaskEditDialogController controller = loader.getController();
@@ -563,15 +469,7 @@ public class Main extends Application implements Serializable{
 	    public ObservableList<Tarea> getTaskData() {
 	        return taskData;
 	    }
-	    
-	    public void setEmail(String x) throws FileNotFoundException, IOException{
-	    email=x;
-	    sereal();
-	    }
 	
-	    public String getEmail(){
-	    	return email;
-	    }
 	
 	public static void main(String[] args) {
 		launch(args);
