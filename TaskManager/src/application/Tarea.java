@@ -168,16 +168,17 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    }
 	    
 	    public LocalDate getInicio() {
-	        return inicio.get();
+	        //return inicio.get();
+	        return iniciox;
 	    }
 
 	    public void setInicio(LocalDate birthday) {
 	    	iniciox=birthday;
-	        if (project.getInicio().compareTo(iniciox)>0){
-	        	project.setInicio(iniciox);
-	        }
-	        
+	        //if (project.getInicio().compareTo(iniciox)>0){
+	        	//project.setInicio(iniciox);
+	        //}
 	        this.inicio.set(birthday);
+	        project.setInicio2();
 	    }
 
 	    public ObjectProperty<LocalDate> inicioProperty() {

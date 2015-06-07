@@ -110,6 +110,12 @@ public class TaskViewController implements Serializable {
         mainApp.showTareaView();   
     }
     
+    @FXML
+    private void handleDashboard() {
+    	
+        mainApp.showDashboard();   
+    }
+    
     
     @FXML
     private void handleDeleteProject() {

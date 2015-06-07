@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="389.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DashboardController">
+   <children>
+      <ScrollPane fx:id="sp" layoutX="278.0" layoutY="82.0" prefHeight="272.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="487.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="278.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="82.0">
+         <content>
+            <AnchorPane fx:id="anchoa">
+               <children>
+                  <Canvas fx:id="canvas" height="200.0" width="200.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Button layoutX="96.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleInbox" prefHeight="25.0" prefWidth="81.0" text="Inbox" AnchorPane.bottomAnchor="54.0" />
+      <Canvas height="200.0" layoutX="20.0" layoutY="-86.0" width="200.0" />
+      <ScrollPane layoutX="36.0" layoutY="82.0" prefHeight="200.0" prefWidth="206.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="82.0">
+         <content>
+            <AnchorPane fx:id="anchoa2" prefHeight="194.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="titulo" alignment="CENTER" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" />
+                  <Label layoutX="8.0" layoutY="37.0" prefHeight="17.0" prefWidth="126.0" text="Total tareas" />
+                  <Label layoutX="7.0" layoutY="63.0" prefHeight="17.0" prefWidth="116.0" text="Tareas completas" />
+                  <Label layoutX="8.0" layoutY="89.0" prefHeight="17.0" prefWidth="114.0" text="Tareas vencidas" />
+                  <Label fx:id="t1" layoutX="159.0" layoutY="37.0" prefHeight="17.0" prefWidth="32.0" />
+                  <Label fx:id="t2" layoutX="158.0" layoutY="63.0" prefHeight="17.0" prefWidth="35.0" />
+                  <Label fx:id="t3" layoutX="158.0" layoutY="89.0" prefHeight="17.0" prefWidth="26.0" />
+                  <Label layoutX="8.0" layoutY="114.0" prefHeight="17.0" prefWidth="124.0" text="Ratio de cumplimiento" />
+                  <Label fx:id="cumplida" layoutX="157.0" layoutY="114.0" prefHeight="17.0" prefWidth="37.0" />
+                  <Label layoutX="8.0" layoutY="139.0" prefHeight="17.0" prefWidth="135.0" text="Ratio de incumplimiento" />
+                  <Label fx:id="nocumplida" layoutX="157.0" layoutY="139.0" prefHeight="17.0" prefWidth="38.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="408.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskViewController">
+<AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskViewController">
    <children>
-      <SplitPane dividerPositions="0.7558" layoutX="1.0" layoutY="1.0" minHeight="200.0" minWidth="200.0" prefHeight="408.0" prefWidth="608.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.7475247524752475" layoutX="1.0" layoutY="1.0" minHeight="200.0" minWidth="200.0" prefHeight="408.0" prefWidth="608.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane minHeight="100.0" minWidth="100.0" prefHeight="382.0" prefWidth="446.0">
                <children>
@@ -42,11 +42,12 @@
             </AnchorPane>
             <AnchorPane minHeight="100.0" minWidth="100.0" prefHeight="398.0" prefWidth="250.0">
                <children>
-                  <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleNewProject" text="Crear Proyecto" />
-                  <Button layoutX="35.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleTaskView" text="Vista Tareas" AnchorPane.bottomAnchor="61.0" />
-                  <Button layoutX="21.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleTasksInProject" text="Tareas asociadas" />
-                  <Button layoutX="18.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleDeleteProject" prefHeight="25.0" prefWidth="114.0" text="Eliminar Proyecto" />
-                  <Button layoutX="26.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleEditProject" prefHeight="25.0" prefWidth="97.0" text="Editar Proyecto" />
+                  <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleNewProject" text="Crear Proyecto" AnchorPane.rightAnchor="73.0" />
+                  <Button layoutX="35.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleTaskView" text="Vista Tareas" AnchorPane.bottomAnchor="61.0" AnchorPane.rightAnchor="84.0" />
+                  <Button layoutX="21.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleTasksInProject" text="Tareas asociadas" AnchorPane.rightAnchor="72.0" />
+                  <Button layoutX="18.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleDeleteProject" prefHeight="25.0" prefWidth="114.0" text="Eliminar Proyecto" AnchorPane.rightAnchor="66.0" />
+                  <Button layoutX="26.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleEditProject" prefHeight="25.0" prefWidth="97.0" text="Editar Proyecto" AnchorPane.rightAnchor="73.0" />
+                  <Button layoutX="35.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleDashboard" prefHeight="25.0" prefWidth="79.0" text="Dashboard" AnchorPane.bottomAnchor="103.0" AnchorPane.rightAnchor="84.0" />
                </children>
             </AnchorPane>
          </items>

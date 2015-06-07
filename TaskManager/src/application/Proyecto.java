@@ -198,6 +198,17 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	iniciox=birthday;
         this.inicio.set(birthday);
     }
+    
+    public void setInicio2(){
+    	LocalDate min = DateUtil.parse("01.01.9999");
+		for (int i=0;i<Tasks.size(); i ++){
+			if(min.compareTo(Tasks.get(i).getInicio())>0){
+				min = Tasks.get(i).getInicio();
+			}
+		}
+		iniciox=min;
+    	setInicio(min);
+    }
 
     public ObjectProperty<LocalDate> inicioProperty() {
         return inicio;

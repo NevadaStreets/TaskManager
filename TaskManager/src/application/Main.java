@@ -21,6 +21,7 @@ import java.time.temporal.ChronoUnit;
 
 
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -45,11 +46,13 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
 import view.BigViewController;
+import view.DashboardController;
 import view.EditTaskButtonController;
 import view.ProjectEditDialogController;
 import view.TareaViewController;
@@ -378,9 +381,12 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(600);
+	            this.ps.setWidth(700);
 	    		this.ps.setHeight(450);
-	            
+	    		this.ps.setMaxWidth(8000);
+	    		this.ps.setMaxHeight(8000);
+	    		this.ps.setMinWidth(800);
+	    		this.ps.setMinHeight(450);
 	            // Give the controller access to the main app.
 	            TaskViewController controller = loader.getController();
 	            controller.setMainApp(this);
@@ -398,8 +404,12 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(600);
-	    		this.ps.setHeight(450);
+	            //this.ps.setWidth(800);
+	    		//this.ps.setHeight(450);
+	    		this.ps.setMaxWidth(8000);
+	    		this.ps.setMaxHeight(8000);
+	    		this.ps.setMinWidth(800);
+	    		this.ps.setMinHeight(450);
 	            
 	            // Give the controller access to the main app.
 	            TareaViewController controller = loader.getController();
@@ -408,6 +418,31 @@ public class Main extends Application implements Serializable{
 	            e.printStackTrace();
 	        }
 	    }
+	    
+	    public void showDashboard() {
+	        try {
+	            // Load person overview.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(Main.class.getResource("../view/DashboardView.fxml"));
+	            AnchorPane tv = (AnchorPane) loader.load();
+
+	            // Set person overview into the center of root layout.
+	            bv.setCenter(tv);
+	            this.ps.setWidth(800);
+	    		this.ps.setHeight(450);
+	    		this.ps.setMaxWidth(8000);
+	    		this.ps.setMaxHeight(4500);
+	    		this.ps.setMinWidth(800);
+	    		this.ps.setMinHeight(450);
+	            
+	            // Give the controller access to the main app.
+	            DashboardController controller = loader.getController();
+	            controller.setMainApp(this);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
 	    /**
 	     * Opens a dialog to edit details for the specified person. If the user
 	     * clicks OK, the changes are saved into the provided person object and true
