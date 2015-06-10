@@ -85,6 +85,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    	if (LocalDate.now().compareTo(deadlinex)>0){
 	    		estado = "Vencida";
 	    	}
+	    	project.setContext();
 	    }
 	    
 	    public String getName() {

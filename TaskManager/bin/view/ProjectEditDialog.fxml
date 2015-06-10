@@ -16,17 +16,14 @@
           <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="53.0" vgrow="ALWAYS" />
           <RowConstraints maxHeight="86.0" minHeight="7.0" prefHeight="57.0" vgrow="ALWAYS" />
             <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="53.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label prefHeight="13.0" prefWidth="88.0" text=" Nombre" />
             <Label prefHeight="17.0" prefWidth="85.0" text=" Descripcion" GridPane.rowIndex="1" />
             <Label text=" Prioridad" GridPane.rowIndex="2" />
-            <Label text=" Contexto" GridPane.rowIndex="3" />
             <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
             <TextField fx:id="descriptionField" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="priorityField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="contextField" prefHeight="25.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="120.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />

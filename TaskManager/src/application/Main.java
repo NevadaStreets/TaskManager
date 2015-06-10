@@ -22,6 +22,7 @@ import java.time.temporal.ChronoUnit;
 
 
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +48,7 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
@@ -55,6 +57,7 @@ import view.BigViewController;
 import view.DashboardController;
 import view.EditTaskButtonController;
 import view.ProjectEditDialogController;
+import view.StatisticController;
 import view.TareaViewController;
 import view.TaskEditDialogController;
 import view.TaskViewController;
@@ -428,12 +431,12 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(800);
+	            /*this.ps.setWidth(800);
 	    		this.ps.setHeight(450);
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(4500);
 	    		this.ps.setMinWidth(800);
-	    		this.ps.setMinHeight(450);
+	    		this.ps.setMinHeight(450);*/
 	            
 	            // Give the controller access to the main app.
 	            DashboardController controller = loader.getController();
@@ -443,14 +446,32 @@ public class Main extends Application implements Serializable{
 	        }
 	    }
 	    
-	    /**
-	     * Opens a dialog to edit details for the specified person. If the user
-	     * clicks OK, the changes are saved into the provided person object and true
-	     * is returned.
-	     * 
-	     * @param person the person object to be edited
-	     * @return true if the user clicked OK, false otherwise.
-	     */
+	    public void showStatisticView() {
+	        try {
+	            // Load person overview.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(Main.class.getResource("../view/StatisticView.fxml"));
+	            AnchorPane tv = (AnchorPane) loader.load();
+
+	            // Set person overview into the center of root layout.
+	            bv.setCenter(tv);
+	            this.ps.setWidth(800);
+	    		this.ps.setHeight(450);
+	    		this.ps.setMaxWidth(8000);
+	    		this.ps.setMaxHeight(8000);
+	    		this.ps.setMinWidth(800);
+	    		this.ps.setMinHeight(450);
+	            
+	            // Give the controller access to the main app.
+	            StatisticController controller = loader.getController();
+	            controller.setMain(this);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    
+	    
 	    public boolean showProjectEditDialog(Proyecto proyect) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
@@ -510,6 +531,7 @@ public class Main extends Application implements Serializable{
 	            TasksInProjectViewController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
 	            controller.setPerson(proyect);
+	            controller.setMain(this);
 
 	            // Show the dialog and wait until the user closes it
 	            dialogStage.showAndWait();

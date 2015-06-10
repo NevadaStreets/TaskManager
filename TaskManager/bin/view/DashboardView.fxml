@@ -18,7 +18,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="96.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleInbox" prefHeight="25.0" prefWidth="81.0" text="Inbox" AnchorPane.bottomAnchor="54.0" />
+      <Button layoutX="36.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleInbox" prefHeight="25.0" prefWidth="81.0" text="Inbox" AnchorPane.bottomAnchor="58.0" />
       <Canvas height="200.0" layoutX="20.0" layoutY="-86.0" width="200.0" />
       <ScrollPane layoutX="36.0" layoutY="82.0" prefHeight="200.0" prefWidth="206.0" AnchorPane.bottomAnchor="107.0" AnchorPane.topAnchor="82.0">
          <content>
@@ -39,5 +39,6 @@
             </AnchorPane>
          </content>
       </ScrollPane>
+      <Button layoutX="161.0" layoutY="306.0" mnemonicParsing="false" onAction="#estadisticas" prefHeight="25.0" prefWidth="81.0" text="Estadísticas" AnchorPane.bottomAnchor="58.0" />
    </children>
 </AnchorPane>

@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -62,6 +63,10 @@ public class DashboardController {
 	private ScrollPane sp;
 	
 	private Main mainApp;
+	
+	int onClick = -1;
+
+	ArrayList <Rectangle> rectangulos = new ArrayList<Rectangle>();
 
     public DashboardController() {
     }
@@ -85,7 +90,13 @@ public class DashboardController {
     
     @FXML
     private void handleColocar() {
-    	ArrayList <Rectangle> rectangulos = new ArrayList<Rectangle>();
+    	if(rectangulos.isEmpty()){
+    		
+    	}
+    	else{
+    		rectangulos.clear();
+	    	anchoa.getChildren().clear();
+    	}
         FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
     	LocalDate start = DateUtil.parse("01.01.9999");
@@ -136,6 +147,7 @@ public class DashboardController {
     	anchoa.getChildren().add(canvitas);
         drawShapes(gc, end.compareTo(start), LocalDate.now().compareTo(start)*largo, alto);
     	
+        
         for(int i=0; i<mainApp.getProyectData().size();i++){
         	if(mainApp.getProyectData().get(i).gettask().size()>0){
         		double termino = (mainApp.getProyectData().get(i).getDeadline().compareTo(mainApp.getProyectData().get(i).getInicio())+1)*largo;
@@ -168,92 +180,131 @@ public class DashboardController {
                 lx.textProperty().set(mainApp.getProyectData().get(i).getName());
                 double tamanox = fontLoader.computeStringWidth(lx.getText(),lx.getFont());
                 double posx = (rx.getWidth() - tamanox)/2 + rx.getLayoutX();
+                int indice = i;
+                
                 rx.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 	public void handle(MouseEvent eventoRaton){
-                		for(int j=0;j<rectangulos.size();j++){
-                			rectangulos.get(j).setStrokeWidth(1);
-                			rectangulos.get(j).setStroke(Color.DARKBLUE);
-                		}
-                		rx.setStroke(Color.BLACK);
-                        rx.setStrokeWidth(3);
-                        titulo.setText(P.getName());
-                        Double c=0.0;
-                        Double v=0.0;
-                        Double t=0.0;
-                        for (int j=0;j<P.gettask().size();j++){
-                    		if(P.gettask().get(j).getEstado().equals("Completada")){
-                    			c += 1;
-                    		}
-                    		if(P.gettask().get(j).getEstado().equals("Vencida")){
-                    			v += 1;
-                    		}
-                    		t += 1;
-                    	}
-                        t1.setText(String.valueOf(t.intValue()));
-                        t2.setText(String.valueOf(c.intValue()));
-                        t3.setText(String.valueOf(v.intValue()));
-                        Double p = c/t;
-                        cumplida.setText(String.valueOf(p.doubleValue()));
-                        nocumplida.setText(String.valueOf(v/t));
-                        
+                		if(eventoRaton.getButton().equals(MouseButton.PRIMARY)){
+                            if(eventoRaton.getClickCount() == 2){
+                                mainApp.showTasksInProject(P);
+                                onClick = indice;
+                                //mainApp.showDashboard();
+                                double xd = sp.getHvalue();
+                                handleColocar();
+                                sp.setHvalue(xd);
+                                
+                            }
+                            else{
+                            	for(int j=0;j<rectangulos.size();j++){
+                        			rectangulos.get(j).setStrokeWidth(1);
+                        			rectangulos.get(j).setStroke(Color.DARKBLUE);
+                        		}
+                        		rx.setStroke(Color.BLACK);
+                                rx.setStrokeWidth(3);
+                                titulo.setText(P.getName());
+                                Double c=0.0;
+                                Double v=0.0;
+                                Double t=0.0;
+                                for (int j=0;j<P.gettask().size();j++){
+                            		if(P.gettask().get(j).getEstado().equals("Completada")){
+                            			c += 1;
+                            		}
+                            		if(P.gettask().get(j).getEstado().equals("Vencida")){
+                            			v += 1;
+                            		}
+                            		t += 1;
+                            	}
+                                t1.setText(String.valueOf(t.intValue()));
+                                t2.setText(String.valueOf(c.intValue()));
+                                t3.setText(String.valueOf(v.intValue()));
+                                Double p = c/t;
+                                cumplida.setText(String.valueOf(p.doubleValue()));
+                                nocumplida.setText(String.valueOf(v/t));
+                            }
+                        }          
                 	}	
                 });
+
                 completox.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 	public void handle(MouseEvent eventoRaton){
-                		for(int i=0;i<rectangulos.size();i++){
-                			rectangulos.get(i).setStrokeWidth(1);
-                			rectangulos.get(i).setStroke(Color.DARKBLUE);
-                		}
-                		rx.setStroke(Color.BLACK);
-                        rx.setStrokeWidth(3);
-                        titulo.setText(lx.getText());
-                        Double c=0.0;
-                        Double v=0.0;
-                        Double t=0.0;
-                        for (int j=0;j<P.gettask().size();j++){
-                    		if(P.gettask().get(j).getEstado().equals("Completada")){
-                    			c += 1;
-                    		}
-                    		if(P.gettask().get(j).getEstado().equals("Vencida")){
-                    			v += 1;
-                    		}
-                    		t += 1;
-                    	}
-                        t1.setText(String.valueOf(t.intValue()));
-                        t2.setText(String.valueOf(c.intValue()));
-                        t3.setText(String.valueOf(v.intValue()));
-                        Double p = c/t;
-                        cumplida.setText(String.valueOf(p.doubleValue()));
-                        nocumplida.setText(String.valueOf(v/t));
-                	}	
+                		if(eventoRaton.getButton().equals(MouseButton.PRIMARY)){
+                            if(eventoRaton.getClickCount() == 2){
+                            	mainApp.showTasksInProject(P);
+                                //mainApp.showDashboard();
+                            	onClick = indice;
+                            	double xd = sp.getHvalue();
+                                handleColocar();
+                                sp.setHvalue(xd);
+                            }
+                            else{
+                            	for(int j=0;j<rectangulos.size();j++){
+                        			rectangulos.get(j).setStrokeWidth(1);
+                        			rectangulos.get(j).setStroke(Color.DARKBLUE);
+                        		}
+                        		rx.setStroke(Color.BLACK);
+                                rx.setStrokeWidth(3);
+                                titulo.setText(P.getName());
+                                Double c=0.0;
+                                Double v=0.0;
+                                Double t=0.0;
+                                for (int j=0;j<P.gettask().size();j++){
+                            		if(P.gettask().get(j).getEstado().equals("Completada")){
+                            			c += 1;
+                            		}
+                            		if(P.gettask().get(j).getEstado().equals("Vencida")){
+                            			v += 1;
+                            		}
+                            		t += 1;
+                            	}
+                                t1.setText(String.valueOf(t.intValue()));
+                                t2.setText(String.valueOf(c.intValue()));
+                                t3.setText(String.valueOf(v.intValue()));
+                                Double p = c/t;
+                                cumplida.setText(String.valueOf(p.doubleValue()));
+                                nocumplida.setText(String.valueOf(v/t));
+                            }
+                        }          
+                	}		
                 });
                 lx.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 	public void handle(MouseEvent eventoRaton){
-                		for(int i=0;i<rectangulos.size();i++){
-                			rectangulos.get(i).setStrokeWidth(1);
-                			rectangulos.get(i).setStroke(Color.DARKBLUE);
-                		}
-                		rx.setStroke(Color.BLACK);
-                        rx.setStrokeWidth(3);
-                        titulo.setText(lx.getText());
-                        Double c=0.0;
-                        Double v=0.0;
-                        Double t=0.0;
-                        for (int j=0;j<P.gettask().size();j++){
-                    		if(P.gettask().get(j).getEstado().equals("Completada")){
-                    			c += 1;
-                    		}
-                    		if(P.gettask().get(j).getEstado().equals("Vencida")){
-                    			v += 1;
-                    		}
-                    		t += 1;
-                    	}
-                        t1.setText(String.valueOf(t.intValue()));
-                        t2.setText(String.valueOf(c.intValue()));
-                        t3.setText(String.valueOf(v.intValue()));
-                        Double p = c/t;
-                        cumplida.setText(String.valueOf(p.doubleValue()));
-                        nocumplida.setText(String.valueOf(v/t));
+                		if(eventoRaton.getButton().equals(MouseButton.PRIMARY)){
+                            if(eventoRaton.getClickCount() == 2){
+                            	mainApp.showTasksInProject(P);
+                                //mainApp.showDashboard();
+                            	onClick = indice;
+                            	double xd = sp.getHvalue();
+                                handleColocar();
+                                sp.setHvalue(xd);
+                            }
+                            else{
+                            	for(int j=0;j<rectangulos.size();j++){
+                        			rectangulos.get(j).setStrokeWidth(1);
+                        			rectangulos.get(j).setStroke(Color.DARKBLUE);
+                        		}
+                        		rx.setStroke(Color.BLACK);
+                                rx.setStrokeWidth(3);
+                                titulo.setText(P.getName());
+                                Double c=0.0;
+                                Double v=0.0;
+                                Double t=0.0;
+                                for (int j=0;j<P.gettask().size();j++){
+                            		if(P.gettask().get(j).getEstado().equals("Completada")){
+                            			c += 1;
+                            		}
+                            		if(P.gettask().get(j).getEstado().equals("Vencida")){
+                            			v += 1;
+                            		}
+                            		t += 1;
+                            	}
+                                t1.setText(String.valueOf(t.intValue()));
+                                t2.setText(String.valueOf(c.intValue()));
+                                t3.setText(String.valueOf(v.intValue()));
+                                Double p = c/t;
+                                cumplida.setText(String.valueOf(p.doubleValue()));
+                                nocumplida.setText(String.valueOf(v/t));
+                            }
+                        }          
                 	}	
                 });
                 anchoa.getChildren().add(rx);
@@ -269,35 +320,47 @@ public class DashboardController {
                 	Rectangle vencidax = new Rectangle((vencidas/totaltareas)*termino,20,Color.rgb(200, 2, 1, 0.5));
             		vencidax.setLayoutX(iniciox + (llenado/totaltareas)*termino);
                     vencidax.setLayoutY(30*(i+1));
-                    Tooltip t1 = new Tooltip(mensaje);
-                    Tooltip.install(vencidax, t1);
+                    Tooltip tt1 = new Tooltip(mensaje);
+                    Tooltip.install(vencidax, tt1);
                     vencidax.setOnMouseClicked(new EventHandler<MouseEvent>(){
                     	public void handle(MouseEvent eventoRaton){
-                    		for(int i=0;i<rectangulos.size();i++){
-                    			rectangulos.get(i).setStrokeWidth(1);
-                    			rectangulos.get(i).setStroke(Color.DARKBLUE);
-                    		}
-                    		rx.setStroke(Color.BLACK);
-                            rx.setStrokeWidth(3);
-                            titulo.setText(lx.getText());
-                            Double c=0.0;
-                            Double v=0.0;
-                            Double t=0.0;
-                            for (int j=0;j<P.gettask().size();j++){
-                        		if(P.gettask().get(j).getEstado().equals("Completada")){
-                        			c += 1;
-                        		}
-                        		if(P.gettask().get(j).getEstado().equals("Vencida")){
-                        			v += 1;
-                        		}
-                        		t += 1;
-                        	}
-                            t1.setText(String.valueOf(t.intValue()));
-                            t2.setText(String.valueOf(c.intValue()));
-                            t3.setText(String.valueOf(v.intValue()));
-                            Double p = c/t;
-                            cumplida.setText(String.valueOf(p.doubleValue()));
-                            nocumplida.setText(String.valueOf(v/t));
+                    		if(eventoRaton.getButton().equals(MouseButton.PRIMARY)){
+                                if(eventoRaton.getClickCount() == 2){
+                                	mainApp.showTasksInProject(P);
+                                    //mainApp.showDashboard();
+                                	onClick = indice;
+                                	double xd = sp.getHvalue();
+                                    handleColocar();
+                                    sp.setHvalue(xd);
+                                }
+                                else{
+                                	for(int j=0;j<rectangulos.size();j++){
+                            			rectangulos.get(j).setStrokeWidth(1);
+                            			rectangulos.get(j).setStroke(Color.DARKBLUE);
+                            		}
+                            		rx.setStroke(Color.BLACK);
+                                    rx.setStrokeWidth(3);
+                                    titulo.setText(P.getName());
+                                    Double c=0.0;
+                                    Double v=0.0;
+                                    Double t=0.0;
+                                    for (int j=0;j<P.gettask().size();j++){
+                                		if(P.gettask().get(j).getEstado().equals("Completada")){
+                                			c += 1;
+                                		}
+                                		if(P.gettask().get(j).getEstado().equals("Vencida")){
+                                			v += 1;
+                                		}
+                                		t += 1;
+                                	}
+                                    t1.setText(String.valueOf(t.intValue()));
+                                    t2.setText(String.valueOf(c.intValue()));
+                                    t3.setText(String.valueOf(v.intValue()));
+                                    Double p = c/t;
+                                    cumplida.setText(String.valueOf(p.doubleValue()));
+                                    nocumplida.setText(String.valueOf(v/t));
+                                }
+                            }          
                     	}	
                     });
                     anchoa.getChildren().add(vencidax);
@@ -308,10 +371,15 @@ public class DashboardController {
                 Tooltip.install(lx, t);
                 lx.layoutXProperty().set(posx);
                 lx.layoutYProperty().set(30*(i+1));
+                
+                
         	}
         	
     	}
-    	
+        if(onClick >= 0){
+            rectangulos.get(onClick).setStroke(Color.BLACK);
+            rectangulos.get(onClick).setStrokeWidth(3);
+        }
       
         
     }
@@ -327,8 +395,14 @@ public class DashboardController {
         gc.setLineWidth(2);
         LocalTime hora = LocalTime.now();
         gc.strokeLine(p + hora.getHour()*5, 20, p + hora.getHour()*5, a);
+        sp.setHvalue(p/(d*120));
         
     }
-
+    
+    @FXML
+    private void estadisticas(){
+    	mainApp.showStatisticView();
+    }
+    
 
 }

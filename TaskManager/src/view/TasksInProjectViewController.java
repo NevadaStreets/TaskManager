@@ -36,6 +36,7 @@ public class TasksInProjectViewController {
 	    
 	    private Stage dialogStage;
 	    private boolean okClicked = false;
+	    private Main mainApp;
 	    
 	    // Referencia al proyecto seleccionado.
 	    private Proyecto project;
@@ -53,12 +54,10 @@ public class TasksInProjectViewController {
 	 public void setDialogStage(Stage dialogStage) {
 	        this.dialogStage = dialogStage;
 	    }
+	 public void setMain(Main mainApp) {
+	        this.mainApp = mainApp;
+	    }
 
-	    /**
-	     * Sets the person to be edited in the dialog.
-	     * 
-	     * @param person
-	     */
 	    public void setPerson(Proyecto proyect) {
 	        this.project = proyect;
 	        projectLabel.setText(proyect.getName());
@@ -168,15 +167,6 @@ public class TasksInProjectViewController {
 	            	tempTask.setDeadline(tempTask.getDeadline().plusWeeks(1));
 		            showTaskDetails(tempTask);
 	            }
-	    		/*try {
-					mainApp.sereal();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 	        } else {
 	            // Nothing selected.
 	            Dialogs.create()
@@ -289,11 +279,34 @@ public class TasksInProjectViewController {
 	        }
 	    }
 
-	    /**
-	     * Validates the user input in the text fields.
-	     * 
-	     * @return true if the input is valid
-	     */
-
+	    @FXML
+	    private void handleFinish() {
+	    	Tarea tempTask = taskTable.getSelectionModel().getSelectedItem();
+	        int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
+	        if (selectedIndex >= 0) {
+	            tempTask.setEstado("Completada");
+	            showTaskDetails(tempTask);
+	            //mainApp.getTaskData().remove(tempTask);
+	            
+	            try {
+	    			mainApp.sereal();
+	    		} catch (FileNotFoundException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		} catch (IOException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}
+	        }
+			
+			else {
+	            // Nothing selected.
+	            Dialogs.create()
+	                .title("No hay seleccion")
+	                .masthead("No elegiste tarea")
+	                .message("Por favor selecciona una tarea de la tabla.")
+	                .showWarning();
+	        }
+	    }
 
 }

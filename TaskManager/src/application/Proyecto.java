@@ -26,10 +26,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- * Model class for a Person.
- *
- */
 public class Proyecto implements Comparable<Proyecto>, Serializable {
 
 	 private  String Namex;
@@ -48,29 +44,18 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     private transient ObjectProperty<LocalDate> inicio;
     private transient ObjectProperty<LocalDate> deadline;
 
-    /**
-     * Default constructor.
-     */
+
     public Proyecto() {
         this(null);
     }
 
-    /**
-     * Constructor with some initial data.
-     * 
-     * @param firstName
-     * @param lastName
-     */
+
     public Proyecto(String Name) {
-    	
-    	
-    	
-    	
         this.Name = new SimpleStringProperty(Name);
         // Some initial dummy data, just for convenient testing.
         this.description = new SimpleStringProperty("Ingrese descripcion");
         this.priority = new SimpleIntegerProperty(1);
-        this.context = new SimpleStringProperty("Ingrese contexto");
+        this.context = new SimpleStringProperty("En Pausa");
         this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
         this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
         this.Tasks = FXCollections.observableArrayList();
@@ -155,9 +140,33 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         return context.get();
     }
 
-    public void setContext(String city) {
-    	contextx=city;
-        this.context.set(city);
+    public void setContext() {
+        boolean vencida = false;
+        String estado = "";
+        int contador = 0;
+        for(int i=0;i<Tasks.size();i++){
+        	if(Tasks.get(i).getEstado().equals("Activa")){
+        		estado = "Activo";
+        	}
+        	if(Tasks.get(i).getEstado().equals("Vencida")){
+        		vencida = true;
+        	}
+        	if(Tasks.get(i).getEstado().equals("Completada")){
+        		contador++;
+        	}
+        }
+        if(contador == Tasks.size()){
+        	estado = "Terminado";
+        }
+        else if(vencida==true){
+        	estado = "Vencido";
+        }
+        else if(estado.equals("") && vencida == false){
+    		estado = "En Pausa";
+    	}
+        
+        contextx=estado;
+        this.context.set(estado);
     }
 
     public StringProperty contextProperty() {
@@ -245,7 +254,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     		 this.Name = new SimpleStringProperty(Namex);
     		this.description = new SimpleStringProperty(descriptionx);
             this.priority = new SimpleIntegerProperty(priorityx);
-            this.context = new SimpleStringProperty("contextx");
+            this.context = new SimpleStringProperty(contextx);
             this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
             this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
             this.Tasks = FXCollections.observableArrayList();
@@ -253,7 +262,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
             llenartask();
        	 setDescription(descriptionx);
        	 setPriority(priorityx);
-       	 setContext(contextx);
+       	 //setContext(contextx);
+       	 //setContext();
        	 setDeadline(deadlinex);
        	 
        	setInicio(iniciox);

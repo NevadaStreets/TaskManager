@@ -197,6 +197,7 @@ public class TaskViewController implements Serializable {
         }
 
     }
+    
 
     /**
      * Called when the user clicks the edit button. Opens a dialog to edit

@@ -26,8 +26,6 @@ public class ProjectEditDialogController {
     private TextField descriptionField;
     @FXML
     private TextField priorityField;
-    @FXML
-    private ComboBox<String> contextField;
     /*@FXML
     private TextField startDayField;
     @FXML
@@ -80,11 +78,9 @@ public class ProjectEditDialogController {
         contexts.add("En el auto");
         contexts.add("Al teléfono");
         contexts.add("En casa");
-        contextField.setItems(contexts);
         firstNameField.setText(proyect.getName());
         descriptionField.setText(proyect.getDescription());
         priorityField.setText(Integer.toString(proyect.getPriority()));
-        contextField.setValue(proyect.getContext());
         String s = DateUtil.format(proyect.getInicio());
         String d = DateUtil.format(proyect.getDeadline());
         //startDayField.setText(s.substring(0, s.indexOf('.')));
@@ -115,7 +111,6 @@ public class ProjectEditDialogController {
             proyect.setName(firstNameField.getText());
             proyect.setDescription(descriptionField.getText());
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
-            proyect.setContext(contextField.getValue());
             //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
             proyect.setDeadline(LocalDate.now());
@@ -187,10 +182,6 @@ public class ProjectEditDialogController {
             } catch (NumberFormatException e) {
                 errorMessage += "Prioridad no valida (debe ser un entero)!\n"; 
             }
-        }
-
-        if (contextField.getValue() == null || contextField.getValue() == "Ingrese contexto") {
-            errorMessage += "Contexto no valido!\n"; 
         }
         
         //validar fecha de inicio
