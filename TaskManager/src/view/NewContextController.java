@@ -2,7 +2,10 @@ package view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -10,22 +13,17 @@ import javafx.stage.Stage;
 
 import org.controlsfx.dialog.Dialogs;
 
-import util.DateUtil;
 import application.Contexto;
 import application.Main;
 import application.Proyecto;
-import application.Tarea;
+import util.DateUtil;
 
-public class EditTaskButtonController {
+public class NewContextController {
 	@FXML
     private TextField firstNameField;
     @FXML
-    private TextField descriptionField;
-    @FXML
     private TextField priorityField;
-    @FXML
-    private ComboBox<Contexto> contextField;
-    @FXML
+    /*@FXML
     private TextField startDayField;
     @FXML
     private TextField startMonthField;
@@ -36,14 +34,13 @@ public class EditTaskButtonController {
     @FXML
     private TextField deadlineMonthField;
     @FXML
-    private TextField deadlineYearField;
-
-    private Main mainApp;
+    private TextField deadlineYearField;*/
 
 
     private Stage dialogStage;
-    private Tarea tarea;
     private boolean okClicked = false;
+    private Main mainApp;
+	private Contexto context;
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -51,12 +48,6 @@ public class EditTaskButtonController {
      */
     @FXML
     private void initialize() {
-    }
-    
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-        contextField.setItems(mainApp.getContextData());
-
     }
 
     /**
@@ -67,28 +58,35 @@ public class EditTaskButtonController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+    
+    /*public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }*/
 
     /**
      * Sets the person to be edited in the dialog.
      * 
      * @param person
      */
-    public void setPerson(Tarea task) {
-        this.tarea = task;
-
-        firstNameField.setText(task.getName());
-        descriptionField.setText(task.getDescription());
-        priorityField.setText(Integer.toString(task.getPriority()));
-        //contextField.setText(task.getContext().getContext());
-        contextField.setValue(task.getContext());
-        String s = DateUtil.format(task.getInicio());
-        String d = DateUtil.format(task.getDeadline());
-        startDayField.setText(s.substring(0, s.indexOf('.')));
-        startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
-        startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
-        deadlineDayField.setText(d.substring(0, d.indexOf('.')));
-        deadlineMonthField.setText(d.substring(d.indexOf('.')+1, d.lastIndexOf('.')));
-        deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.length()));
+    public void setPerson(Contexto context) {
+        this.context = context;
+        /*ObservableList <String> contexts = FXCollections.observableArrayList();
+        contexts.add("En la oficina");
+        contexts.add("En el auto");
+        contexts.add("Al teléfono");
+        contexts.add("En casa");*/
+        //firstNameField.setText(context.getContext());
+        //priorityField.setText(Integer.toString(context.getPriority()));
+        //String s = DateUtil.format(proyect.getInicio());
+        //String d = DateUtil.format(proyect.getDeadline()); 
+        //startDayField.setText(s.substring(0, s.indexOf('.')));
+        //startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
+        //startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
+        //deadlineDayField.setText(d.substring(0, d.indexOf('.')));
+        //deadlineMonthField.setText(d.substring(d.indexOf('.')+1, d.lastIndexOf('.')));
+        //deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.length()));
+        //startDayField.setPromptText("dd.mm.yyyy");
+        //deadlineField.setPromptText("dd.mm.yyyy");
     }
 
     /**
@@ -106,23 +104,18 @@ public class EditTaskButtonController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            tarea.setName(firstNameField.getText());
-            tarea.setDescription(descriptionField.getText());
-            tarea.setPriority(Integer.parseInt(priorityField.getText()));
-            //tarea.setContext(contextField.getText());
-            
-            Contexto context = contextField.getValue();
-    		int indic = mainApp.getContextData().indexOf(context);
-            tarea.setContext(mainApp.getContextData().get(indic));
-    		mainApp.getContextData().get(indic).Tasks.add(tarea);
-            
-            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
-            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+            context.setContext(firstNameField.getText());
+            context.setPriority(Integer.parseInt(priorityField.getText()));
+            //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
+            //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+            //proyect.setDeadline(LocalDate.now());
+            //proyect.setInicio(LocalDate.now());
 
-    		
-            //mainApp.getProyectData();
             okClicked = true;
-    		try {
+            okClicked = true;
+            
+            //revisar!
+    		/*try {
 				mainApp.sereal();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -130,7 +123,9 @@ public class EditTaskButtonController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
+    		//hasta aca
+    		
             dialogStage.close();
         }
     }
@@ -150,7 +145,7 @@ public class EditTaskButtonController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
-        if (startDayField.getText().length()==1){
+        /*if (startDayField.getText().length()==1){
         	startDayField.setText("0"+startDayField.getText());
         }
         if (startMonthField.getText().length()==1){
@@ -163,34 +158,25 @@ public class EditTaskButtonController {
         	deadlineMonthField.setText("0"+deadlineMonthField.getText());
         }
         String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
-        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();
-
+        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();*/
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
         }
 
-        if (descriptionField.getText() == null || descriptionField.getText().length() == 0) {
-            errorMessage += "Descripcion no valida!\n"; 
-        }
-
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 
         } else {
-            // try to parse the postal code into an int.
+            
             try {
                 Integer.parseInt(priorityField.getText());
             } catch (NumberFormatException e) {
                 errorMessage += "Prioridad no valida (debe ser un entero)!\n"; 
             }
         }
-
-        if (contextField.getValue() == null || contextField.getValue().getContext() == "Ingrese contexto") {
-            errorMessage += "Contexto no valido!\n"; 
-        }
-
+        
         //validar fecha de inicio
-        if (Start == null || Start.length() == 0) {
+        /*if (Start == null || Start.length() == 0) {
             errorMessage += "fecha inicio no valida!\n";
         } else {
             if (!DateUtil.validDate(Start)) {
@@ -210,17 +196,9 @@ public class EditTaskButtonController {
             	if (DateUtil.parse(Deadline).compareTo(DateUtil.parse(Start)) < 0) {
                     errorMessage += "fecha de inicio debe venir antes del deadline!\n";
                 } 
-            	//Plazo de tareas debe estar entre los plazos del proyecto
-                if (DateUtil.parse(Deadline).compareTo(tarea.getProject().getDeadline()) > 0) {
-                    errorMessage += "deadline de tarea debe estar entre los plazos del proyecto!\n";
-                }
-                
-                if (DateUtil.parse(Start).compareTo(tarea.getProject().getInicio()) < 0) {
-                    errorMessage += "fecha de inicio de tarea debe estar entre los plazos del proyecto!\n";
-                }
-            }            
-        }
-        
+
+            }
+        }*/
         
         
         if (errorMessage.length() == 0) {
@@ -235,5 +213,4 @@ public class EditTaskButtonController {
             return false;
         }
     }
-
 }

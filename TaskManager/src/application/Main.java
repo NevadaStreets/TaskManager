@@ -23,6 +23,8 @@ import java.time.temporal.ChronoUnit;
 
 
 
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -49,13 +51,17 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
 import view.BigViewController;
 import view.DashboardController;
+import view.EditContextController;
 import view.EditTaskButtonController;
+import view.NewContextController;
 import view.ProjectEditDialogController;
 import view.StatisticController;
 import view.TareaViewController;
@@ -75,8 +81,16 @@ public class Main extends Application implements Serializable{
 	private Stage ps;
 	private BorderPane bv;
 	private String email;
+	private ObservableList<Contexto> contextData = FXCollections.observableArrayList();
 	
-	
+	public ObservableList<Contexto> getContextData() {
+		return contextData;
+	}
+
+	public void setContextData(ObservableList<Contexto> contextData) {
+		this.contextData = contextData;
+	}
+
 	@Override
 	public void start(Stage primaryStage) throws MessagingException {
 		File archivo = new File("media.obj");
@@ -509,7 +523,43 @@ public class Main extends Application implements Serializable{
 	            return false;
 	        }
 	    }
-	    
+	    public boolean showNewContext(Contexto context) {
+	    	try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(Main.class.getResource("../view/NewContext.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setMaxHeight(325);
+	            dialogStage.setMaxWidth(350);
+	            dialogStage.setMinHeight(325);
+	            dialogStage.setMinWidth(350);
+	            dialogStage.setTitle("Nuevo Contexto");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(ps);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            NewContextController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setPerson(context);
+	            
+	            
+	            //controller.setMainApp(this); //Tirar main a ProjectEditDialog, revisar!!
+
+	            
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isOkClicked();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
 	    public boolean showTasksInProject(Proyecto proyect) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
@@ -632,5 +682,43 @@ public class Main extends Application implements Serializable{
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public boolean showEditContext(Contexto context) {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/EditContext.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setMaxHeight(325);
+            dialogStage.setMaxWidth(350);
+            dialogStage.setMinHeight(325);
+            dialogStage.setMinWidth(350);
+            dialogStage.setTitle("Editar Contextos");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(ps);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            EditContextController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            //controller.setPerson(context);
+            
+            
+            controller.setMainApp(this); //Tirar main a ProjectEditDialog, revisar!!
+
+            
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
 	}
 }

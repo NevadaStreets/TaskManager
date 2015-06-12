@@ -170,6 +170,7 @@ public class TaskViewController implements Serializable {
         }
     }
     
+    
     //Toma como referencia el proyecto clickeado en la ventana de proyectos
     @FXML
     private void handleTasksInProject() {

@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
 
 import util.DateUtil;
+import application.Contexto;
 import application.Main;
 import application.Proyecto;
 import application.Tarea;
@@ -25,7 +26,7 @@ public class TaskEditDialogController {
   //  @FXML
   //  private TextField priorityField;
     @FXML
-    private ComboBox<String> contextField;
+    private ComboBox<Contexto> contextField;
     @FXML
     private TextField startDayField;
     @FXML
@@ -63,17 +64,18 @@ public class TaskEditDialogController {
 
         //Mostramos una lista con los proyectos disponibles
         projectBox.setItems(mainApp.getProyectData());
+        contextField.setItems(mainApp.getContextData());
         ObservableList <String> states = FXCollections.observableArrayList();
         states.add("Activa");
         states.add("En Pausa");
         states.add("Completada");
         stateBox.setItems(states);
-        ObservableList <String> contexts = FXCollections.observableArrayList();
-        contexts.add("En la oficina");
-        contexts.add("En el auto");
-        contexts.add("Al teléfono");
-        contexts.add("En casa");
-        contextField.setItems(contexts);
+        //ObservableList <String> contexts = FXCollections.observableArrayList();
+        //contexts.add("En la oficina");
+        //contexts.add("En el auto");
+        //contexts.add("Al teléfono");
+        //contexts.add("En casa");
+        //contextField.setItems(contexts);
     }
 
     /**
@@ -95,7 +97,7 @@ public class TaskEditDialogController {
 
         firstNameField.setText(task.getName());
         descriptionField.setText(task.getDescription());
-    //    priorityField.setText(Integer.toString(task.getPriority()));
+    //  priorityField.setText(Integer.toString(task.getPriority()));
         contextField.setValue(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
@@ -139,6 +141,13 @@ public class TaskEditDialogController {
             tarea.setProject(mainApp.getProyectData().get(indice));
     		mainApp.getProyectData().get(indice).Tasks.add(tarea);
     		mainApp.getProyectData().get(indice).taskear();
+    		
+    		Contexto context = contextField.getValue();
+    		int indic = mainApp.getContextData().indexOf(context);
+            tarea.setContext(mainApp.getContextData().get(indic));
+  
+    		//mainApp.getContextData().get(indic).taskear();
+    		
             tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
 
@@ -210,7 +219,7 @@ public class TaskEditDialogController {
             }
         }*/
 
-        if (contextField.getValue() == null || contextField.getValue() == "Ingrese contexto" ) {
+        if (contextField.getValue() == null || contextField.getValue().getContext() == "Ingrese contexto" ) {
             errorMessage += "Contexto no valido!\n"; 
         }
 

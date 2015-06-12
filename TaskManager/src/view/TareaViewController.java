@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import application.Contexto;
 import application.Main;
 import application.Proyecto;
 import application.Tarea;
@@ -86,7 +87,7 @@ public class TareaViewController {
             firstNameLabel.setText(proyect.getName());
             descriptionLabel.setText(proyect.getDescription());
            // priorityLabel.setText(Integer.toString(proyect.getPriority()));
-            contextLabel.setText(proyect.getContext());
+            contextLabel.setText(proyect.getContext().getContext());
             inicioLabel.setText(DateUtil.format(proyect.getInicio()));
             deadlineLabel.setText(DateUtil.format(proyect.getDeadline()));
             projectLabel.setText(proyect.getProject().getName());
@@ -230,5 +231,38 @@ public class TareaViewController {
                 .showWarning();
         }
     }
-
+    @FXML
+    private void handleNewContext() {
+        Contexto tempcontext = new Contexto();
+        boolean okClicked = mainApp.showNewContext(tempcontext);
+        if (okClicked) {
+            mainApp.getContextData().add(tempcontext);
+            try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+    }
+    @FXML
+    private void handleEditContext() {
+        Contexto tempcontext = new Contexto();
+        boolean okClicked = mainApp.showEditContext(tempcontext);
+        if (okClicked) {
+            //mainApp.getContextData().add(tempcontext);
+            try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+    }
 }

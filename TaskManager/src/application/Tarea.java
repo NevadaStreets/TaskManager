@@ -18,7 +18,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	private  String Namex;
 	 private  String descriptionx;
 	 private  int priorityx;
-	 private  String contextx;
+	 private Contexto context;
 	 private  LocalDate iniciox;
 	 private  LocalDate deadlinex;
 	 
@@ -28,7 +28,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	private transient StringProperty Name;
 	 private transient StringProperty description;
 	 private transient IntegerProperty priority;
-	 private transient StringProperty context;
+	 //private transient StringProperty context;
 	 private transient ObjectProperty<LocalDate> inicio;
 	 private transient ObjectProperty<LocalDate> deadline;
 	 private Proyecto project;
@@ -49,7 +49,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        // Some initial dummy data, just for convenient testing.
 	        this.description = new SimpleStringProperty("Ingrese descripción");
 	        this.priority = new SimpleIntegerProperty(1);
-	        this.context = new SimpleStringProperty("Ingrese contexto");
+	        //this.context = new SimpleStringProperty("Ingrese contexto");
 	        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	        this.project = P;
@@ -58,7 +58,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        Namex=this.Name.get();
 	        descriptionx= this.description.get() ;
 	        priorityx= this.priority.get() ;
-	        contextx=this.context.get();
+	        //context=this.context.get();
+	        context = new Contexto("Ingrese contexto",0);
 	        iniciox=this.inicio.get() ;
 	        deadlinex=this.deadline.get();
 	        
@@ -127,18 +128,18 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        return priority;
 	    }
 
-	    public String getContext() {
-	        return context.get();
-	    }
-
-	    public void setContext(String city) {
-	    	contextx=city;
-	        this.context.set(city);
-	    }
-
-	    public StringProperty contextProperty() {
+	    public Contexto getContext() {
 	        return context;
 	    }
+
+	    public void setContext(Contexto city) {
+	    	context=city;
+	        //this.context.set(city);
+	    }
+
+	    //public StringProperty contextProperty() {
+	      //  return context;
+	    //}
 
 	    public LocalDate getDeadline() {
 	        //return deadline.get();
@@ -209,13 +210,13 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    		 this.Name = new SimpleStringProperty(Namex);
 	    		this.description = new SimpleStringProperty(descriptionx);
 	            this.priority = new SimpleIntegerProperty(priorityx);
-	            this.context = new SimpleStringProperty("contextx");
+	            //this.context = new SimpleStringProperty("contextx");
 	            this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
 	            this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
 	            
 	       	 setDescription(descriptionx);
 	       	 setPriority(priorityx);
-	       	 setContext(contextx);
+	       	 //setContext(contextx);
 	       	 setDeadline(deadlinex);
 	       	setInicio(iniciox);
 	        }
