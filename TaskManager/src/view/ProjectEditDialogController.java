@@ -8,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,7 +27,9 @@ public class ProjectEditDialogController {
     @FXML
     private TextField descriptionField;
     @FXML
-    private TextField priorityField;
+    private Label priorityField;
+    @FXML
+    private Slider slider;
     /*@FXML
     private TextField startDayField;
     @FXML
@@ -83,6 +87,8 @@ public class ProjectEditDialogController {
         priorityField.setText(Integer.toString(proyect.getPriority()));
         String s = DateUtil.format(proyect.getInicio());
         String d = DateUtil.format(proyect.getDeadline());
+        slider.setValue(proyect.getPriority()/12);
+        
         //startDayField.setText(s.substring(0, s.indexOf('.')));
         //startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
         //startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
@@ -102,6 +108,11 @@ public class ProjectEditDialogController {
         return okClicked;
     }
 
+    @FXML
+    private void handlePrioridad(){
+    	
+    	this.priorityField.setText(""+(int)(slider.getValue()*12)); 
+    }
     /**
      * Called when the user clicks ok.
      */

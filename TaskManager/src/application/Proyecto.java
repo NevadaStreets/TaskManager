@@ -35,6 +35,13 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
 	    private  LocalDate deadlinex;
 	    private  LocalDate iniciox;
 	    private ArrayList<Tarea> tasksx;
+	    private double pCont;
+	    private double pDead;
+	    private double pPropor;
+	    private double pUser;
+	    private double pCorto;
+	    
+	    
 	    
     private transient StringProperty Name;
     public transient ObservableList<Tarea> Tasks;
@@ -62,6 +69,14 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         setInicio(LocalDate.now());
     }
     
+    public void avisoPrioirdad(double user,double contx,double dead,double primera,double razon){
+	    pCont=contx;
+	    pDead=dead;
+	    pPropor=razon;
+	    pUser=user;
+	    pCorto=primera;
+	    	
+	    } 
     
     @Override
     public String toString(){
@@ -125,8 +140,15 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	int propor = (int) b / n_tareas; // Proporción de tiempo/tareas
     	int time_propor= (int) Math.exp((100-propor)/14.137); //prioridad según la relación tiempo_dispobile/cantidad_de_tareas
     	
+    	int prior=0;
+    	int numero=0;
+    	for(Tarea t:tasksx){
+    		prior+=t.getContext().getPriority();
+    		numero++;
+    	}
+    	prior=prior/numero;
     	
-    	finale=(int)(Fin_de_pro*0.25+ priorUser*0.25 +corto*0.25 + time_propor*0.25);
+    	finale=(int)(Fin_de_pro*this.pDead+ priorUser*this.pUser +corto*this.pCorto+ time_propor*this.pPropor+ prior*this.pCont);
     	}
     	}
         return finale;

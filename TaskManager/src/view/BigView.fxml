@@ -16,6 +16,15 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
+                    <Menu mnemonicParsing="false" text="Prioridades">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#user" text="Usuario" />
+                        <MenuItem mnemonicParsing="false" onAction="#contx" text="Contexto" />
+                        <MenuItem mnemonicParsing="false" onAction="#primera" text="Primera tarea" />
+                        <MenuItem mnemonicParsing="false" onAction="#dead" text="Fin de Proyecto" />
+                        <MenuItem mnemonicParsing="false" onAction="#razon" text="Relacion tiempo-tareas" />
+                    </items>
+                  </Menu>
                   <MenuItem fx:id="Email" mnemonicParsing="false" onAction="#isOkClicked" text="Email" />
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>

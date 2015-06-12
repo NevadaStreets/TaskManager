@@ -23,7 +23,21 @@
             <Label text=" Prioridad" GridPane.rowIndex="2" />
             <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
             <TextField fx:id="descriptionField" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="priorityField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="0.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="18.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="priorityField" alignment="CENTER" prefHeight="17.0" prefWidth="197.0" textAlignment="CENTER" />
+                  <Slider fx:id="slider" onMouseClicked="#handlePrioridad" onMouseDragged="#handlePrioridad" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
       <Button layoutX="120.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />

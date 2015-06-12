@@ -111,7 +111,9 @@ public class Main extends Application implements Serializable{
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	}
+			}	
+		this.contextualiza();	
+		}
 		else{
 		//projectData.add(new Proyecto("Proyecto de Software"));
 		//projectData.add(new Proyecto("Proyecto de Vida"));
@@ -356,6 +358,16 @@ public class Main extends Application implements Serializable{
 		}
 	        }
 		
+		public void contextualiza(){
+			for(Tarea tt: this.taskData){
+				if(this.contextData.contains(tt.getContext())){
+					
+				}
+				else{
+				this.contextData.add(tt.getContext());
+				}
+			}
+		}
 		
 		
 	public void ordenar(){
@@ -678,6 +690,12 @@ public class Main extends Application implements Serializable{
 	
 	    public String getEmail(){
 	    	return email;
+	    }
+	    
+	    public void avisarPrioirdad(double user,double contx, double dead,double primera,double razon){
+	    	for(Proyecto o: projectData){
+	    		o.avisoPrioirdad(user, contx, dead, primera, razon);
+	    	} 	
 	    }
 	
 	public static void main(String[] args) {

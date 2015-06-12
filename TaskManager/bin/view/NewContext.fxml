@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="215.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewContextController">
+   <children>
+      <Button layoutX="97.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleOk" text="Aceptar" />
+      <TextField fx:id="firstNameField" layoutX="97.0" layoutY="48.0" />
+      <Label layoutX="39.0" layoutY="52.0" text="Nombre" />
+      <Label layoutX="37.0" layoutY="108.0" text="Prioridad" />
+      <TextField fx:id="priorityField" layoutX="97.0" layoutY="104.0" />
+      <Button layoutX="190.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
+   </children>
+</AnchorPane>

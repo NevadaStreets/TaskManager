@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="200.0" minWidth="200.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BigViewController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <Menu mnemonicParsing="false" text="Prioridades">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Usuario" />
+                        <MenuItem mnemonicParsing="false" text="Contexto" />
+                        <MenuItem mnemonicParsing="false" text="Primera tarea" />
+                        <MenuItem mnemonicParsing="false" text="Fin de Proyecto" />
+                        <MenuItem mnemonicParsing="false" text="Relacion tiempo-tareas" />
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="Email" mnemonicParsing="false" onAction="#isOkClicked" text="Email" />
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
