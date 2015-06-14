@@ -16,6 +16,7 @@ import org.controlsfx.dialog.Dialogs;
 import application.Contexto;
 import application.Main;
 import application.Proyecto;
+import application.Tarea;
 import util.DateUtil;
 
 public class EditContextController {
@@ -41,7 +42,7 @@ public class EditContextController {
 
     private Stage dialogStage;
     private boolean okClicked = false;
-    private Main mainApp;
+    public Main mainApp;
 	private Contexto context;
 
     /**
@@ -124,6 +125,8 @@ public class EditContextController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
+        	
+        	context = new Contexto();
             context.setContext(firstNameField.getText());
             context.setPriority(Integer.parseInt(priorityField.getText()));
             //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
@@ -131,6 +134,45 @@ public class EditContextController {
             //proyect.setDeadline(LocalDate.now());
             //proyect.setInicio(LocalDate.now());
 
+            
+            if (context.Tasks!=null){
+            	int largo = mainApp.getProyectData().size();
+            	int large = context.Tasks.size();
+               // for (int i=0; i < largo; i++){
+               //	mainApp.getProyectData().get(i).Tasks.remove(tarea);
+               //}
+
+        		for(Proyecto proy: mainApp.getProyectData()){
+        			
+        			for(Tarea tas: proy.Tasks){
+        				if(contextBox.getValue().getContext() == tas.getContext().getContext()){
+        					tas.setContext(context);
+        				}
+        			}
+        		}
+        		for(Tarea tata: mainApp.getTaskData()){
+        			if(contextBox.getValue().getContext() == tata.getContext().getContext()){
+    					tata.setContext(context);
+    				}
+        		}
+            	for(Contexto conti: mainApp.getContextData()){
+            		if(contextBox.getValue().getContext() == conti.getContext()){
+            			mainApp.getContextData().remove(conti);
+            			mainApp.getContextData().add(context);
+            			
+            		}
+            	}
+            
+            }
+            //context.mainApp = this.mainApp;
+            /*Proyecto project = projectBox.getValue();
+            int indice = mainApp.getContextData().indexOf(context);
+            tarea.setProject(mainApp.getProyectData().get(indice));
+    		mainApp.getProyectData().get(indice).Tasks.add(tarea);
+    		mainApp.getProyectData().get(indice).taskear();*/
+    		
+            
+            
             okClicked = true;
             okClicked = true;
             

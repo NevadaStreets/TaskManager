@@ -728,11 +728,14 @@ public class Main extends Application implements Serializable{
             
             
             controller.setMainApp(this); //Tirar main a ProjectEditDialog, revisar!!
-
             
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
+            contextData = controller.mainApp.getContextData();
+            projectData = controller.mainApp.getProyectData();
+            taskData = controller.mainApp.getTaskData();
+            
             return controller.isOkClicked();
         } catch (IOException e) {
             e.printStackTrace();
