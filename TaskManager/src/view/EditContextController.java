@@ -135,7 +135,7 @@ public class EditContextController {
         			mainApp.getContextData().get(i).setPriority(j);;
         		}
         	}
-        	
+        	okClicked = true;
             dialogStage.close();
         }
     }
