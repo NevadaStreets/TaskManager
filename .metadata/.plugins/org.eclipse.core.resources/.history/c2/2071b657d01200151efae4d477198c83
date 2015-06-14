@@ -1,0 +1,337 @@
+package view;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import org.controlsfx.dialog.Dialogs;
+
+import application.Main;
+import application.Proyecto;
+import util.DateUtil;
+
+
+public class BigViewController {
+
+    @FXML
+    private MenuItem Email;
+    
+    private String Emailx;
+    double user, contx, dead, primera, razon;
+    
+    private Main mainApp;
+    @FXML
+    private void initialize() {
+
+    }
+    
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    	
+    	user=mainApp.getUser();
+    	contx=mainApp.getContx();
+    	dead=mainApp.getDead(); 
+    	primera=mainApp.getPrimera(); 
+    	razon=mainApp.getRazon();
+    }
+
+    public String Emailget(){
+    	return Emailx;
+    }
+    
+    @FXML
+    public void isOkClicked() throws FileNotFoundException, IOException {
+    	String mensaje;
+    	Optional<String> response =  Dialogs.create()
+        .title("Alerta de tareas")
+        .masthead("Tareas de suma urgencia")
+        .message("Escriba su email")
+        .showTextInput(""+ mainApp.getEmail());
+        
+        if (response.isPresent()) {
+        	if(response.get()!=null)
+            Emailx = response.get();
+        }
+   
+        mainApp.setEmail(Emailx);
+    }
+
+    
+    
+    @FXML
+    public void user() throws FileNotFoundException, IOException {
+    	String mensaje;
+
+
+    	Optional<String> response =  Dialogs.create()
+        .title("Cambio de Prioridad")
+        
+        .masthead("Prioridad de usuario (P.U)")
+        .message("Ingrese un valor entre 1-100 para determinar la ponderación \n que tendrá la P.U en el algotirmo de Prioridad de los proyectos.")
+       // .showChoices(lista);
+        .showTextInput(""+ this.user);
+        
+        if (response.isPresent()) {
+        	if(!isNumeric(response.get())){
+        		Dialogs.create()
+		        .title("Error en ponderación")
+		        
+		        .masthead("Ponderación incorrecta")
+		        .message("Debe ingresar un número entre 1 y 100")
+		       // .showChoices(lista);
+		        .showError();
+        		
+        	}
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        		 Dialogs.create()
+        		        .title("Error en ponderación")
+        		        
+        		        .masthead("Ponderación incorrecta")
+        		        .message("Debe ingresar un número entre 1 y 100")
+        		       // .showChoices(lista);
+        		        .showError();
+        	}
+        	else{
+        		user=Integer.parseInt(response.get());
+        		ponderar();
+        		
+        	}
+        
+        }
+        
+        
+        
+        
+        
+        
+   
+    }
+  
+    
+    @FXML
+    public void dead() throws FileNotFoundException, IOException {
+    	String mensaje;
+
+
+    	Optional<String> response =  Dialogs.create()
+        .title("Cambio de Prioridad")
+        
+        .masthead("Prioridad de Dead Line (P.D)")
+        .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.D en el algotirmo de Prioridad de los proyectos."
+        		+ "\nP.D es la importancia que se le da a estar cercanos a la fecha\n de término para un proyecto")
+       // .showChoices(lista);
+        .showTextInput(""+ this.dead);
+        
+        if (response.isPresent()) {
+        	if(!isNumeric(response.get())){
+        		Dialogs.create()
+		        .title("Error en ponderación")
+		        
+		        .masthead("Ponderación incorrecta")
+		        .message("Debe ingresar un número entre 1 y 100")
+		       // .showChoices(lista);
+		        .showError();
+        		
+        	}
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        		 Dialogs.create()
+        		        .title("Error en ponderación")
+        		        
+        		        .masthead("Ponderación incorrecta")
+        		        .message("Debe ingresar un número entre 1 y 100")
+        		       // .showChoices(lista);
+        		        .showError();
+        	}
+        	else{
+        		dead=Integer.parseInt(response.get());
+        		ponderar();
+        		
+        	}
+        
+        }
+        
+        
+        
+        
+        
+        
+   
+    }
+  
+    
+    @FXML
+    public void contx() throws FileNotFoundException, IOException {
+    	String mensaje;
+
+
+    	Optional<String> response =  Dialogs.create()
+        .title("Cambio de Prioridad")
+        
+        .masthead("Prioridad de usuario (P.C)")
+        .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.C en el algotirmo de Prioridad de los proyectos."
+        		+ "\nP.C es la importancia que tiene para usted ordenar los proyectos\n según la prioirdad que cada contexto tiene")
+       // .showChoices(lista);
+        .showTextInput(""+ this.contx);
+        
+        if (response.isPresent()) {
+        	if(!isNumeric(response.get())){
+        		Dialogs.create()
+		        .title("Error en ponderación")
+		        
+		        .masthead("Ponderación incorrecta")
+		        .message("Debe ingresar un número entre 1 y 100")
+		       // .showChoices(lista);
+		        .showError();
+        		
+        	}
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        		 Dialogs.create()
+        		        .title("Error en ponderación")
+        		        
+        		        .masthead("Ponderación incorrecta")
+        		        .message("Debe ingresar un número entre 1 y 100")
+        		       // .showChoices(lista);
+        		        .showError();
+        	}
+        	else{
+        		contx=Integer.parseInt(response.get());
+        		ponderar();
+        		
+        	}
+        
+        }
+        
+        
+        
+        
+        
+        
+   
+    }
+    
+    @FXML
+    public void primera() throws FileNotFoundException, IOException {
+    	String mensaje;
+
+
+    	Optional<String> response =  Dialogs.create()
+        .title("Cambio de Prioridad")
+        
+        .masthead("Prioridad de Primera tarea en terminar (P.Pt)")
+        .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.Pt en el algotirmo de Prioridad de los proyectos."
+        		+ "\nP.Pt es la importancia que tiene para usted ordenar los proyectos\n según la tarea más próxima en llegar a su fin.")
+       // .showChoices(lista);
+        .showTextInput(""+ this.primera);
+        
+        if (response.isPresent()) {
+        	if(!isNumeric(response.get())){
+        		Dialogs.create()
+		        .title("Error en ponderación")
+		        
+		        .masthead("Ponderación incorrecta")
+		        .message("Debe ingresar un número entre 1 y 100")
+		       // .showChoices(lista);
+		        .showError();
+        		
+        	}
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        		 Dialogs.create()
+        		        .title("Error en ponderación")
+        		        
+        		        .masthead("Ponderación incorrecta")
+        		        .message("Debe ingresar un número entre 1 y 100")
+        		       // .showChoices(lista);
+        		        .showError();
+        	}
+        	else{
+        		primera=Integer.parseInt(response.get());
+        		ponderar();
+        		
+        	}
+        
+        }
+        
+        
+        
+        
+        
+        
+   
+    }
+
+    @FXML
+    public void razon() throws FileNotFoundException, IOException {
+    	String mensaje;
+
+
+    	Optional<String> response =  Dialogs.create()
+        .title("Cambio de Prioridad")
+        
+        .masthead("Prioridad de Razón Tareas-Tiempo (P.R)")
+        .message("Ingrese un valor entre 1-100 para determinar la ponderación que tendrá\n la P.R en el algotirmo de Prioridad de los proyectos."
+        		+ "\nP.C es la importancia que tiene para usted ordenar los proyectos según\n la razón entre cantidad de tareas y tiempo disponible para hacerlas")
+       // .showChoices(lista);
+        .showTextInput(""+this.razon);
+        
+        if (response.isPresent()) {
+        	if(!isNumeric(response.get())){
+        		Dialogs.create()
+		        .title("Error en ponderación")
+		        
+		        .masthead("Ponderación incorrecta")
+		        .message("Debe ingresar un número entre 1 y 100")
+		       // .showChoices(lista);
+		        .showError();
+        		
+        	}
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        		 Dialogs.create()
+        		        .title("Error en ponderación")
+        		        
+        		        .masthead("Ponderación incorrecta")
+        		        .message("Debe ingresar un número entre 1 y 100")
+        		       // .showChoices(lista);
+        		        .showError();
+        	}
+        	else{
+        		razon=Integer.parseInt(response.get());
+        		ponderar();
+        		
+        	}
+        
+        }
+        
+        
+        
+        
+        
+        
+   
+    }
+    
+    
+    
+    
+    private void ponderar(){
+    	double suma = user + contx+ dead + primera+ razon;
+    	mainApp.avisarPrioirdad(user/suma, contx/suma, dead/suma, primera/suma, razon/suma);
+    }
+
+        
+        private static boolean isNumeric(String cadena){
+        	try {
+        		Integer.parseInt(cadena);
+        		return true;
+        	} catch (NumberFormatException nfe){
+        		return false;
+        	}
+        }
+
+
+}

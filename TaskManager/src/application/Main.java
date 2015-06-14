@@ -86,6 +86,26 @@ public class Main extends Application implements Serializable{
 	private String email;
 	private ObservableList<Contexto> contextData = FXCollections.observableArrayList();
 	
+	double user, contx, dead, primera, razon;
+	
+    public double getContx(){
+    	return this.contx;
+    }
+    public double getDead(){
+    	return this.dead;
+    }
+    
+    public double getRazon(){
+    	return this.razon;
+    }
+    public double getUser(){
+    	return this.user;
+    }
+    public double getPrimera(){
+    	return this.primera;
+    }
+	
+	
 	public ObservableList<Contexto> getContextData() {
 		return contextData;
 	}
@@ -154,6 +174,13 @@ public class Main extends Application implements Serializable{
 			for(int i=0;i<projectData.size();i++){
 				projectData.get(i).ajust();
 				taskData.addAll(projectData.get(i).gettask());
+				if(i==0){
+					this.user=projectData.get(i).getUser();
+					this.contx=projectData.get(i).getContx();
+					this.dead=projectData.get(i).getDead();
+					this.primera=projectData.get(i).getPrimera();
+					this.razon=projectData.get(i).getRazon();
+				}
 				
 			}
 			for(int i=0;i<taskData.size();i++){
@@ -523,7 +550,9 @@ public class Main extends Application implements Serializable{
 
 	            // Set the person into the controller.
 	            ProjectEditDialogController controller = loader.getController();
-	            controller.setDialogStage(dialogStage);
+	           
+	            controller.setDialogStage(dialogStage,this);
+	            
 	            controller.setPerson(proyect);
 	            
 	            
@@ -696,10 +725,27 @@ public class Main extends Application implements Serializable{
 	    	return email;
 	    }
 	    
-	    public void avisarPrioirdad(double user,double contx, double dead,double primera,double razon){
+	    
+	    public void cambiarPrioridad(){
 	    	for(Proyecto o: projectData){
 	    		o.avisoPrioirdad(user, contx, dead, primera, razon);
 	    	} 	
+	    	try {
+				sereal();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    }
+	    public void avisarPrioirdad(double user,double contx, double dead,double primera,double razon){
+	    	this.user= user;
+			this.contx= contx;
+			this.dead= dead;
+			this.primera= primera;
+			this.razon= razon;
+	    	this.cambiarPrioridad();
+	    	
 	    }
 	
 	public static void main(String[] args) {

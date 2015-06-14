@@ -56,6 +56,7 @@ public class ProjectEditDialogController {
      */
     @FXML
     private void initialize() {
+    	
     }
 
     /**
@@ -63,8 +64,9 @@ public class ProjectEditDialogController {
      * 
      * @param dialogStage
      */
-    public void setDialogStage(Stage dialogStage) {
+    public void setDialogStage(Stage dialogStage, Main m) {
         this.dialogStage = dialogStage;
+        mainApp=m;
     }
     
     /*public void setMainApp(Main mainApp) {
@@ -125,8 +127,16 @@ public class ProjectEditDialogController {
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
             //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+
             proyect.setDeadline(LocalDateTime.now());
             proyect.setInicio(LocalDateTime.now());
+/*=======
+            proyect.setDeadline(LocalDate.now());
+            proyect.setInicio(LocalDate.now());
+  */          
+            proyect.avisoPrioirdad(mainApp.getUser(), mainApp.getContx(), mainApp.getDead(), mainApp.getPrimera() , mainApp.getRazon());
+            
+//>>>>>>> priori
 
             okClicked = true;
             okClicked = true;
