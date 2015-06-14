@@ -2,6 +2,7 @@ package application;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import javafx.beans.property.IntegerProperty;
@@ -19,8 +20,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	 private  String descriptionx;
 	 private  int priorityx;
 	 private Contexto context;
-	 private  LocalDate iniciox;
-	 private  LocalDate deadlinex;
+	 private  LocalDateTime iniciox;
+	 private  LocalDateTime deadlinex;
 	 
 	 private String estado;
 	
@@ -29,8 +30,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	 private transient StringProperty description;
 	 private transient IntegerProperty priority;
 	 //private transient StringProperty context;
-	 private transient ObjectProperty<LocalDate> inicio;
-	 private transient ObjectProperty<LocalDate> deadline;
+	 private transient ObjectProperty<LocalDateTime> inicio;
+	 private transient ObjectProperty<LocalDateTime> deadline;
 	 private Proyecto project;
 	 
 	 public Tarea() {
@@ -50,8 +51,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        this.description = new SimpleStringProperty("Ingrese descripción");
 	        this.priority = new SimpleIntegerProperty(1);
 	        //this.context = new SimpleStringProperty("Ingrese contexto");
-	        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
-	        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
+	        this.inicio = new SimpleObjectProperty<LocalDateTime>(LocalDateTime.now());
+	        this.deadline = new SimpleObjectProperty<LocalDateTime>(LocalDateTime.now().plusDays(1));
 	        this.project = P;
 	        this.estado = "Activa";
 	        
@@ -75,7 +76,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    }
 	    
 	    public String getEstado(){
-	    	if (LocalDate.now().compareTo(deadlinex)>0){
+	    	if (LocalDateTime.now().compareTo(deadlinex)>0){
 	    		estado = "Vencida";
 	    	}
 	    	return estado;
@@ -83,7 +84,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    
 	    public void setEstado(String state){
 	    	estado =  state;
-	    	if (LocalDate.now().compareTo(deadlinex)>0){
+	    	if (LocalDateTime.now().compareTo(deadlinex)>0){
 	    		estado = "Vencida";
 	    	}
 	    	project.setContext();
@@ -141,12 +142,12 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	      //  return context;
 	    //}
 
-	    public LocalDate getDeadline() {
+	    public LocalDateTime getDeadline() {
 	        //return deadline.get();
 	    	return deadlinex;
 	    }
 
-	    public void setDeadline(LocalDate birthday) {
+	    public void setDeadline(LocalDateTime birthday) {
 	    	deadlinex=birthday;
     		this.deadline.set(birthday);
 	    	/*if (project.getDeadline().compareTo(deadlinex)<0){
@@ -165,16 +166,16 @@ public class Tarea implements Comparable<Tarea> , Serializable {
     		project.setDeadline2();
 	    }
 
-	    public ObjectProperty<LocalDate> deadlineProperty() {
+	    public ObjectProperty<LocalDateTime> deadlineProperty() {
 	        return deadline;
 	    }
 	    
-	    public LocalDate getInicio() {
+	    public LocalDateTime getInicio() {
 	        //return inicio.get();
 	        return iniciox;
 	    }
 
-	    public void setInicio(LocalDate birthday) {
+	    public void setInicio(LocalDateTime birthday) {
 	    	iniciox=birthday;
 	        //if (project.getInicio().compareTo(iniciox)>0){
 	        	//project.setInicio(iniciox);
@@ -183,20 +184,20 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	        project.setInicio2();
 	    }
 
-	    public ObjectProperty<LocalDate> inicioProperty() {
+	    public ObjectProperty<LocalDateTime> inicioProperty() {
 	        return inicio;
 	    }
 
 	    @Override
 	    public int compareTo(Tarea o) {
 
-	        	long  c=- deadline.get().until(LocalDate.now(), ChronoUnit.DAYS);
+	        	long  c=- deadline.get().until(LocalDateTime.now(), ChronoUnit.DAYS);
 	        	int d= (int)c;
 	        	int Fin_de_proa= (int) Math.exp((100-d)/14.137);
 	        	
 	       int a=Fin_de_proa;
 	       
-       	long  e=- o.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS);
+       	long  e=- o.getDeadline().until(LocalDateTime.now(), ChronoUnit.DAYS);
        	int f= (int)e;
        	int Fin_de_prob= (int) Math.exp((100-f)/14.137);
 	       
@@ -211,8 +212,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    		this.description = new SimpleStringProperty(descriptionx);
 	            this.priority = new SimpleIntegerProperty(priorityx);
 	            //this.context = new SimpleStringProperty("contextx");
-	            this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
-	            this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
+	            this.inicio= new SimpleObjectProperty<LocalDateTime>(iniciox);
+	            this.deadline = new SimpleObjectProperty<LocalDateTime>(deadlinex);
 	            
 	       	 setDescription(descriptionx);
 	       	 setPriority(priorityx);

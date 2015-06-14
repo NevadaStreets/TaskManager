@@ -1,6 +1,7 @@
 package util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -12,7 +13,7 @@ import java.time.format.DateTimeParseException;
 public class DateUtil {
 
     /** Patron de fecha utilizado */
-    private static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final String DATE_PATTERN = "dd.MM.yyyy HH:mm:ss";
 
     /** The date formatter. */
     private static final DateTimeFormatter DATE_FORMATTER = 
@@ -25,7 +26,7 @@ public class DateUtil {
      * @param date the date to be returned as a string
      * @return formatted string
      */
-    public static String format(LocalDate date) {
+    public static String format(LocalDateTime date) {
         if (date == null) {
             return null;
         }
@@ -41,9 +42,9 @@ public class DateUtil {
      * @param dateString the date as String
      * @return the date object or null if it could not be converted
      */
-    public static LocalDate parse(String dateString) {
+    public static LocalDateTime parse(String dateString) {
         try {
-            return DATE_FORMATTER.parse(dateString, LocalDate::from);
+            return DATE_FORMATTER.parse(dateString, LocalDateTime::from);
         } catch (DateTimeParseException e) {
             return null;
         }

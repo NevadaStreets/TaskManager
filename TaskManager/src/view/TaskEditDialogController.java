@@ -40,6 +40,18 @@ public class TaskEditDialogController {
     @FXML
     private TextField deadlineYearField;
     @FXML
+    private TextField startHourField;
+    @FXML
+    private TextField startMinuteField;
+    @FXML
+    private TextField startSecondField;
+    @FXML
+    private TextField deadlineHourField;
+    @FXML
+    private TextField deadlineMinuteField;
+    @FXML
+    private TextField deadlineSecondField;
+    @FXML
     private ComboBox<Proyecto> projectBox;
     @FXML
     private ComboBox<String> stateBox;
@@ -105,10 +117,16 @@ public class TaskEditDialogController {
         stateBox.setValue(task.getEstado());
         startDayField.setText(s.substring(0, s.indexOf('.')));
         startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));
-        startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.length()));
+        startYearField.setText(s.substring(s.lastIndexOf('.')+1,s.indexOf(" ")));
+        startHourField.setText(s.substring(s.indexOf(" ")+1,s.indexOf(":")));
+        startMinuteField.setText(s.substring(s.indexOf(":")+1,s.lastIndexOf(":")));
+        startSecondField.setText(s.substring(s.lastIndexOf(":")+1,s.length()));
         deadlineDayField.setText(d.substring(0, d.indexOf('.')));
         deadlineMonthField.setText(d.substring(d.indexOf('.')+1, d.lastIndexOf('.')));
-        deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.length()));
+        deadlineYearField.setText(d.substring(d.lastIndexOf('.')+1,d.indexOf(" ")));
+        deadlineHourField.setText(d.substring(d.indexOf(" ")+1,d.indexOf(":")));
+        deadlineMinuteField.setText(d.substring(d.indexOf(":")+1,d.lastIndexOf(":")));
+        deadlineSecondField.setText(d.substring(d.lastIndexOf(":")+1,d.length()));
     }
 
     /**
@@ -147,10 +165,19 @@ public class TaskEditDialogController {
             tarea.setContext(mainApp.getContextData().get(indic));
   
     		//mainApp.getContextData().get(indic).taskear();
-    		
-            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
-            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
-
+    		/*
+            int hora_i = Integer.parseInt(startHourField.getText());
+            int minuto_i = Integer.parseInt(startMinuteField.getText());
+            int segundo_i = Integer.parseInt(startSecondField.getText());
+            int hora_f = Integer.parseInt(deadlineHourField.getText());
+            int minuto_f = Integer.parseInt(deadlineMinuteField.getText());
+            int segundo_f = Integer.parseInt(deadlineSecondField.getText());
+            
+            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()).atTime(hora_f, minuto_f, segundo_f));
+            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()).atTime(hora_i, minuto_i, segundo_i));
+            */
+            tarea.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()+" "+deadlineHourField.getText()+":"+deadlineMinuteField.getText()+":"+deadlineSecondField.getText()));
+            tarea.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()+" "+startHourField.getText()+":"+startMinuteField.getText()+":"+startSecondField.getText()));
             tarea.setEstado(stateBox.getValue());
 
     		
@@ -192,14 +219,32 @@ public class TaskEditDialogController {
         if (startMonthField.getText().length()==1){
         	startMonthField.setText("0"+startMonthField.getText());
         }
+        if (startHourField.getText().length()==1){
+        	startHourField.setText("0"+startHourField.getText());
+        }
+        if (startMinuteField.getText().length()==1){
+        	startMinuteField.setText("0"+startMinuteField.getText());
+        }
+        if (startSecondField.getText().length()==1){
+        	startSecondField.setText("0"+startSecondField.getText());
+        }
         if (deadlineDayField.getText().length()==1){
         	deadlineDayField.setText("0"+deadlineDayField.getText());
         }
         if (deadlineMonthField.getText().length()==1){
         	deadlineMonthField.setText("0"+deadlineMonthField.getText());
         }
-        String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
-        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();
+        if (deadlineHourField.getText().length()==1){
+        	deadlineHourField.setText("0"+deadlineHourField.getText());
+        }
+        if (deadlineMinuteField.getText().length()==1){
+        	deadlineMinuteField.setText("0"+deadlineMinuteField.getText());
+        }
+        if (deadlineSecondField.getText().length()==1){
+        	deadlineSecondField.setText("0"+deadlineSecondField.getText());
+        }
+        String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText() + " " + startHourField.getText()+":"+startMinuteField.getText()+":"+startSecondField.getText();
+        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()+ " " + deadlineHourField.getText()+":"+deadlineMinuteField.getText()+":"+deadlineSecondField.getText();
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
@@ -229,7 +274,7 @@ public class TaskEditDialogController {
             errorMessage += "fecha inicio no valida!\n";
         } else {
             if (!DateUtil.validDate(Start)) {
-                errorMessage += "Fecha inicio no valida. Usa el formato dd mm yyyy!\n";
+                errorMessage += "Fecha inicio no valida. Usa el formato dd MM yyyy HH mm ss!\n";
             }
         }
 
@@ -238,7 +283,7 @@ public class TaskEditDialogController {
             errorMessage += "deadline no valido!\n";
         } else {
             if (!DateUtil.validDate(Deadline)) {
-                errorMessage += "Deadline no valido. Usa el formato dd mm yyyy!\n";
+                errorMessage += "Deadline no valido. Usa el formato dd MM yyyy HH mm ss!\n";
             }
             //Compara fechas solo si estas estan bien creadas
             if (DateUtil.validDate(Deadline) && DateUtil.validDate(Start)){

@@ -3,6 +3,7 @@ package view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -124,8 +125,8 @@ public class ProjectEditDialogController {
             proyect.setPriority(Integer.parseInt(priorityField.getText()));
             //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
             //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
-            proyect.setDeadline(LocalDate.now());
-            proyect.setInicio(LocalDate.now());
+            proyect.setDeadline(LocalDateTime.now());
+            proyect.setInicio(LocalDateTime.now());
 
             okClicked = true;
             okClicked = true;

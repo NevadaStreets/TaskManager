@@ -2,8 +2,10 @@ package view;
 
 import java.awt.event.InputEvent;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 
 import javax.xml.stream.EventFilter;
@@ -99,19 +101,19 @@ public class DashboardController {
     	}
         FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MMMM/yyyy");
-    	LocalDate start = DateUtil.parse("01.01.9999");
-    	LocalDate end = DateUtil.parse("01.01.1000");
+    	LocalDate start = DateUtil.parse("01.01.9999 23:59:59").toLocalDate();
+    	LocalDate end = DateUtil.parse("01.01.1000 00:00:00").toLocalDate();
     	double alto = 30;
     	for(int i=0; i<mainApp.getProyectData().size();i++){
-    		if(start.compareTo(mainApp.getProyectData().get(i).getInicio())>0){
-    			start = mainApp.getProyectData().get(i).getInicio();
+    		if(start.compareTo(mainApp.getProyectData().get(i).getInicio().toLocalDate())>0){
+    			start = mainApp.getProyectData().get(i).getInicio().toLocalDate();
     		}
     		alto += 30;
     	}
     	
     	for(int i=0; i<mainApp.getProyectData().size();i++){
-    		if(end.compareTo(mainApp.getProyectData().get(i).getDeadline())<0){
-    			end = mainApp.getProyectData().get(i).getDeadline();
+    		if(end.compareTo(mainApp.getProyectData().get(i).getDeadline().toLocalDate())<0){
+    			end = mainApp.getProyectData().get(i).getDeadline().toLocalDate();
     		}
     	}
     	
@@ -150,8 +152,9 @@ public class DashboardController {
         
         for(int i=0; i<mainApp.getProyectData().size();i++){
         	if(mainApp.getProyectData().get(i).gettask().size()>0){
-        		double termino = (mainApp.getProyectData().get(i).getDeadline().compareTo(mainApp.getProyectData().get(i).getInicio())+1)*largo;
-            	llenado = 0.0;
+        		double termino = (mainApp.getProyectData().get(i).getDeadline().toLocalDate().compareTo(mainApp.getProyectData().get(i).getInicio().toLocalDate())+1)*largo - ((24-mainApp.getProyectData().get(i).getDeadline().getHour()+mainApp.getProyectData().get(i).getInicio().getHour())*5);
+        		//double termino = (mainApp.getProyectData().get(i).getDeadline().getHour()-mainApp.getProyectData().get(i).getInicio().getHour())*largo/24;
+        		llenado = 0.0;
             	Double totaltareas = 0.0;
             	Double vencidas = 0.0;
             	Proyecto P = mainApp.getProyectData().get(i);
@@ -172,7 +175,7 @@ public class DashboardController {
                 rx.setStroke(Color.DARKBLUE);
                 rectangulos.add(rx);
                 String mensaje = String.valueOf(llenado.intValue()) + " de " + String.valueOf(totaltareas.intValue()) + " tareas realizadas";
-                long iniciox = mainApp.getProyectData().get(i).getInicio().compareTo(start)*120;
+                long iniciox = mainApp.getProyectData().get(i).getInicio().toLocalDate().compareTo(start)*120 +mainApp.getProyectData().get(i).getInicio().getHour()*5 ;
                 rx.setLayoutX(iniciox);
                 rx.setLayoutY(30*(i+1));
                 completox.setLayoutX(iniciox);
@@ -194,7 +197,7 @@ public class DashboardController {
                                 sp.setHvalue(xd);
                                 
                             }
-                            else{
+                            //else{
                             	for(int j=0;j<rectangulos.size();j++){
                         			rectangulos.get(j).setStrokeWidth(1);
                         			rectangulos.get(j).setStroke(Color.DARKBLUE);
@@ -220,7 +223,7 @@ public class DashboardController {
                                 Double p = c/t;
                                 cumplida.setText(String.valueOf(p.doubleValue()));
                                 nocumplida.setText(String.valueOf(v/t));
-                            }
+                            //}
                         }          
                 	}	
                 });
@@ -236,7 +239,7 @@ public class DashboardController {
                                 handleColocar();
                                 sp.setHvalue(xd);
                             }
-                            else{
+                            //else{
                             	for(int j=0;j<rectangulos.size();j++){
                         			rectangulos.get(j).setStrokeWidth(1);
                         			rectangulos.get(j).setStroke(Color.DARKBLUE);
@@ -262,7 +265,7 @@ public class DashboardController {
                                 Double p = c/t;
                                 cumplida.setText(String.valueOf(p.doubleValue()));
                                 nocumplida.setText(String.valueOf(v/t));
-                            }
+                            //}
                         }          
                 	}		
                 });
@@ -277,7 +280,7 @@ public class DashboardController {
                                 handleColocar();
                                 sp.setHvalue(xd);
                             }
-                            else{
+                            //else{
                             	for(int j=0;j<rectangulos.size();j++){
                         			rectangulos.get(j).setStrokeWidth(1);
                         			rectangulos.get(j).setStroke(Color.DARKBLUE);
@@ -303,7 +306,7 @@ public class DashboardController {
                                 Double p = c/t;
                                 cumplida.setText(String.valueOf(p.doubleValue()));
                                 nocumplida.setText(String.valueOf(v/t));
-                            }
+                            //}
                         }          
                 	}	
                 });
@@ -333,7 +336,7 @@ public class DashboardController {
                                     handleColocar();
                                     sp.setHvalue(xd);
                                 }
-                                else{
+                                //else{
                                 	for(int j=0;j<rectangulos.size();j++){
                             			rectangulos.get(j).setStrokeWidth(1);
                             			rectangulos.get(j).setStroke(Color.DARKBLUE);
@@ -359,7 +362,7 @@ public class DashboardController {
                                     Double p = c/t;
                                     cumplida.setText(String.valueOf(p.doubleValue()));
                                     nocumplida.setText(String.valueOf(v/t));
-                                }
+                                //}
                             }          
                     	}	
                     });

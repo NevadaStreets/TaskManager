@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,8 +33,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
 	    private  String descriptionx;
 	    private  int priorityx;
 	    private  String contextx;
-	    private  LocalDate deadlinex;
-	    private  LocalDate iniciox;
+	    private  LocalDateTime deadlinex;
+	    private  LocalDateTime iniciox;
 	    private ArrayList<Tarea> tasksx;
 	    private double pCont;
 	    private double pDead;
@@ -48,8 +49,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     private transient StringProperty description;
     private transient IntegerProperty priority;
     private transient StringProperty context;
-    private transient ObjectProperty<LocalDate> inicio;
-    private transient ObjectProperty<LocalDate> deadline;
+    private transient ObjectProperty<LocalDateTime> inicio;
+    private transient ObjectProperty<LocalDateTime> deadline;
 
 
     public Proyecto() {
@@ -63,10 +64,10 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         this.description = new SimpleStringProperty("Ingrese descripcion");
         this.priority = new SimpleIntegerProperty(1);
         this.context = new SimpleStringProperty("En Pausa");
-        this.inicio = new SimpleObjectProperty<LocalDate>(LocalDate.now());
-        this.deadline = new SimpleObjectProperty<LocalDate>(LocalDate.now());
+        this.inicio = new SimpleObjectProperty<LocalDateTime>(LocalDateTime.now());
+        this.deadline = new SimpleObjectProperty<LocalDateTime>(LocalDateTime.now());
         this.Tasks = FXCollections.observableArrayList();
-        setInicio(LocalDate.now());
+        setInicio(LocalDateTime.now());
     }
     
     public void avisoPrioirdad(double user,double contx,double dead,double primera,double razon){
@@ -124,7 +125,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	int finale=0;
     	if(Tasks.size()!=0){
     	if(deadline!=null){
-    	long  a=- deadline.get().until(LocalDate.now(), ChronoUnit.DAYS);
+    	long  a=- deadline.get().until(LocalDateTime.now(), ChronoUnit.DAYS);
     	int b= (int)a;
     	
     	int Fin_de_pro= (int) Math.exp((100-b)/14.137); // prioridad según tiempo que le queda al proyecto
@@ -134,7 +135,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	aux.addAll(Tasks);
     	FXCollections.sort(aux);
     	Tarea cortita= aux.get(0) ;
-    	int corto= (int) Math.exp((100+cortita.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS))/14.137); //tiempo de la tarea más proxima a terminar
+    	int corto= (int) Math.exp((100+cortita.getDeadline().until(LocalDateTime.now(), ChronoUnit.DAYS))/14.137); //tiempo de la tarea más proxima a terminar
     
     	int n_tareas= Tasks.size();
     	int propor = (int) b / n_tareas; // Proporción de tiempo/tareas
@@ -195,17 +196,17 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
         return context;
     }
 
-    public LocalDate getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline.get();
     }
 
-    public void setDeadline(LocalDate birthday) {
+    public void setDeadline(LocalDateTime birthday) {
     	deadlinex=birthday;
         this.deadline.set(birthday);
     }
     
     public void setDeadline2(){
-    	LocalDate max = DateUtil.parse("01.01.1000");
+    	LocalDateTime max = LocalDateTime.of(1000, 01, 11, 00, 00);
 		for (int i=0;i<Tasks.size(); i ++){
 			if(max.compareTo(Tasks.get(i).getDeadline())<0){
 				max = Tasks.get(i).getDeadline();
@@ -215,23 +216,23 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	setDeadline(max);
     }
 
-    public ObjectProperty<LocalDate> deadlineProperty() {
+    public ObjectProperty<LocalDateTime> deadlineProperty() {
         return deadline;
     }
     
     
     
-    public LocalDate getInicio() {
+    public LocalDateTime getInicio() {
         return inicio.get();
     }
 
-    public void setInicio(LocalDate birthday) {
+    public void setInicio(LocalDateTime birthday) {
     	iniciox=birthday;
         this.inicio.set(birthday);
     }
     
     public void setInicio2(){
-    	LocalDate min = DateUtil.parse("01.01.9999");
+    	LocalDateTime min = DateUtil.parse("01.01.9999 23:59:59");
 		for (int i=0;i<Tasks.size(); i ++){
 			if(min.compareTo(Tasks.get(i).getInicio())>0){
 				min = Tasks.get(i).getInicio();
@@ -241,7 +242,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     	setInicio(min);
     }
 
-    public ObjectProperty<LocalDate> inicioProperty() {
+    public ObjectProperty<LocalDateTime> inicioProperty() {
         return inicio;
     }
     
@@ -277,8 +278,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     		this.description = new SimpleStringProperty(descriptionx);
             this.priority = new SimpleIntegerProperty(priorityx);
             this.context = new SimpleStringProperty(contextx);
-            this.inicio= new SimpleObjectProperty<LocalDate>(iniciox);
-            this.deadline = new SimpleObjectProperty<LocalDate>(deadlinex);
+            this.inicio= new SimpleObjectProperty<LocalDateTime>(iniciox);
+            this.deadline = new SimpleObjectProperty<LocalDateTime>(deadlinex);
             this.Tasks = FXCollections.observableArrayList();
             //tasksx=new ArrayList<Tarea>();
             llenartask();

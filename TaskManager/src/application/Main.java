@@ -13,7 +13,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+
 
 
 
@@ -42,6 +44,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 
 
 
@@ -298,7 +301,7 @@ public class Main extends Application implements Serializable{
 	        String mensaje2="Tareas que vencen hoy o mañana:\n";
 	        
 	        for(Tarea tata : taskData){
-	        	int count= (int) -tata.getDeadline().until(LocalDate.now(), ChronoUnit.DAYS) ;
+	        	int count= (int) -tata.getDeadline().until(LocalDateTime.now(), ChronoUnit.DAYS) ;
 	        	if(count<=1)
 	        	{
 	        		if(!tata.getEstado().equals("Vencida") && !tata.getEstado().equals("Completada")){
@@ -620,9 +623,9 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
-	            dialogStage.setMinWidth(340);
+	            dialogStage.setMinWidth(500);
 	            dialogStage.setMinHeight(550);
-	            dialogStage.setMaxWidth(340);
+	            dialogStage.setMaxWidth(500);
 	            dialogStage.setMaxHeight(550);
 
 	            // Set the person into the controller.
