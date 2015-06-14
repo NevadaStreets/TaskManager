@@ -77,6 +77,24 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
 	    pCorto=primera;
 	    	
 	    } 
+
+    public double getContx(){
+    	return this.pCont;
+    }
+    public double getDead(){
+    	return this.pDead;
+    }
+  
+    public double getRazon(){
+    	return this.pPropor;
+    }
+    public double getUser(){
+    	return this.pUser;
+    }
+    public double getPrimera(){
+    	return this.pCorto;
+    }
+    
     
     @Override
     public String toString(){
@@ -98,7 +116,7 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     
     
     public String getDescription() {
-        return description.get();
+        return (description.get()) ;
     	//return ""+prioridad();
     }
 
@@ -112,7 +130,8 @@ public class Proyecto implements Comparable<Proyecto>, Serializable {
     }
 
     public int getPriority() {
-        return priority.get();
+  
+       return priority.get();
     }
 
     public void setPriority(int postalCode) {

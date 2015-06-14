@@ -28,15 +28,17 @@ public class BigViewController {
     private Main mainApp;
     @FXML
     private void initialize() {
-    	user=100;
-    	contx=100;
-    	dead=100; 
-    	primera=100; 
-    	razon=100;
+
     }
     
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+    	
+    	user=mainApp.getUser()*100;
+    	contx=mainApp.getContx()*100;
+    	dead=mainApp.getDead()*100; 
+    	primera=mainApp.getPrimera()*100; 
+    	razon=mainApp.getRazon()*100;
     }
 
     public String Emailget(){
@@ -73,7 +75,7 @@ public class BigViewController {
         .masthead("Prioridad de usuario (P.U)")
         .message("Ingrese un valor entre 1-100 para determinar la ponderación \n que tendrá la P.U en el algotirmo de Prioridad de los proyectos.")
        // .showChoices(lista);
-        .showTextInput(""+ this.user);
+        .showTextInput(""+ (int) this.user);
         
         if (response.isPresent()) {
         	if(!isNumeric(response.get())){
@@ -86,7 +88,7 @@ public class BigViewController {
 		        .showError();
         		
         	}
-        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>100 ){
+        	else if(Integer.parseInt(response.get())<1 || Integer.parseInt(response.get())>(double)100 ){
         		 Dialogs.create()
         		        .title("Error en ponderación")
         		        
@@ -124,7 +126,7 @@ public class BigViewController {
         .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.D en el algotirmo de Prioridad de los proyectos."
         		+ "\nP.D es la importancia que se le da a estar cercanos a la fecha\n de término para un proyecto")
        // .showChoices(lista);
-        .showTextInput(""+ this.dead);
+        .showTextInput(""+ (int) this.dead);
         
         if (response.isPresent()) {
         	if(!isNumeric(response.get())){
@@ -175,7 +177,7 @@ public class BigViewController {
         .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.C en el algotirmo de Prioridad de los proyectos."
         		+ "\nP.C es la importancia que tiene para usted ordenar los proyectos\n según la prioirdad que cada contexto tiene")
        // .showChoices(lista);
-        .showTextInput(""+ this.contx);
+        .showTextInput(""+ (int)this.contx);
         
         if (response.isPresent()) {
         	if(!isNumeric(response.get())){
@@ -225,7 +227,7 @@ public class BigViewController {
         .message("Ingrese un valor entre 1-100 para determinar la ponderación que\n tendrá la P.Pt en el algotirmo de Prioridad de los proyectos."
         		+ "\nP.Pt es la importancia que tiene para usted ordenar los proyectos\n según la tarea más próxima en llegar a su fin.")
        // .showChoices(lista);
-        .showTextInput(""+ this.primera);
+        .showTextInput(""+ (int)this.primera);
         
         if (response.isPresent()) {
         	if(!isNumeric(response.get())){
@@ -275,7 +277,7 @@ public class BigViewController {
         .message("Ingrese un valor entre 1-100 para determinar la ponderación que tendrá\n la P.R en el algotirmo de Prioridad de los proyectos."
         		+ "\nP.C es la importancia que tiene para usted ordenar los proyectos según\n la razón entre cantidad de tareas y tiempo disponible para hacerlas")
        // .showChoices(lista);
-        .showTextInput(""+this.razon);
+        .showTextInput(""+ (int)this.razon);
         
         if (response.isPresent()) {
         	if(!isNumeric(response.get())){

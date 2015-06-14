@@ -158,6 +158,7 @@ public class TaskViewController implements Serializable {
         boolean okClicked = mainApp.showProjectEditDialog(tempProyect);
         if (okClicked) {
             mainApp.getProyectData().add(tempProyect);
+            mainApp.cambiarPrioridad();
             try {
 				mainApp.sereal();
 			} catch (FileNotFoundException e) {
