@@ -188,6 +188,36 @@ public class Main extends Application implements Serializable{
 		            e2.printStackTrace();
 		         }
 		      }
+		      
+
+		      File archivo2 = null;
+			  FileReader fr2 = null;
+			  BufferedReader br2 = null;
+		      
+		      try {
+			         archivo2 = new File ("contexto.txt");
+			         fr2 = new FileReader (archivo2);
+			         br2 = new BufferedReader(fr2);
+			         String linea2;
+			         linea2=br2.readLine();
+			         while(linea2!=null){
+			        	String numero = br2.readLine();
+				        Contexto C= new Contexto(linea2, Integer.parseInt(numero));
+				        linea2=br2.readLine();
+				        contextData.add(C);
+			         }
+			      }
+			      catch(Exception e){
+			         e.printStackTrace();
+			      }finally{
+			         try{                    
+			            if( null != fr2 ){   
+			               fr2.close();     
+			            }                  
+			         }catch (Exception e2){ 
+			            e2.printStackTrace();
+			         }
+			      }
 			
 			
 			
@@ -197,9 +227,7 @@ public class Main extends Application implements Serializable{
 		public void sereal() throws FileNotFoundException, IOException{
 			//respaldoproject;
 			ordenar();
-			
-			
-			
+				
 			Object[] cosas=projectData.toArray();
 			ArrayList<Object> listOfStrings = new ArrayList<Object>((Arrays.asList(cosas).size()));
 			listOfStrings.addAll(Arrays.asList(cosas));
@@ -210,6 +238,7 @@ public class Main extends Application implements Serializable{
 			
 			//ObservableList lista1= FXCollections.observableArrayList(new int[]{12, 15, 11, 4, 32});
 			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream("media.obj"));
+			
 			//ObjectOutputStream oos = new ObjectOutputStream(oks);
 			oos.writeObject(respaldoproject);
 			oos.close();
@@ -237,59 +266,30 @@ public class Main extends Application implements Serializable{
 		        }
 			}
 			
-			
+			FileWriter fichero2 = null;
+		     PrintWriter pw2 = null;
+		        try
+		        {
+		            fichero2 = new FileWriter("contexto.txt");
+		            pw2 = new PrintWriter(fichero2);
+		            for(int i=0;i<contextData.size();i++){
+		            	pw2.println(contextData.get(i).getContext());
+		            	pw2.println(contextData.get(i).getPriority());
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        } finally {
+		           try {
+
+		           if (null != fichero2)
+		              fichero2.close();
+		           } catch (Exception e2) {
+		              e2.printStackTrace();
+		           }
+		        }
 		}		
 		
 		public void mensajear() throws IOException, MessagingException {
-			
-			/*final String username = "taskmanager@outlook.es";
-		    final String password = "Soyunprocesador";
-
-		    Properties props = new Properties();
-		    props.put("mail.smtp.auth", "true");
-		    props.put("mail.smtp.starttls.enable", "true");
-		    props.put("mail.smtp.host", "outlook.office365.com");
-		    props.put("mail.smtp.port", "587");
-
-		    Session session = Session.getInstance(props,
-		      new javax.mail.Authenticator() {
-		        protected PasswordAuthentication getPasswordAuthentication() {
-		            return new PasswordAuthentication(username, password);
-		        }
-		      });
-
-		    try {
-
-		        Message message = new MimeMessage(session);
-		        message.setFrom(new InternetAddress("taskmanager@outlook.es"));
-		        message.setRecipients(Message.RecipientType.TO,
-		            InternetAddress.parse("rorroes@gmail.com"));
-		        message.setSubject("Test");
-		        message.setText("HI");
-
-		        Transport.send(message);
-
-		        System.out.println("Done");
-		        
-
-		        Dialogs.create()
-                .title("Campos validos")
-                .masthead("todo bn")
-                .message("todito bn")
-                .showError();
-        		        
-		        
-		    } catch (MessagingException e) {
-		        Dialogs.create()
-                .title("Campos NO validos")
-                .masthead("todo NO bn")
-                .message("todito MAAAL")
-                .showError();
-		        throw new RuntimeException(e);
-		        
-		    }
-		    
-		    */
 			
 	        String mensaje="";
 	        mensaje= "<table style="+'"'+""+'"'+ "> <tr>  <td><strong>N°</strong></td>  <td><strong>Nombre de tarea</strong></td>  <td><strong>Deadline</strong></td>"+
@@ -360,12 +360,15 @@ public class Main extends Application implements Serializable{
 		
 		public void contextualiza(){
 			for(Tarea tt: this.taskData){
-				if(this.contextData.contains(tt.getContext())){
-					
+				for(int i=0;i<contextData.size();i++){
+					if(tt.getContext().getContext().equals(contextData.get(i).getContext())){
+						tt.setContext(contextData.get(i));
+					}
+					//else{
+					//this.contextData.add(tt.getContext());
+					//}
 				}
-				else{
-				this.contextData.add(tt.getContext());
-				}
+				
 			}
 		}
 		
@@ -410,8 +413,6 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(700);
-	    		this.ps.setHeight(450);
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
@@ -732,9 +733,9 @@ public class Main extends Application implements Serializable{
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
-            contextData = controller.mainApp.getContextData();
+            /*contextData = controller.mainApp.getContextData();
             projectData = controller.mainApp.getProyectData();
-            taskData = controller.mainApp.getTaskData();
+            taskData = controller.mainApp.getTaskData();*/
             
             return controller.isOkClicked();
         } catch (IOException e) {

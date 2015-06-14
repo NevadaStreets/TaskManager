@@ -24,7 +24,7 @@
             </TableView>
          </children>
       </AnchorPane>
-    <AnchorPane layoutX="14.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0">
+    <AnchorPane layoutX="14.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutX="25.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="25.0" prefWidth="97.0" text="Crear Tarea" />
             <Button layoutX="25.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleProjectView" text="Vista Proyectos" AnchorPane.bottomAnchor="28.0" />

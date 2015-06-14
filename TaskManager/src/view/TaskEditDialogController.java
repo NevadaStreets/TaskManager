@@ -155,6 +155,7 @@ public class TaskEditDialogController {
 
     		
             //mainApp.getProyectData();
+            //mainApp.getContextData().get(indic).Tasks.add(tarea);
             okClicked = true;
     		try {
 				mainApp.sereal();
