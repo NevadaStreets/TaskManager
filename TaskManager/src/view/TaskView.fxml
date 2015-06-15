@@ -9,14 +9,14 @@
 <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="369.0" prefWidth="800.0" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskViewController">
    <children>
       <Label fx:id="firstNameLabel" layoutX="502.0" layoutY="25.0" prefHeight="21.0" prefWidth="225.0" text="Nombre" AnchorPane.rightAnchor="73.0" />
-      <AnchorPane minHeight="100.0" minWidth="100.0" prefHeight="347.0" prefWidth="193.0" AnchorPane.bottomAnchor="22.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane minHeight="100.0" minWidth="100.0" prefHeight="369.0" prefWidth="193.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="21.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleNewProject" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Proyecto" AnchorPane.rightAnchor="28.0" />
-            <Button layoutX="27.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleTaskView" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Tareas" AnchorPane.bottomAnchor="72.0" AnchorPane.rightAnchor="41.0" />
-            <Button layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleTasksInProject" style="-fx-background-color: black; -fx-border-color: black;" text="Tareas asociadas" AnchorPane.rightAnchor="22.0" />
-            <Button layoutX="14.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleDeleteProject" prefHeight="33.0" prefWidth="165.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Proyecto" AnchorPane.rightAnchor="14.0" />
-            <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleEditProject" prefHeight="33.0" prefWidth="157.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Proyecto" AnchorPane.rightAnchor="22.0" />
-            <Button layoutX="27.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleDashboard" prefHeight="33.0" prefWidth="125.0" style="-fx-background-color: black; -fx-border-color: black;" text="Dashboard" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="41.0" />
+            <Button layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleNewProject" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Proyecto" AnchorPane.rightAnchor="16.0" />
+            <Button layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleTaskView" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Tareas" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="16.0" />
+            <Button layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleTasksInProject" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Tareas asociadas" AnchorPane.rightAnchor="16.0" />
+            <Button layoutX="14.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleDeleteProject" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Proyecto" AnchorPane.rightAnchor="16.0" />
+            <Button layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleEditProject" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Proyecto" AnchorPane.rightAnchor="16.0" />
+            <Button layoutX="15.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleDashboard" prefHeight="33.0" prefWidth="163.0" style="-fx-background-color: black; -fx-border-color: black;" text="Dashboard" AnchorPane.bottomAnchor="69.0" AnchorPane.rightAnchor="15.0" />
          </children>
       </AnchorPane>
       <Label fx:id="priorityLabel" layoutX="619.0" layoutY="152.0" prefHeight="21.0" prefWidth="108.0" text="Prioridad" AnchorPane.rightAnchor="106.0" />

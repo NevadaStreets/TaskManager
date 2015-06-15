@@ -24,15 +24,15 @@
             </TableView>
          </children>
       </AnchorPane>
-    <AnchorPane layoutX="14.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="14.0" layoutY="24.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="-24.0" AnchorPane.topAnchor="24.0">
          <children>
-            <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Tarea" />
-            <Button layoutX="5.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleProjectView" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Proyectos" AnchorPane.bottomAnchor="77.0" />
-            <Button layoutX="8.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="33.0" prefWidth="140.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Tarea" />
-            <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Tarea" />
-            <Button layoutX="3.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar Tarea" />
-            <Button layoutX="1.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleNewContext" style="-fx-background-color: black; -fx-border-color: black;" text="Nuevo Contexto" />
-            <Button layoutX="4.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleEditContext" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
+            <Button layoutX="-2.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="33.0" prefWidth="155.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Tarea" />
+            <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleProjectView" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Proyectos" AnchorPane.bottomAnchor="38.0" />
+            <Button layoutX="2.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Tarea" />
+            <Button layoutX="-1.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Tarea" />
+            <Button layoutX="2.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar Tarea" />
+            <Button layoutX="2.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleNewContext" style="-fx-background-color: black; -fx-border-color: black;" text="Nuevo Contexto" />
+            <Button layoutX="2.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleEditContext" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
          </children>
       </AnchorPane>
       <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" styleClass="label-bright" text="Nombre" AnchorPane.rightAnchor="48.0" />
