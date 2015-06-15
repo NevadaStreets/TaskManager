@@ -35,9 +35,9 @@
             <Button layoutX="4.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleEditContext" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
          </children>
       </AnchorPane>
-      <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" text="Nombre" AnchorPane.rightAnchor="48.0" />
+      <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" styleClass="label-bright" text="Nombre" AnchorPane.rightAnchor="48.0" />
       <Label fx:id="contextLabel" layoutX="604.0" layoutY="234.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="50.0" />
-      <Label fx:id="deadlineLabel" layoutX="605.0" layoutY="315.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="49.0" />
+      <Label fx:id="deadlineLabel" layoutX="600.0" layoutY="315.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="54.0" />
       <Label layoutX="502.0" layoutY="315.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="246.0" />
       <Label layoutX="501.0" layoutY="234.0" text="Contexto" AnchorPane.rightAnchor="247.0" />
       <Label layoutX="503.0" layoutY="273.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="257.0" />
@@ -46,6 +46,6 @@
       <Label fx:id="projectLabel" layoutX="595.0" layoutY="148.0" prefHeight="21.0" prefWidth="155.0" text="Proyecto" AnchorPane.rightAnchor="49.0" />
       <Label layoutX="501.0" layoutY="192.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="259.0" />
       <Label fx:id="stateLabel" layoutX="605.0" layoutY="192.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
-      <Button layoutX="501.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleFilter" text="Filtro" />
+      <Button layoutX="501.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleFilter" style="-fx-background-color: black; -fx-border-color: black;" text="Filtro" />
    </children>
 </AnchorPane>
