@@ -131,10 +131,7 @@ public class DashboardController {
     	if(end.getDayOfYear()-start.getDayOfYear() +desfase<8){
 			end = start.plusDays(8);
 		}
-    	System.out.println(end);
-    	System.out.println(start);
-    	System.out.println("diferencia: " + (end.getDayOfYear()-start.getDayOfYear()));
-    	System.out.println("desfase: " + desfase);
+
     	double diff = end.getDayOfYear()-start.getDayOfYear() +desfase;
     	if(end.getDayOfYear()-start.getDayOfYear() +desfase>60){
 			end = start.plusDays(61);
@@ -154,8 +151,6 @@ public class DashboardController {
         };
         double factor = diff/61;
 
-        System.out.println(diff);
-        System.out.println(factor);
     	double largo = 120;
         Double llenado = 0.0;
         int count = 0;
@@ -173,7 +168,6 @@ public class DashboardController {
         }
         if(diff-(61*count)>0){
         	Canvas canvitas = new Canvas();
-        	System.out.println("faltante: " + (diff-(61*count)));
            	canvitas.setWidth((diff-(61*count))*largo);
            	canvitas.setHeight(alto);
            	canvitas.setLayoutX(count*diferencia*largo);

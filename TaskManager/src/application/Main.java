@@ -659,9 +659,9 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
-	            dialogStage.setMinWidth(460);
+	            dialogStage.setMinWidth(500);
 	            dialogStage.setMinHeight(350);
-	            dialogStage.setMaxWidth(460);
+	            dialogStage.setMaxWidth(500);
 	            dialogStage.setMaxHeight(350);
 
 
