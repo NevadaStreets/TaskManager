@@ -27,7 +27,6 @@ public class EditContextController {
 
 	@FXML
 	private Label priorityField;
-	
     @FXML
     private Slider slider;
     
@@ -76,6 +75,7 @@ public class EditContextController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         contextBox.setItems(mainApp.getContextData());
+    	slider= new Slider();
         // Add observable list data to the table
        /* taskTable.setItems(mainApp.getTaskData());
         int largo = mainApp.getTaskData().size();

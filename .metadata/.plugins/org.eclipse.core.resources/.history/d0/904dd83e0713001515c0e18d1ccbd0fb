@@ -8,8 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,13 +22,8 @@ import util.DateUtil;
 public class EditContextController {
 	@FXML
     private TextField firstNameField;
-
-	@FXML
-	private Label priorityField;
-	
     @FXML
-    private Slider slider;
-    
+    private TextField priorityField;
     @FXML
     private ComboBox<Contexto> contextBox;
     /*@FXML
@@ -71,7 +64,6 @@ public class EditContextController {
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-        
     }
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
@@ -105,11 +97,7 @@ public class EditContextController {
         contexts.add("Al teléfono");
         contexts.add("En casa");*/
         firstNameField.setText(context.getContext());
-       slider.setValue(context.getPriority()/12);
-        
-       priorityField.setText(Integer.toString(context.getPriority()));
-        
-        
+        priorityField.setText(Integer.toString(context.getPriority()));
         //String s = DateUtil.format(proyect.getInicio());
         //String d = DateUtil.format(proyect.getDeadline()); 
         //startDayField.setText(s.substring(0, s.indexOf('.')));
@@ -131,13 +119,6 @@ public class EditContextController {
         return okClicked;
     }
 
-    @FXML
-    private void handlePrioridad(){
-    	
-    	this.priorityField.setText(""+(int)(slider.getValue()*12)); 
-    }
-    
-    
     /**
      * Called when the user clicks ok.
      */
@@ -151,9 +132,8 @@ public class EditContextController {
         	for (int i=0;i<mainApp.getContextData().size();i++){
         		if (mainApp.getContextData().get(i).getContext().equals(s)){
         			mainApp.getContextData().get(i).setContext(nombre);
-        			
-        			mainApp.getContextData().get(i).setPriority(Integer.parseInt(priorityField.getText()));;
-        			        		}
+        			mainApp.getContextData().get(i).setPriority(j);;
+        		}
         	}
         	
         	okClicked = true;
@@ -171,10 +151,8 @@ public class EditContextController {
         
 //    }
     private void handleSelect() {
-
         firstNameField.setText(contextBox.getValue().getContext());
         priorityField.setText(Integer.toString(contextBox.getValue().getPriority()));
-        slider.setValue(contextBox.getValue().getPriority()/12);
         
     }
 

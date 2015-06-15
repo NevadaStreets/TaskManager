@@ -27,7 +27,6 @@ public class EditContextController {
 
 	@FXML
 	private Label priorityField;
-	
     @FXML
     private Slider slider;
     
@@ -71,11 +70,11 @@ public class EditContextController {
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-        
     }
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         contextBox.setItems(mainApp.getContextData());
+        
         // Add observable list data to the table
        /* taskTable.setItems(mainApp.getTaskData());
         int largo = mainApp.getTaskData().size();
@@ -171,7 +170,6 @@ public class EditContextController {
         
 //    }
     private void handleSelect() {
-
         firstNameField.setText(contextBox.getValue().getContext());
         priorityField.setText(Integer.toString(contextBox.getValue().getPriority()));
         slider.setValue(contextBox.getValue().getPriority()/12);

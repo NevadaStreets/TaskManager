@@ -8,8 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,21 +16,13 @@ import org.controlsfx.dialog.Dialogs;
 import application.Contexto;
 import application.Main;
 import application.Proyecto;
-import application.Tarea;
 import util.DateUtil;
 
-public class EditContextController {
+public class NewContextController {
 	@FXML
     private TextField firstNameField;
-
-	@FXML
-	private Label priorityField;
-	
     @FXML
-    private Slider slider;
-    
-    @FXML
-    private ComboBox<Contexto> contextBox;
+    private TextField priorityField;
     /*@FXML
     private TextField startDayField;
     @FXML
@@ -49,7 +39,7 @@ public class EditContextController {
 
     private Stage dialogStage;
     private boolean okClicked = false;
-    public Main mainApp;
+    private Main mainApp;
 	private Contexto context;
 
     /**
@@ -58,10 +48,6 @@ public class EditContextController {
      */
     @FXML
     private void initialize() {
-    	
-    	//contextBox.setItems(mainApp.getContextData());
-
-    	//contextBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> handleSelect(newValue));
     }
 
     /**
@@ -71,21 +57,6 @@ public class EditContextController {
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
-        
-    }
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-        contextBox.setItems(mainApp.getContextData());
-        // Add observable list data to the table
-       /* taskTable.setItems(mainApp.getTaskData());
-        int largo = mainApp.getTaskData().size();
-        for (int i=largo-1;i>=0;i--){
-        	if(taskTable.getItems().get(i).getEstado().equals("Completada")){
-        		taskTable.getItems().remove(i);
-        	}
-        }*/
-        
-        
     }
     
     /*public void setMainApp(Main mainApp) {
@@ -104,12 +75,8 @@ public class EditContextController {
         contexts.add("En el auto");
         contexts.add("Al teléfono");
         contexts.add("En casa");*/
-        firstNameField.setText(context.getContext());
-       slider.setValue(context.getPriority()/12);
-        
-       priorityField.setText(Integer.toString(context.getPriority()));
-        
-        
+        //firstNameField.setText(context.getContext());
+        //priorityField.setText(Integer.toString(context.getPriority()));
         //String s = DateUtil.format(proyect.getInicio());
         //String d = DateUtil.format(proyect.getDeadline()); 
         //startDayField.setText(s.substring(0, s.indexOf('.')));
@@ -131,32 +98,34 @@ public class EditContextController {
         return okClicked;
     }
 
-    @FXML
-    private void handlePrioridad(){
-    	
-    	this.priorityField.setText(""+(int)(slider.getValue()*12)); 
-    }
-    
-    
     /**
      * Called when the user clicks ok.
      */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-        	
-        	String s = contextBox.getSelectionModel().getSelectedItem().getContext();
-        	String nombre = firstNameField.getText();
-        	int j = Integer.parseInt(priorityField.getText());
-        	for (int i=0;i<mainApp.getContextData().size();i++){
-        		if (mainApp.getContextData().get(i).getContext().equals(s)){
-        			mainApp.getContextData().get(i).setContext(nombre);
-        			
-        			mainApp.getContextData().get(i).setPriority(Integer.parseInt(priorityField.getText()));;
-        			        		}
-        	}
-        	
-        	okClicked = true;
+            context.setContext(firstNameField.getText());
+            context.setPriority(Integer.parseInt(priorityField.getText()));
+            //proyect.setDeadline(DateUtil.parse(deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText()));
+            //proyect.setInicio(DateUtil.parse(startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText()));
+            //proyect.setDeadline(LocalDate.now());
+            //proyect.setInicio(LocalDate.now());
+
+            okClicked = true;
+            okClicked = true;
+            
+            //revisar!
+    		/*try {
+				mainApp.sereal();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+    		//hasta aca
+    		
             dialogStage.close();
         }
     }
@@ -165,17 +134,8 @@ public class EditContextController {
      * Called when the user clicks cancel.
      */
     @FXML
-//    private void handleSelect(Contexto context) {
-//        firstNameField.setText(context.getContext());
-//        priorityField.setText(Integer.toString(context.getPriority()));
-        
-//    }
-    private void handleSelect() {
-
-        firstNameField.setText(contextBox.getValue().getContext());
-        priorityField.setText(Integer.toString(contextBox.getValue().getPriority()));
-        slider.setValue(contextBox.getValue().getPriority()/12);
-        
+    private void handleCancel() {
+        dialogStage.close();
     }
 
     /**

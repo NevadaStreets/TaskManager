@@ -8,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,8 +23,11 @@ import util.DateUtil;
 public class NewContextController {
 	@FXML
     private TextField firstNameField;
+
     @FXML
-    private TextField priorityField;
+    private Label priorityField;
+    @FXML
+    private Slider slider;
     /*@FXML
     private TextField startDayField;
     @FXML
@@ -70,6 +75,7 @@ public class NewContextController {
      */
     public void setPerson(Contexto context) {
         this.context = context;
+       
         /*ObservableList <String> contexts = FXCollections.observableArrayList();
         contexts.add("En la oficina");
         contexts.add("En el auto");
@@ -96,6 +102,12 @@ public class NewContextController {
      */
     public boolean isOkClicked() {
         return okClicked;
+    }
+
+    @FXML
+    private void handlePrioridad(){
+    	
+    	this.priorityField.setText(""+(int)(slider.getValue()*12)); 
     }
 
     /**
