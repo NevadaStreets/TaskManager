@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="389.0" prefWidth="775.0" style="-fx-background-color: #1d1d1d;" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DashboardController">
+<AnchorPane prefHeight="389.0" prefWidth="795.0" style="-fx-background-color: #1d1d1d;" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DashboardController">
    <children>
-      <ScrollPane fx:id="sp" layoutX="278.0" layoutY="82.0" prefHeight="272.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="487.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="278.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="82.0">
+      <ScrollPane fx:id="sp" layoutX="314.0" layoutY="83.0" prefHeight="272.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="471.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="83.0">
          <content>
             <AnchorPane fx:id="anchoa">
                <children>
@@ -20,21 +20,21 @@
       </ScrollPane>
       <Button layoutX="20.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleInbox" prefHeight="33.0" prefWidth="98.0" style="-fx-background-color: black; -fx-border-color: black;" stylesheets="@../../bin/view/App.css" text="Inbox" AnchorPane.bottomAnchor="58.0" />
       <Canvas height="200.0" layoutX="20.0" layoutY="-86.0" width="200.0" />
-      <ScrollPane layoutX="16.0" layoutY="82.0" prefHeight="210.0" prefWidth="255.0" AnchorPane.bottomAnchor="97.0" AnchorPane.topAnchor="82.0">
+      <ScrollPane layoutX="16.0" layoutY="82.0" prefHeight="210.0" prefWidth="284.0" AnchorPane.bottomAnchor="97.0" AnchorPane.topAnchor="82.0">
          <content>
-            <AnchorPane fx:id="anchoa2" prefHeight="662.0" prefWidth="253.0" styleClass="background" stylesheets="@../../bin/view/App.css">
+            <AnchorPane fx:id="anchoa2" prefHeight="662.0" prefWidth="275.0" styleClass="background" stylesheets="@../../bin/view/App.css">
                <children>
                   <Label fx:id="titulo" alignment="CENTER" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" />
                   <Label layoutX="8.0" layoutY="37.0" prefHeight="17.0" prefWidth="126.0" styleClass="label-bright" text="Total tareas" />
                   <Label layoutX="7.0" layoutY="63.0" prefHeight="17.0" prefWidth="116.0" styleClass="label-bright" text="Tareas completas" />
                   <Label layoutX="8.0" layoutY="89.0" prefHeight="17.0" prefWidth="114.0" styleClass="label-bright" text="Tareas vencidas" />
-                  <Label fx:id="t1" layoutX="159.0" layoutY="37.0" prefHeight="21.0" prefWidth="86.0" styleClass="label-bright" />
-                  <Label fx:id="t2" layoutX="158.0" layoutY="63.0" prefHeight="21.0" prefWidth="88.0" styleClass="label-bright" />
-                  <Label fx:id="t3" layoutX="158.0" layoutY="89.0" prefHeight="21.0" prefWidth="85.0" styleClass="label-bright" />
+                  <Label fx:id="t1" layoutX="201.0" layoutY="37.0" prefHeight="21.0" prefWidth="60.0" styleClass="label-bright" />
+                  <Label fx:id="t2" layoutX="200.0" layoutY="63.0" prefHeight="21.0" prefWidth="60.0" styleClass="label-bright" />
+                  <Label fx:id="t3" layoutX="200.0" layoutY="89.0" prefHeight="21.0" prefWidth="60.0" styleClass="label-bright" />
                   <Label layoutX="8.0" layoutY="114.0" prefHeight="21.0" prefWidth="155.0" styleClass="label-bright" text="Ratio de cumplimiento" />
-                  <Label fx:id="cumplida" layoutX="160.0" layoutY="114.0" prefHeight="21.0" prefWidth="84.0" styleClass="label-bright" />
+                  <Label fx:id="cumplida" layoutX="201.0" layoutY="114.0" prefHeight="21.0" prefWidth="60.0" styleClass="label-bright" />
                   <Label layoutX="8.0" layoutY="139.0" prefHeight="21.0" prefWidth="169.0" styleClass="label-bright" text="Ratio de incumplimiento" />
-                  <Label fx:id="nocumplida" layoutX="181.0" layoutY="139.0" prefHeight="21.0" prefWidth="63.0" styleClass="label-bright" />
+                  <Label fx:id="nocumplida" layoutX="203.0" layoutY="139.0" prefHeight="21.0" prefWidth="60.0" styleClass="label-bright" />
                </children>
             </AnchorPane>
          </content>

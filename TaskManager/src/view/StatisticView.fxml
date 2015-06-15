@@ -8,9 +8,8 @@
 
 <AnchorPane prefHeight="415.0" prefWidth="618.0" style="-fx-background-color: #1d1d1d;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StatisticController">
    <children>
-      <ComboBox fx:id="estadistica" layoutX="33.0" layoutY="51.0" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: black;" styleClass="label-bright" stylesheets="@../../bin/view/App.css" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="51.0" />
+      <ComboBox fx:id="estadistica" layoutX="33.0" layoutY="51.0" onAction="#setear" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: black;" styleClass="label-bright" stylesheets="@../../bin/view/App.css" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="51.0" />
       <PieChart fx:id="piedelimon" layoutX="198.0" layoutY="51.0" prefHeight="313.0" prefWidth="343.0" style="-fx-background-color: white;" title="Proyectos y sus estados" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="51.0" />
-      <Button layoutX="33.0" layoutY="115.0" mnemonicParsing="false" onAction="#setear" prefHeight="33.0" prefWidth="155.0" style="-fx-background-color: black; -fx-border-color: black;" stylesheets="@../../bin/view/App.css" text="Cambiar vista" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="115.0" />
       <Button layoutX="33.0" layoutY="331.0" mnemonicParsing="false" onAction="#dashbordear" prefHeight="33.0" prefWidth="155.0" style="-fx-background-color: black; -fx-border-color: black;" stylesheets="@../../bin/view/App.css" text="Vista Dashboard" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="33.0" />
    </children>
 </AnchorPane>
