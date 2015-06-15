@@ -173,14 +173,6 @@ public class Main extends Application implements Serializable{
 			contextData.add(new Contexto("Al teléfono",10));
 			contextData.add(new Contexto("En casa",10));
 			email="taskmanager2015@gmail.com";
-			
-			try {
-				sereal();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			}
 		//projectData.add(new Proyecto("Proyecto de Software"+LocalDate.now()));
 		
