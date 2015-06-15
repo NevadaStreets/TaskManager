@@ -7,6 +7,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
+import java.util.*;
+import java.util.Calendar;
+import java.time.*;
 
 import javax.xml.stream.EventFilter;
 
@@ -65,6 +68,7 @@ public class DashboardController {
 	private ScrollPane sp;
 	
 	private Main mainApp;
+	private boolean pintado = false;
 	
 	int onClick = -1;
 
@@ -120,12 +124,23 @@ public class DashboardController {
     	if(start.compareTo(LocalDate.now())>0){
 			start = LocalDate.now();
 		}
-    	
-    	if(start.compareTo(end)>-8){
+    	int desfase = 0;
+    	if(end.getYear()>start.getYear()){
+    		desfase = desfase + (end.getYear()-start.getYear())*365;
+    	}
+    	if(end.getDayOfYear()-start.getDayOfYear() +desfase<8){
 			end = start.plusDays(8);
 		}
-    	
-    	for(long i = 0; i<=end.compareTo(start)*120; i+=120){
+    	System.out.println(end);
+    	System.out.println(start);
+    	System.out.println("diferencia: " + (end.getDayOfYear()-start.getDayOfYear()));
+    	System.out.println("desfase: " + desfase);
+    	double diff = end.getDayOfYear()-start.getDayOfYear() +desfase;
+    	if(end.getDayOfYear()-start.getDayOfYear() +desfase>60){
+			end = start.plusDays(61);
+		}
+    	int diferencia = 60;
+    	for(long i = 0; i<=diff*120; i+=120){
         	Label diax = new Label(start.plusDays(i/120).format(fmt).toString());
             diax.layoutXProperty().set(i);
             diax.layoutYProperty().set(0);
@@ -136,23 +151,46 @@ public class DashboardController {
         }
         if(alto<560){
         	alto = 560;
-        }
-    	
+        };
+        double factor = diff/61;
+
+        System.out.println(diff);
+        System.out.println(factor);
     	double largo = 120;
         Double llenado = 0.0;
-    	Canvas canvitas = new Canvas();
-       	canvitas.setWidth(end.compareTo(start)*largo);
-       	canvitas.setHeight(alto);
-       	canvitas.setLayoutX(0);
-       	canvitas.setLayoutY(0);
-    	GraphicsContext gc = canvitas.getGraphicsContext2D();
-    	anchoa.getChildren().add(canvitas);
-        drawShapes(gc, end.compareTo(start), LocalDate.now().compareTo(start)*largo, alto);
-    	
-        
+        int count = 0;
+        for(int k=1;k<factor;k++){
+            Canvas canvitas2 = new Canvas();
+           	canvitas2.setWidth(diferencia*largo);
+           	canvitas2.setHeight(alto);
+           	canvitas2.setLayoutX((k-1)*diferencia*largo);
+           	canvitas2.setLayoutY(0);
+        	GraphicsContext gc2 = canvitas2.getGraphicsContext2D();
+        	anchoa.getChildren().add(canvitas2);
+            drawShapes(gc2, diferencia, (LocalDate.now().getDayOfYear()-start.getDayOfYear())*largo, alto);
+            count ++;
+        	
+        }
+        if(diff-(61*count)>0){
+        	Canvas canvitas = new Canvas();
+        	System.out.println("faltante: " + (diff-(61*count)));
+           	canvitas.setWidth((diff-(61*count))*largo);
+           	canvitas.setHeight(alto);
+           	canvitas.setLayoutX(count*diferencia*largo);
+           	canvitas.setLayoutY(0);
+        	GraphicsContext gc = canvitas.getGraphicsContext2D();
+        	anchoa.getChildren().add(canvitas);
+            drawShapes(gc, diff-(61*count), (LocalDate.now().getDayOfYear()-start.getDayOfYear())*largo, alto);	
+        }
+    	//sp.setHvalue((LocalDate.now().getDayOfYear()-start.getDayOfYear())/(diff*120));
+        sp.setHvalue((LocalDate.now().getDayOfYear()-start.getDayOfYear())/(diff));
         for(int i=0; i<mainApp.getProyectData().size();i++){
         	if(mainApp.getProyectData().get(i).gettask().size()>0){
-        		double termino = (mainApp.getProyectData().get(i).getDeadline().toLocalDate().compareTo(mainApp.getProyectData().get(i).getInicio().toLocalDate())+1)*largo - ((24-mainApp.getProyectData().get(i).getDeadline().getHour()+mainApp.getProyectData().get(i).getInicio().getHour())*5);
+        		int desfasado = 0;
+        		if(mainApp.getProyectData().get(i).getDeadline().getYear()>mainApp.getProyectData().get(i).getInicio().getYear()){
+        			desfasado = desfasado + 365*(mainApp.getProyectData().get(i).getDeadline().getYear()-mainApp.getProyectData().get(i).getInicio().getYear());
+        		}
+        		double termino = (mainApp.getProyectData().get(i).getDeadline().getDayOfYear()-mainApp.getProyectData().get(i).getInicio().getDayOfYear() + desfasado+1)*largo - ((24-mainApp.getProyectData().get(i).getDeadline().getHour()+mainApp.getProyectData().get(i).getInicio().getHour())*5);
         		//double termino = (mainApp.getProyectData().get(i).getDeadline().getHour()-mainApp.getProyectData().get(i).getInicio().getHour())*largo/24;
         		llenado = 0.0;
             	Double totaltareas = 0.0;
@@ -172,6 +210,7 @@ public class DashboardController {
                 Rectangle rx = new Rectangle(termino,20,Color.TRANSPARENT);
                 
                 Rectangle completox = new Rectangle((llenado/totaltareas)*termino,20,Color.rgb(2, 200, 1, 0.5));
+                
                 rx.setStroke(Color.DARKBLUE);
                 rectangulos.add(rx);
                 String mensaje = String.valueOf(llenado.intValue()) + " de " + String.valueOf(totaltareas.intValue()) + " tareas realizadas";
@@ -184,7 +223,6 @@ public class DashboardController {
                 double tamanox = fontLoader.computeStringWidth(lx.getText(),lx.getFont());
                 double posx = (rx.getWidth() - tamanox)/2 + rx.getLayoutX();
                 int indice = i;
-                
                 rx.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 	public void handle(MouseEvent eventoRaton){
                 		if(eventoRaton.getButton().equals(MouseButton.PRIMARY)){
@@ -313,6 +351,7 @@ public class DashboardController {
                 anchoa.getChildren().add(rx);
                 anchoa.getChildren().add(completox);
                 anchoa.getChildren().add(lx);
+
                 if(vencidas > 0){
                 	if( vencidas < 2){
                 		mensaje += "\n" + String.valueOf(vencidas.intValue()) + " tarea vencidas";
@@ -368,6 +407,7 @@ public class DashboardController {
                     });
                     anchoa.getChildren().add(vencidax);
                 }
+
                 Tooltip t = new Tooltip(mensaje);
                 Tooltip.install(rx, t);
                 Tooltip.install(completox, t);
@@ -387,19 +427,22 @@ public class DashboardController {
         
     }
     
-    private void drawShapes(GraphicsContext gc, int d, double p, double a) {
+    private void drawShapes(GraphicsContext gc, double d, double p, double a) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(0.2);
         for(int i=1; i<=d;i++){
         	gc.strokeLine(i*120, 0, i*120, a);
         }
-        gc.setStroke(Color.RED);
-        gc.setLineWidth(2);
-        LocalTime hora = LocalTime.now();
-        gc.strokeLine(p + hora.getHour()*5, 20, p + hora.getHour()*5, a);
-        sp.setHvalue(p/(d*120));
-        
+        if(pintado == false){
+
+            gc.setStroke(Color.RED);
+            gc.setLineWidth(2);
+            LocalTime hora = LocalTime.now();
+            gc.strokeLine(p + hora.getHour()*5, 20, p + hora.getHour()*5, a);
+            sp.setHvalue(p/(d*120));
+            pintado = true;
+        }
     }
     
     @FXML

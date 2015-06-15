@@ -146,12 +146,10 @@ public class Main extends Application implements Serializable{
 		this.contextualiza();	
 		}
 		else{
-		//projectData.add(new Proyecto("Proyecto de Software"));
-		//projectData.add(new Proyecto("Proyecto de Vida"));
-		//projectData.add(new Proyecto("Electro pls"));
-		//Tarea t = new Tarea("A fluir con Fluidos", projectData.get(2));
-		//taskData.add(t);
-		//projectData.get(2).Tasks.add(t);
+			contextData.add(new Contexto("En la oficina",10));
+			contextData.add(new Contexto("En el auto",10));
+			contextData.add(new Contexto("Al teléfono",10));
+			contextData.add(new Contexto("En casa",10));
 			email="taskmanager2015@gmail.com";
 			}
 		//projectData.add(new Proyecto("Proyecto de Software"+LocalDate.now()));
@@ -599,6 +597,7 @@ public class Main extends Application implements Serializable{
 	            NewContextController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
 	            controller.setPerson(context);
+	            controller.setMainApp(this);
 	            
 	            
 	            //controller.setMainApp(this); //Tirar main a ProjectEditDialog, revisar!!
