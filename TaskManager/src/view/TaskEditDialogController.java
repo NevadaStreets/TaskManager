@@ -73,7 +73,6 @@ public class TaskEditDialogController {
     
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
-
         //Mostramos una lista con los proyectos disponibles
         projectBox.setItems(mainApp.getProyectData());
         contextField.setItems(mainApp.getContextData());
@@ -260,6 +259,16 @@ public class TaskEditDialogController {
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
         }
+        
+        for(int i=0;i<mainApp.getTaskData().size();i++){
+        	
+            if (firstNameField.getText().equals(mainApp.getTaskData().get(i).getName()) && tarea.equals(mainApp.getTaskData().get(i)) == false ) {
+                errorMessage += "Nombre ya usado en otra tarea!\n"; 
+                break;
+            }
+         	
+         }
+        
 
         if (descriptionField.getText() == null || descriptionField.getText().length() == 0) {
             errorMessage += "Descripcion no valida!\n"; 

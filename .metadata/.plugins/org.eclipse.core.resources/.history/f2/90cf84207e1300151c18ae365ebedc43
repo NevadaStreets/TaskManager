@@ -146,7 +146,10 @@ public class Main extends Application implements Serializable{
 		this.contextualiza();	
 		}
 		else{
-
+<<<<<<< HEAD
+			
+			
+			
 		projectData.add(new Proyecto("Default"));
 		projectData.get(0).setName("Default");
 		projectData.get(0).setDescription("Proyecto por defecto");
@@ -168,10 +171,12 @@ public class Main extends Application implements Serializable{
 		//Tarea t = new Tarea("A fluir con Fluidos", projectData.get(2));
 		//taskData.add(t);
 		//projectData.get(2).Tasks.add(t);
+=======
 			contextData.add(new Contexto("En la oficina",10));
 			contextData.add(new Contexto("En el auto",10));
 			contextData.add(new Contexto("Al teléfono",10));
 			contextData.add(new Contexto("En casa",10));
+>>>>>>> 378751510b97a8802556569736ca80af53eef09f
 			email="taskmanager2015@gmail.com";
 			}
 		//projectData.add(new Proyecto("Proyecto de Software"+LocalDate.now()));

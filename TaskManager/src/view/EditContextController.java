@@ -175,7 +175,7 @@ public class EditContextController {
         firstNameField.setText(contextBox.getValue().getContext());
         priorityField.setText(Integer.toString(contextBox.getValue().getPriority()));
         slider.setValue(contextBox.getValue().getPriority()/12);
-        
+        context = contextBox.getSelectionModel().getSelectedItem();
     }
 
     /**
@@ -185,24 +185,19 @@ public class EditContextController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
-        /*if (startDayField.getText().length()==1){
-        	startDayField.setText("0"+startDayField.getText());
-        }
-        if (startMonthField.getText().length()==1){
-        	startMonthField.setText("0"+startMonthField.getText());
-        }
-        if (deadlineDayField.getText().length()==1){
-        	deadlineDayField.setText("0"+deadlineDayField.getText());
-        }
-        if (deadlineMonthField.getText().length()==1){
-        	deadlineMonthField.setText("0"+deadlineMonthField.getText());
-        }
-        String Start = startDayField.getText()+"."+startMonthField.getText()+"."+startYearField.getText();
-        String Deadline = deadlineDayField.getText()+"."+deadlineMonthField.getText()+"."+deadlineYearField.getText();*/
+
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
         }
+        for(int i=0;i<mainApp.getContextData().size();i++){
+        	
+            if (firstNameField.getText().equals(mainApp.getContextData().get(i).getContext()) && context.equals(mainApp.getContextData().get(i))==false) {
+                errorMessage += "Nombre ya usado en otro contexto!\n"; 
+                break;
+            }
+         	
+         }
 
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
             errorMessage += "Prioridad no valida!\n"; 

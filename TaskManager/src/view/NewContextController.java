@@ -64,9 +64,9 @@ public class NewContextController {
         this.dialogStage = dialogStage;
     }
     
-    /*public void setMainApp(Main mainApp) {
+    public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
-    }*/
+    }
 
     /**
      * Sets the person to be edited in the dialog.
@@ -174,6 +174,14 @@ public class NewContextController {
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n"; 
+        }
+        for(int i=0;i<mainApp.getContextData().size();i++){
+        	
+           if (firstNameField.getText().equals(mainApp.getContextData().get(i).getContext()) && context.equals(mainApp.getContextData().get(i))==false) {
+               errorMessage += "Nombre ya usado en otro contexto!\n"; 
+               break;
+           }
+        	
         }
 
         if (priorityField.getText() == null || priorityField.getText().length() == 0) {
