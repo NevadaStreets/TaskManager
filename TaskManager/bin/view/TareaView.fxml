@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane layoutX="10.0" prefHeight="350.0" prefWidth="809.0" style="-fx-background-color: #1d1d1d;" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
+<AnchorPane layoutX="10.0" prefHeight="409.0" prefWidth="809.0" style="-fx-background-color: #1d1d1d;" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
    <children>
       <ScrollPane layoutX="491.0" layoutY="81.0" maxHeight="48.0" maxWidth="260.0" prefHeight="48.0" prefViewportHeight="25.0" prefViewportWidth="62.0" prefWidth="260.0" styleClass="background" AnchorPane.rightAnchor="48.0">
          <content>
@@ -36,17 +36,16 @@
          </children>
       </AnchorPane>
       <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" text="Nombre" AnchorPane.rightAnchor="48.0" />
-      <Label fx:id="priorityLabel" layoutX="595.0" layoutY="181.0" prefHeight="21.0" prefWidth="155.0" text="Prioridad" AnchorPane.rightAnchor="49.0" />
-      <Label fx:id="contextLabel" layoutX="595.0" layoutY="252.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="49.0" />
-      <Label fx:id="deadlineLabel" layoutX="605.0" layoutY="323.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="49.0" />
-      <Label layoutX="501.0" layoutY="181.0" prefHeight="21.0" prefWidth="62.0" text="Prioridad" AnchorPane.rightAnchor="246.0" />
-      <Label layoutX="502.0" layoutY="323.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="246.0" />
-      <Label layoutX="502.0" layoutY="252.0" text="Contexto" AnchorPane.rightAnchor="246.0" />
-      <Label layoutX="508.0" layoutY="294.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="252.0" />
-      <Label fx:id="inicioLabel" layoutX="595.0" layoutY="294.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
+      <Label fx:id="contextLabel" layoutX="604.0" layoutY="234.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="deadlineLabel" layoutX="605.0" layoutY="315.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="49.0" />
+      <Label layoutX="502.0" layoutY="315.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="246.0" />
+      <Label layoutX="501.0" layoutY="234.0" text="Contexto" AnchorPane.rightAnchor="247.0" />
+      <Label layoutX="503.0" layoutY="273.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="257.0" />
+      <Label fx:id="inicioLabel" layoutX="600.0" layoutY="273.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="54.0" />
       <Label layoutX="491.0" layoutY="148.0" prefHeight="21.0" prefWidth="62.0" text="Proyecto" AnchorPane.rightAnchor="246.0" />
       <Label fx:id="projectLabel" layoutX="595.0" layoutY="148.0" prefHeight="21.0" prefWidth="155.0" text="Proyecto" AnchorPane.rightAnchor="49.0" />
-      <Label layoutX="491.0" layoutY="216.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="259.0" />
-      <Label fx:id="stateLabel" layoutX="595.0" layoutY="216.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
+      <Label layoutX="501.0" layoutY="192.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="259.0" />
+      <Label fx:id="stateLabel" layoutX="605.0" layoutY="192.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
+      <Button layoutX="501.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleFilter" text="Filtro" />
    </children>
 </AnchorPane>

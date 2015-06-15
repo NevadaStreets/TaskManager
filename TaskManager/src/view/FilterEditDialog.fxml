@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="299.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FilterEditDialogController">
+   <children>
+      <Label layoutX="21.0" layoutY="28.0" prefHeight="17.0" prefWidth="114.0" text="Por proyecto" />
+      <Label layoutX="21.0" layoutY="66.0" prefHeight="17.0" prefWidth="114.0" text="Por contexto" />
+      <Label layoutX="21.0" layoutY="105.0" prefHeight="17.0" prefWidth="114.0" text="Por estado" />
+      <Label layoutX="21.0" layoutY="179.0" prefHeight="17.0" prefWidth="114.0" text="Termina antes de" />
+      <Label layoutX="21.0" layoutY="223.0" prefHeight="17.0" prefWidth="114.0" text="Termina después de" />
+      <ComboBox fx:id="proyectos" layoutX="167.0" layoutY="24.0" prefHeight="25.0" prefWidth="177.0" />
+      <ComboBox fx:id="contextos" layoutX="167.0" layoutY="62.0" prefHeight="25.0" prefWidth="177.0" />
+      <ComboBox fx:id="estados" layoutX="167.0" layoutY="101.0" prefHeight="25.0" prefWidth="177.0" />
+      <TextField fx:id="preDia" layoutX="163.0" layoutY="175.0" prefHeight="25.0" prefWidth="36.0" />
+      <TextField fx:id="preMes" layoutX="219.0" layoutY="175.0" prefHeight="25.0" prefWidth="36.0" />
+      <TextField fx:id="preAno" layoutX="277.0" layoutY="175.0" prefHeight="25.0" prefWidth="63.0" />
+      <TextField fx:id="postDia" layoutX="163.0" layoutY="219.0" prefHeight="25.0" prefWidth="36.0" />
+      <TextField fx:id="postMes" layoutX="219.0" layoutY="219.0" prefHeight="25.0" prefWidth="36.0" />
+      <TextField fx:id="postAno" layoutX="277.0" layoutY="219.0" prefHeight="25.0" prefWidth="63.0" />
+      <CheckBox fx:id="projectCB" layoutX="361.0" layoutY="28.0" mnemonicParsing="false" text="Aplicar" />
+      <CheckBox fx:id="contextCB" layoutX="361.0" layoutY="66.0" mnemonicParsing="false" text="Aplicar" />
+      <CheckBox fx:id="stateCB" layoutX="361.0" layoutY="105.0" mnemonicParsing="false" text="Aplicar" />
+      <CheckBox fx:id="beforeCB" layoutX="361.0" layoutY="179.0" mnemonicParsing="false" text="Aplicar" />
+      <CheckBox fx:id="afterCB" layoutX="361.0" layoutY="223.0" mnemonicParsing="false" text="Aplicar" />
+      <Button layoutX="190.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="58.0" text="OK" />
+      <Label layoutX="163.0" layoutY="141.0" prefHeight="17.0" prefWidth="36.0" text="Dia" />
+      <Label layoutX="219.0" layoutY="141.0" prefHeight="17.0" prefWidth="36.0" text="Mes" />
+      <Label layoutX="291.0" layoutY="141.0" prefHeight="17.0" prefWidth="36.0" text="Año" />
+   </children>
+</AnchorPane>

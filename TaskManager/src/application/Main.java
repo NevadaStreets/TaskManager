@@ -27,6 +27,9 @@ import java.time.temporal.ChronoUnit;
 
 
 
+
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +59,9 @@ import javax.mail.internet.MimeMessage;
 
 
 
+
+
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
@@ -64,6 +70,7 @@ import view.BigViewController;
 import view.DashboardController;
 import view.EditContextController;
 import view.EditTaskButtonController;
+import view.FilterEditDialogController;
 import view.NewContextController;
 import view.ProjectEditDialogController;
 import view.StatisticController;
@@ -85,6 +92,7 @@ public class Main extends Application implements Serializable{
 	private BorderPane bv;
 	private String email;
 	private ObservableList<Contexto> contextData = FXCollections.observableArrayList();
+	private Filtro filterData = new Filtro("Mi filtro");
 	
 	double user, contx, dead, primera, razon;
 	
@@ -446,7 +454,7 @@ public class Main extends Application implements Serializable{
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
-	    		this.ps.setMinHeight(450);
+	    		this.ps.setMinHeight(500);
 	            // Give the controller access to the main app.
 	            TaskViewController controller = loader.getController();
 	            controller.setMainApp(this);
@@ -469,7 +477,7 @@ public class Main extends Application implements Serializable{
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
-	    		this.ps.setMinHeight(450);
+	    		this.ps.setMinHeight(500);
 	            
 	            // Give the controller access to the main app.
 	            TareaViewController controller = loader.getController();
@@ -638,6 +646,41 @@ public class Main extends Application implements Serializable{
 	        }
 	    }
 	    
+	    public boolean showFilterEditDialog() {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(Main.class.getResource("../view/FilterEditDialog.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Filtros");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(ps);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+	            dialogStage.setMinWidth(460);
+	            dialogStage.setMinHeight(350);
+	            dialogStage.setMaxWidth(460);
+	            dialogStage.setMaxHeight(350);
+
+
+	            // Set the person into the controller.
+	            FilterEditDialogController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setMainApp(this);
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isOkClicked();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	    
 	    public boolean showTaskEditDialog(Tarea proyect) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
@@ -652,9 +695,9 @@ public class Main extends Application implements Serializable{
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
 	            dialogStage.setScene(scene);
-	            dialogStage.setMinWidth(500);
+	            dialogStage.setMinWidth(580);
 	            dialogStage.setMinHeight(550);
-	            dialogStage.setMaxWidth(500);
+	            dialogStage.setMaxWidth(580);
 	            dialogStage.setMaxHeight(550);
 
 	            // Set the person into the controller.
@@ -723,6 +766,9 @@ public class Main extends Application implements Serializable{
 	
 	    public String getEmail(){
 	    	return email;
+	    }
+	    public Filtro getFilterData() {
+	        return filterData;
 	    }
 	    
 	    

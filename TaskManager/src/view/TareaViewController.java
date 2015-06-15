@@ -6,11 +6,14 @@ import java.io.IOException;
 import org.controlsfx.dialog.Dialogs;
 
 import util.DateUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import application.Contexto;
+import application.Filtro;
 import application.Main;
 import application.Proyecto;
 import application.Tarea;
@@ -263,6 +266,21 @@ public class TareaViewController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }
+    }
+    @FXML
+    private void handleFilter() {
+        boolean okClicked = mainApp.showFilterEditDialog();
+        Filtro f = mainApp.getFilterData();
+        if(okClicked){
+            ObservableList <Tarea> tareas = FXCollections.observableArrayList();
+            for (int i=0;i<mainApp.getTaskData().size();i++){
+            	if(f.cumple(mainApp.getTaskData().get(i))){
+            		tareas.add(mainApp.getTaskData().get(i));
+            	}
+            }
+            taskTable.setItems(tareas);
+            
         }
     }
 }
