@@ -150,18 +150,7 @@ public class Main extends Application implements Serializable{
 			
 			
 		projectData.add(new Proyecto("Default"));
-		projectData.get(0).setName("Default");
 		projectData.get(0).setDescription("Proyecto por defecto");
-		projectData.get(0).setDeadline(LocalDateTime.now());
-		projectData.get(0).setInicio(LocalDateTime.now());
-		projectData.get(0).setPriority(1200);
-		
-		try {
-			this.sereal();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		
 		
@@ -199,13 +188,7 @@ public class Main extends Application implements Serializable{
 			projectData = FXCollections.observableArrayList(obj1);
 			for(int i=0;i<projectData.size();i++){
 				projectData.get(i).ajust();
-				
-				if(projectData.get(i).gettask()==null){
-					
-				}
-				else{
 				taskData.addAll(projectData.get(i).gettask());
-				}
 				if(i==0){
 					this.user=projectData.get(i).getUser();
 					this.contx=projectData.get(i).getContx();

@@ -113,18 +113,7 @@ public class TaskEditDialogController {
         contextField.setValue(task.getContext());
         String s = DateUtil.format(task.getInicio());
         String d = DateUtil.format(task.getDeadline());
-        
-        
-        
-        if(task.getProject()==null){
-        	 projectBox.setValue(mainApp.getProyectData().get(0));
-        }
-        else{
         projectBox.setValue(task.getProject());
-        }
-        
-        
-        
         stateBox.setValue(task.getEstado());
         startDayField.setText(s.substring(0, s.indexOf('.')));
         startMonthField.setText(s.substring(s.indexOf('.')+1, s.lastIndexOf('.')));

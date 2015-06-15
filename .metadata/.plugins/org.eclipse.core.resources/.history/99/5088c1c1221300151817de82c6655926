@@ -120,7 +120,13 @@ public class TaskViewController implements Serializable {
     @FXML
     private void handleDeleteProject() {
         int selectedIndex = proyectTable.getSelectionModel().getSelectedIndex();
-
+        if(selectedIndex == 0){
+        	 Dialogs.create()
+             .title("Proyecto Default")
+             .masthead("Ha seleccionado el proyecto Default")
+             .message("No puede eliminar el proyecto que viene por defecto.")
+             .showWarning();
+        }
         if (selectedIndex > 0) {
         	Proyecto p = proyectTable.getSelectionModel().getSelectedItem();
         	while(p.Tasks.isEmpty() == false){
@@ -139,14 +145,7 @@ public class TaskViewController implements Serializable {
 				e.printStackTrace();
 			}
             
-        } else if(selectedIndex == 0){
-       	 Dialogs.create()
-         .title("Proyecto Default")
-         .masthead("Ha seleccionado el proyecto Default")
-         .message("No puede eliminar el proyecto que viene por defecto.")
-         .showWarning();
-    }
-        else {
+        } else {
             // Nothing selected.
             Dialogs.create()
                 .title("No hay seleccion")
@@ -169,7 +168,6 @@ public class TaskViewController implements Serializable {
             mainApp.cambiarPrioridad();
             try {
 				mainApp.sereal();
-				mainApp.ordenar();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

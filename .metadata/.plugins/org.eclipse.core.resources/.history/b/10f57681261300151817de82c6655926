@@ -169,7 +169,6 @@ public class TaskViewController implements Serializable {
             mainApp.cambiarPrioridad();
             try {
 				mainApp.sereal();
-				mainApp.ordenar();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
