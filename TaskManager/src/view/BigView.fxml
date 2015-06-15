@@ -7,7 +7,7 @@
 
 <BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="200.0" minWidth="200.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BigViewController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar styleClass="label-bright" stylesheets="@../../bin/view/App.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

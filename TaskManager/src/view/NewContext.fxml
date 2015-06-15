@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="215.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewContextController">
+<AnchorPane prefHeight="215.0" prefWidth="312.0" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewContextController">
    <children>
-      <Button layoutX="97.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleOk" text="Aceptar" />
-      <TextField fx:id="firstNameField" layoutX="97.0" layoutY="48.0" />
-      <Label layoutX="39.0" layoutY="52.0" text="Nombre" />
-      <Label layoutX="37.0" layoutY="108.0" text="Prioridad" />
-      <TextField fx:id="priorityField" layoutX="97.0" layoutY="104.0" />
-      <Button layoutX="190.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" />
+      <Button layoutX="87.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleOk" style="-fx-background-color: black; -fx-border-color: black;" styleClass="label-bright" text="Aceptar" />
+      <TextField fx:id="firstNameField" layoutX="87.0" layoutY="48.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <Label layoutX="25.0" layoutY="56.0" styleClass="label-bright" text="Nombre" />
+      <Label layoutX="22.0" layoutY="104.0" styleClass="label-bright" text="Prioridad" />
+      <TextField fx:id="priorityField" layoutX="87.0" layoutY="107.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <Button layoutX="190.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleCancel" style="-fx-background-color: black; -fx-border-color: black;" styleClass="label-bright" text="Cancelar" />
    </children>
 </AnchorPane>

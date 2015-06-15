@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="445.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TasksInProjectViewController">
+<AnchorPane prefHeight="453.0" prefWidth="461.0" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TasksInProjectViewController">
    <children>
-      <AnchorPane layoutX="30.0" layoutY="74.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="74.0">
+      <AnchorPane layoutX="14.0" layoutY="71.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="231.0" AnchorPane.topAnchor="71.0">
          <children>
-            <TableView fx:id="taskTable" prefHeight="267.0" prefWidth="164.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="taskTable" layoutX="-7.0" prefHeight="320.0" prefWidth="216.0" styleClass="label-bright" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="Name" prefWidth="75.0" text="Lista de Tareas" />
               </columns>
@@ -19,21 +19,21 @@
             </TableView>
          </children>
       </AnchorPane>
-      <Label layoutX="55.0" layoutY="14.0" prefHeight="17.0" prefWidth="164.0" text="Tareas asociadas al proyecto" AnchorPane.leftAnchor="55.0" />
-      <Label fx:id="projectLabel" layoutX="14.0" layoutY="45.0" prefHeight="17.0" prefWidth="172.0" text="Label" AnchorPane.leftAnchor="14.0" />
-      <Button layoutX="84.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="56.0" text="OK" AnchorPane.bottomAnchor="25.0" />
-      <Label layoutX="219.0" layoutY="101.0" prefHeight="17.0" prefWidth="64.0" text="Inicio" AnchorPane.rightAnchor="126.0" />
-      <Label layoutX="219.0" layoutY="131.0" prefHeight="17.0" prefWidth="64.0" text="Deadline" AnchorPane.rightAnchor="126.0" />
-      <Label layoutX="219.0" layoutY="74.0" prefHeight="17.0" prefWidth="64.0" text="Estado" AnchorPane.rightAnchor="126.0" />
-      <Label fx:id="stateLabel" layoutX="283.0" layoutY="74.0" prefHeight="17.0" prefWidth="84.0" AnchorPane.rightAnchor="42.0" />
-      <Label fx:id="startLabel" layoutX="283.0" layoutY="101.0" prefHeight="17.0" prefWidth="84.0" AnchorPane.rightAnchor="42.0" />
-      <Label fx:id="deadlineLabel" layoutX="283.0" layoutY="131.0" prefHeight="17.0" prefWidth="84.0" AnchorPane.rightAnchor="42.0" />
-      <Label layoutX="225.0" layoutY="220.0" prefHeight="17.0" prefWidth="144.0" text="Cambiar deadline en 1 día" AnchorPane.rightAnchor="40.0" />
-      <Button layoutX="211.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleDayUp" prefHeight="17.0" prefWidth="172.0" text="+ 1 día" AnchorPane.rightAnchor="26.0" />
-      <Label layoutX="211.0" layoutY="328.0" prefHeight="17.0" prefWidth="172.0" text="Cambiar deadline en 1 semana" AnchorPane.rightAnchor="26.0" />
-      <Button layoutX="211.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleDayDown" prefHeight="17.0" prefWidth="172.0" text="- 1 día" AnchorPane.rightAnchor="26.0" />
-      <Button layoutX="211.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleWeekDown" prefHeight="17.0" prefWidth="172.0" text="- 1 semana" AnchorPane.rightAnchor="26.0" />
-      <Button layoutX="211.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleWeekUp" prefHeight="17.0" prefWidth="172.0" text="+ 1 semana" AnchorPane.rightAnchor="26.0" />
-      <Button layoutX="211.0" layoutY="395.0" mnemonicParsing="false" onAction="#handleFinish" prefHeight="25.0" prefWidth="172.0" text="Finalizar tarea" />
+      <Label layoutX="88.0" layoutY="14.0" prefHeight="21.0" prefWidth="259.0" text="Tareas asociadas al proyecto" AnchorPane.leftAnchor="88.0" />
+      <Label fx:id="projectLabel" layoutX="88.0" layoutY="42.0" prefHeight="21.0" prefWidth="194.0" text="Label" AnchorPane.leftAnchor="88.0" />
+      <Button layoutX="84.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: black; -fx-border-color: black;" text="OK" AnchorPane.bottomAnchor="25.0" />
+      <Label layoutX="239.0" layoutY="101.0" prefHeight="17.0" prefWidth="64.0" styleClass="label-bright" text="Inicio" AnchorPane.rightAnchor="158.0" />
+      <Label layoutX="239.0" layoutY="131.0" prefHeight="17.0" prefWidth="64.0" styleClass="label-bright" text="Deadline" AnchorPane.rightAnchor="158.0" />
+      <Label layoutX="239.0" layoutY="74.0" prefHeight="17.0" prefWidth="64.0" styleClass="label-bright" text="Estado" AnchorPane.rightAnchor="158.0" />
+      <Label fx:id="stateLabel" layoutX="303.0" layoutY="74.0" prefHeight="21.0" prefWidth="148.0" AnchorPane.rightAnchor="10.0" />
+      <Label fx:id="startLabel" layoutX="303.0" layoutY="101.0" prefHeight="21.0" prefWidth="148.0" AnchorPane.rightAnchor="10.0" />
+      <Label fx:id="deadlineLabel" layoutX="309.0" layoutY="131.0" prefHeight="21.0" prefWidth="148.0" AnchorPane.rightAnchor="10.0" />
+      <Label layoutX="233.0" layoutY="166.0" prefHeight="21.0" prefWidth="205.0" text="Cambiar deadline en 1 día" AnchorPane.rightAnchor="23.0" />
+      <Button layoutX="244.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleDayUp" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: black; -fx-border-color: black;" text="+ 1 día" AnchorPane.rightAnchor="45.0" />
+      <Label layoutX="228.0" layoutY="274.0" prefHeight="21.0" prefWidth="205.0" text="Cambiar deadline en 1 semana" AnchorPane.rightAnchor="28.0" />
+      <Button layoutX="244.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleDayDown" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: black; -fx-border-color: black;" text="- 1 día" AnchorPane.rightAnchor="45.0" />
+      <Button layoutX="244.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleWeekDown" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: black; -fx-border-color: black;" text="- 1 semana" AnchorPane.rightAnchor="45.0" />
+      <Button layoutX="244.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleWeekUp" prefHeight="17.0" prefWidth="172.0" style="-fx-background-color: black; -fx-border-color: black;" text="+ 1 semana" AnchorPane.rightAnchor="45.0" />
+      <Button layoutX="217.0" layoutY="395.0" mnemonicParsing="false" onAction="#handleFinish" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar tarea" />
    </children>
 </AnchorPane>

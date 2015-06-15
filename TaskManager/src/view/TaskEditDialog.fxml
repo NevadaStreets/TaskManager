@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="525.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskEditDialogController">
+<AnchorPane prefHeight="525.0" prefWidth="610.0" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TaskEditDialogController">
    <children>
       <GridPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="224.0" prefWidth="460.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -18,40 +19,40 @@
           <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="13.0" prefWidth="88.0" text="     Nombre" />
-            <Label prefHeight="17.0" prefWidth="85.0" text="     Descripcion" GridPane.rowIndex="1" />
-            <Label text="     Contexto" GridPane.rowIndex="2" />
-            <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="267.0" GridPane.columnIndex="1" />
-            <TextField fx:id="descriptionField" prefHeight="70.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="contextField" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label prefHeight="13.0" prefWidth="88.0" styleClass="label-bright" text="     Nombre" />
+            <Label prefHeight="17.0" prefWidth="85.0" styleClass="label-bright" text="     Descripcion" GridPane.rowIndex="1" />
+            <Label styleClass="label-bright" text="     Contexto" GridPane.rowIndex="2" />
+            <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="267.0" style="-fx-background-color: black;" styleClass="label-bright" GridPane.columnIndex="1" />
+            <TextField fx:id="descriptionField" prefHeight="70.0" prefWidth="236.0" style="-fx-background-color: black; -fx-background-color: black;" styleClass="label-bright" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="contextField" prefHeight="25.0" prefWidth="199.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="161.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="61.0" text="OK" />
-      <Button layoutX="253.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
-      <ComboBox fx:id="projectBox" layoutX="212.0" layoutY="340.0" prefHeight="25.0" prefWidth="198.0" />
-      <Label layoutX="14.0" layoutY="335.0" prefHeight="25.0" prefWidth="85.0" text=" Proyecto" />
-      <Label layoutX="14.0" layoutY="353.0" text=" Asociado" />
-      <Label layoutX="24.0" layoutY="257.0" prefHeight="17.0" prefWidth="46.0" text="Inicio" />
-      <TextField fx:id="deadlineYearField" layoutX="204.0" layoutY="294.0" prefHeight="25.0" prefWidth="98.0" text="Año" />
-      <TextField fx:id="deadlineMonthField" layoutX="145.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" text="Mes" />
-      <TextField fx:id="deadlineDayField" layoutX="88.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" text="Dia" />
-      <Label layoutX="17.0" layoutY="298.0" prefHeight="17.0" prefWidth="61.0" text="Deadline" />
+      <Button layoutX="161.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="33.0" prefWidth="109.0" style="-fx-background-color: black; -fx-border-color: black;" styleClass="label-bright" text="OK" />
+      <Button layoutX="316.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="33.0" prefWidth="128.0" style="-fx-border-color: black; -fx-background-color: black;" styleClass="label-bright" text="Cancelar" />
+      <ComboBox fx:id="projectBox" layoutX="212.0" layoutY="351.0" prefHeight="25.0" prefWidth="198.0" style="-fx-background-color: black;" />
+      <Label layoutX="14.0" layoutY="339.0" prefHeight="25.0" prefWidth="85.0" styleClass="label-bright" text=" Proyecto" />
+      <Label layoutX="15.0" layoutY="360.0" styleClass="label-bright" text=" Asociado" />
+      <Label layoutX="24.0" layoutY="257.0" prefHeight="17.0" prefWidth="46.0" styleClass="label-bright" text="Inicio" />
+      <TextField fx:id="deadlineYearField" layoutX="230.0" layoutY="294.0" prefHeight="37.0" prefWidth="88.0" style="-fx-background-color: black;" styleClass="label-bright" text="Año" />
+      <TextField fx:id="deadlineMonthField" layoutX="145.0" layoutY="294.0" prefHeight="37.0" prefWidth="74.0" style="-fx-background-color: black;" styleClass="label-bright" text="Mes" />
+      <TextField fx:id="deadlineDayField" layoutX="88.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" style="-fx-background-color: black;" styleClass="label-bright" text="Dia" />
+      <Label layoutX="17.0" layoutY="298.0" prefHeight="17.0" prefWidth="61.0" styleClass="label-bright" text="Deadline" />
       <Label layoutX="241.0" layoutY="224.0" text="Año" />
       <Label layoutX="154.0" layoutY="224.0" text="Mes" />
       <Label layoutX="102.0" layoutY="224.0" text="Dia" />
-      <TextField fx:id="startYearField" layoutX="203.0" layoutY="253.0" prefHeight="25.0" prefWidth="98.0" text="Año" />
-      <TextField fx:id="startMonthField" layoutX="145.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" text="Mes" />
-      <TextField fx:id="startDayField" layoutX="88.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" text="Dia" />
-      <Label layoutX="17.0" layoutY="404.0" prefHeight="17.0" prefWidth="61.0" text="Estado" />
-      <ComboBox fx:id="stateBox" layoutX="212.0" layoutY="400.0" prefHeight="25.0" prefWidth="198.0" />
-      <TextField fx:id="startHourField" layoutX="311.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="startMinuteField" layoutX="367.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="startSecondField" layoutX="424.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="deadlineHourField" layoutX="311.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="deadlineMinuteField" layoutX="367.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" />
-      <TextField fx:id="deadlineSecondField" layoutX="424.0" layoutY="294.0" prefHeight="25.0" prefWidth="46.0" />
-      <Label layoutX="323.0" layoutY="224.0" text="Hora" />
-      <Label layoutX="371.0" layoutY="224.0" text="Minuto" />
-      <Label layoutX="423.0" layoutY="224.0" text="Segundo" />
+      <TextField fx:id="startYearField" layoutX="230.0" layoutY="253.0" prefHeight="37.0" prefWidth="88.0" style="-fx-background-color: black;" styleClass="label-bright" text="Año" />
+      <TextField fx:id="startMonthField" layoutX="145.0" layoutY="253.0" prefHeight="37.0" prefWidth="74.0" style="-fx-background-color: black;" styleClass="label-bright" text="Mes" />
+      <TextField fx:id="startDayField" layoutX="88.0" layoutY="253.0" prefHeight="25.0" prefWidth="46.0" style="-fx-background-color: black;" styleClass="label-bright" text="Dia" />
+      <Label layoutX="17.0" layoutY="404.0" prefHeight="17.0" prefWidth="61.0" styleClass="label-bright" text="Estado" />
+      <ComboBox fx:id="stateBox" layoutX="212.0" layoutY="400.0" prefHeight="25.0" prefWidth="198.0" style="-fx-background-color: black;" />
+      <TextField fx:id="startHourField" layoutX="334.0" layoutY="253.0" prefHeight="37.0" prefWidth="60.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <TextField fx:id="startMinuteField" layoutX="406.0" layoutY="253.0" prefHeight="37.0" prefWidth="60.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <TextField fx:id="startSecondField" layoutX="479.0" layoutY="253.0" prefHeight="37.0" prefWidth="60.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <TextField fx:id="deadlineHourField" layoutX="333.0" layoutY="294.0" prefHeight="37.0" prefWidth="61.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <TextField fx:id="deadlineMinuteField" layoutX="406.0" layoutY="294.0" prefHeight="37.0" prefWidth="60.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <TextField fx:id="deadlineSecondField" layoutX="479.0" layoutY="294.0" prefHeight="37.0" prefWidth="60.0" style="-fx-background-color: black;" styleClass="label-bright" />
+      <Label layoutX="347.0" layoutY="224.0" text="Hora" />
+      <Label layoutX="412.0" layoutY="224.0" text="Minuto" />
+      <Label layoutX="479.0" layoutY="224.0" text="Segundo" />
    </children>
 </AnchorPane>

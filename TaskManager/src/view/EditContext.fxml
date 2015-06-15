@@ -5,14 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="216.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EditContextController">
+<AnchorPane prefHeight="216.0" prefWidth="359.0" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EditContextController">
    <children>
-      <ComboBox fx:id="contextBox" layoutX="108.0" layoutY="22.0" onAction="#handleSelect" prefHeight="25.0" prefWidth="168.0" />
-      <Button layoutX="151.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleOk" text="Aceptar" />
-      <Label layoutX="34.0" layoutY="26.0" text="Contexto" />
-      <Label layoutX="37.0" layoutY="74.0" text="Nombre" />
-      <Label layoutX="34.0" layoutY="118.0" text="Prioridad" />
-      <TextField fx:id="firstNameField" layoutX="108.0" layoutY="70.0" prefHeight="25.0" prefWidth="168.0" />
-      <TextField fx:id="priorityField" layoutX="108.0" layoutY="114.0" prefHeight="25.0" prefWidth="168.0" />
+      <ComboBox fx:id="contextBox" layoutX="108.0" layoutY="22.0" onAction="#handleSelect" prefHeight="25.0" prefWidth="168.0" style="-fx-background-color: black;" stylesheets="@../../bin/view/App.css" />
+      <Button layoutX="151.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleOk" style="-fx-background-color: black; -fx-border-color: black;" text="Aceptar" />
+      <Label layoutX="34.0" layoutY="26.0" styleClass="label-bright" text="Contexto" />
+      <Label layoutX="37.0" layoutY="74.0" styleClass="label-bright" text="Nombre" />
+      <Label layoutX="34.0" layoutY="118.0" styleClass="label-bright" text="Prioridad" />
+      <TextField fx:id="firstNameField" layoutX="108.0" layoutY="70.0" prefHeight="25.0" prefWidth="168.0" style="-fx-background-color: black;">
+         <styleClass>
+            <String fx:value="label-header" />
+            <String fx:value="background" />
+         </styleClass></TextField>
+      <TextField fx:id="priorityField" layoutX="108.0" layoutY="114.0" prefHeight="25.0" prefWidth="168.0" style="-fx-background-color: black;">
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="label-bright" />
+         </styleClass></TextField>
    </children>
 </AnchorPane>

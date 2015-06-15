@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane layoutX="10.0" prefHeight="241.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
+<AnchorPane layoutX="10.0" prefHeight="350.0" prefWidth="809.0" style="-fx-background-color: #1d1d1d;" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
    <children>
-      <ScrollPane layoutX="491.0" layoutY="81.0" maxHeight="48.0" maxWidth="207.0" prefHeight="48.0" prefViewportHeight="25.0" prefViewportWidth="62.0" prefWidth="207.0" AnchorPane.rightAnchor="101.0">
+      <ScrollPane layoutX="491.0" layoutY="81.0" maxHeight="48.0" maxWidth="260.0" prefHeight="48.0" prefViewportHeight="25.0" prefViewportWidth="62.0" prefWidth="260.0" styleClass="background" AnchorPane.rightAnchor="48.0">
          <content>
-            <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="25.0" text="Descripcion" />
+            <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="36.0" prefWidth="1010.0" styleClass="background" text="Descripcion" />
          </content>
       </ScrollPane>
       <AnchorPane layoutX="209.0" layoutY="24.0" prefHeight="309.0" prefWidth="242.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="24.0">
          <children>
-            <TableView fx:id="taskTable" prefHeight="327.0" prefWidth="242.0" AnchorPane.bottomAnchor="-39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="taskTable" prefHeight="327.0" prefWidth="242.0" styleClass="label-bright" AnchorPane.bottomAnchor="-39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="firstName" prefWidth="75.0" text="Lista de Tareas" />
               </columns>
@@ -24,29 +24,29 @@
             </TableView>
          </children>
       </AnchorPane>
-    <AnchorPane layoutX="14.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="14.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="25.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="25.0" prefWidth="97.0" text="Crear Tarea" />
-            <Button layoutX="25.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleProjectView" text="Vista Proyectos" AnchorPane.bottomAnchor="28.0" />
-            <Button layoutX="25.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="25.0" prefWidth="97.0" text="Eliminar Tarea" />
-            <Button layoutX="25.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="25.0" prefWidth="97.0" text="Editar Tarea" />
-            <Button layoutX="25.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="25.0" prefWidth="97.0" text="Finalizar Tarea" />
-            <Button layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleNewContext" text="Nuevo Contexto" />
-            <Button layoutX="25.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleEditContext" text="Editar Contexto" />
+            <Button layoutX="10.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Tarea" />
+            <Button layoutX="5.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleProjectView" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Proyectos" AnchorPane.bottomAnchor="14.0" />
+            <Button layoutX="8.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="33.0" prefWidth="140.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Tarea" />
+            <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="33.0" prefWidth="128.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Tarea" />
+            <Button layoutX="3.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar Tarea" />
+            <Button layoutX="1.0" layoutY="203.0" mnemonicParsing="false" onAction="#handleNewContext" style="-fx-background-color: black; -fx-border-color: black;" text="Nuevo Contexto" />
+            <Button layoutX="4.0" layoutY="243.0" mnemonicParsing="false" onAction="#handleEditContext" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
          </children>
       </AnchorPane>
-      <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="17.0" prefWidth="193.0" text="Nombre" AnchorPane.rightAnchor="115.0" />
-      <Label fx:id="priorityLabel" layoutX="595.0" layoutY="181.0" prefHeight="17.0" prefWidth="54.0" text="Prioridad" AnchorPane.rightAnchor="150.0" />
-      <Label fx:id="contextLabel" layoutX="595.0" layoutY="252.0" prefHeight="17.0" prefWidth="128.0" text="Contexto" AnchorPane.rightAnchor="76.0" />
-      <Label fx:id="deadlineLabel" layoutX="595.0" layoutY="333.0" prefHeight="17.0" prefWidth="128.0" text="Deadline" AnchorPane.rightAnchor="76.0" />
-      <Label layoutX="489.0" layoutY="181.0" text="Prioridad" AnchorPane.rightAnchor="261.0" />
-      <Label layoutX="489.0" layoutY="333.0" prefHeight="17.0" prefWidth="54.0" text="Deadline" AnchorPane.rightAnchor="256.0" />
-      <Label layoutX="491.0" layoutY="252.0" text="Contexto" AnchorPane.rightAnchor="259.0" />
-      <Label layoutX="491.0" layoutY="294.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="259.0" />
-      <Label fx:id="inicioLabel" layoutX="595.0" layoutY="294.0" prefHeight="17.0" prefWidth="128.0" AnchorPane.rightAnchor="76.0" />
-      <Label layoutX="491.0" layoutY="148.0" prefHeight="17.0" prefWidth="54.0" text="Proyecto" AnchorPane.rightAnchor="254.0" />
-      <Label fx:id="projectLabel" layoutX="595.0" layoutY="148.0" prefHeight="17.0" prefWidth="128.0" text="Proyecto" AnchorPane.rightAnchor="76.0" />
+      <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" text="Nombre" AnchorPane.rightAnchor="48.0" />
+      <Label fx:id="priorityLabel" layoutX="595.0" layoutY="181.0" prefHeight="21.0" prefWidth="155.0" text="Prioridad" AnchorPane.rightAnchor="49.0" />
+      <Label fx:id="contextLabel" layoutX="595.0" layoutY="252.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="49.0" />
+      <Label fx:id="deadlineLabel" layoutX="605.0" layoutY="323.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="49.0" />
+      <Label layoutX="501.0" layoutY="181.0" prefHeight="21.0" prefWidth="62.0" text="Prioridad" AnchorPane.rightAnchor="246.0" />
+      <Label layoutX="502.0" layoutY="323.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="246.0" />
+      <Label layoutX="502.0" layoutY="252.0" text="Contexto" AnchorPane.rightAnchor="246.0" />
+      <Label layoutX="508.0" layoutY="294.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="252.0" />
+      <Label fx:id="inicioLabel" layoutX="595.0" layoutY="294.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
+      <Label layoutX="491.0" layoutY="148.0" prefHeight="21.0" prefWidth="62.0" text="Proyecto" AnchorPane.rightAnchor="246.0" />
+      <Label fx:id="projectLabel" layoutX="595.0" layoutY="148.0" prefHeight="21.0" prefWidth="155.0" text="Proyecto" AnchorPane.rightAnchor="49.0" />
       <Label layoutX="491.0" layoutY="216.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="259.0" />
-      <Label fx:id="stateLabel" layoutX="595.0" layoutY="216.0" prefHeight="17.0" prefWidth="128.0" AnchorPane.rightAnchor="76.0" />
+      <Label fx:id="stateLabel" layoutX="595.0" layoutY="216.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
    </children>
 </AnchorPane>
