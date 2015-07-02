@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane layoutX="10.0" prefHeight="409.0" prefWidth="809.0" style="-fx-background-color: #1d1d1d;" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
+<AnchorPane layoutX="10.0" prefHeight="548.0" prefWidth="809.0" style="-fx-background-color: #1d1d1d;" styleClass="background" stylesheets="@../../bin/view/App.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TareaViewController">
    <children>
-      <ScrollPane layoutX="491.0" layoutY="81.0" maxHeight="48.0" maxWidth="260.0" prefHeight="48.0" prefViewportHeight="25.0" prefViewportWidth="62.0" prefWidth="260.0" styleClass="background" AnchorPane.rightAnchor="48.0">
+      <ScrollPane layoutX="506.0" layoutY="67.0" maxHeight="48.0" maxWidth="260.0" prefHeight="48.0" prefViewportHeight="25.0" prefViewportWidth="62.0" prefWidth="252.0" styleClass="background" AnchorPane.rightAnchor="48.0">
          <content>
             <Label fx:id="descriptionLabel" layoutX="220.0" layoutY="76.0" prefHeight="36.0" prefWidth="1010.0" styleClass="background" text="Descripcion" />
          </content>
       </ScrollPane>
-      <AnchorPane layoutX="209.0" layoutY="24.0" prefHeight="309.0" prefWidth="242.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="24.0">
+      <AnchorPane layoutX="212.0" layoutY="3.0" prefHeight="491.0" prefWidth="252.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="345.0" AnchorPane.topAnchor="3.0">
          <children>
-            <TableView fx:id="taskTable" prefHeight="327.0" prefWidth="242.0" styleClass="label-bright" AnchorPane.bottomAnchor="-39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="taskTable" layoutY="13.0" prefHeight="517.0" prefWidth="252.0" styleClass="label-bright" AnchorPane.bottomAnchor="-39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
               <columns>
                 <TableColumn fx:id="firstName" prefWidth="75.0" text="Lista de Tareas" />
               </columns>
@@ -24,28 +25,29 @@
             </TableView>
          </children>
       </AnchorPane>
-    <AnchorPane layoutX="14.0" layoutY="24.0" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="155.0" AnchorPane.bottomAnchor="-24.0" AnchorPane.topAnchor="24.0">
+    <AnchorPane layoutX="-1.0" layoutY="24.0" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="190.0" AnchorPane.bottomAnchor="-24.0" AnchorPane.topAnchor="24.0">
          <children>
-            <Button layoutX="-2.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="33.0" prefWidth="155.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Tarea" />
-            <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleProjectView" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Proyectos" AnchorPane.bottomAnchor="38.0" />
-            <Button layoutX="2.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Tarea" />
-            <Button layoutX="-1.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Tarea" />
-            <Button layoutX="2.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar Tarea" />
-            <Button layoutX="2.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleNewContext" style="-fx-background-color: black; -fx-border-color: black;" text="Nuevo Contexto" />
-            <Button layoutX="2.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleEditContext" prefHeight="33.0" prefWidth="154.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
+            <Button layoutX="16.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleNewTask" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Crear Tarea" />
+            <Button layoutX="15.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleProjectView" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Vista Proyectos" AnchorPane.bottomAnchor="38.0" />
+            <Button layoutX="16.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Eliminar Tarea" />
+            <Button layoutX="16.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleEditTask" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Tarea" />
+            <Button layoutX="16.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleFinishTask" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Finalizar Tarea" />
+            <Button layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleNewContext" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Nuevo Contexto" />
+            <Button layoutX="16.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleEditContext" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Editar Contexto" />
          </children>
       </AnchorPane>
-      <Label fx:id="firstNameLabel" layoutX="491.0" layoutY="24.0" prefHeight="21.0" prefWidth="260.0" styleClass="label-bright" text="Nombre" AnchorPane.rightAnchor="48.0" />
-      <Label fx:id="contextLabel" layoutX="604.0" layoutY="234.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="50.0" />
-      <Label fx:id="deadlineLabel" layoutX="600.0" layoutY="315.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="54.0" />
-      <Label layoutX="502.0" layoutY="315.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="246.0" />
-      <Label layoutX="501.0" layoutY="234.0" text="Contexto" AnchorPane.rightAnchor="247.0" />
-      <Label layoutX="503.0" layoutY="273.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="257.0" />
-      <Label fx:id="inicioLabel" layoutX="600.0" layoutY="273.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="54.0" />
-      <Label layoutX="491.0" layoutY="148.0" prefHeight="21.0" prefWidth="62.0" text="Proyecto" AnchorPane.rightAnchor="246.0" />
-      <Label fx:id="projectLabel" layoutX="595.0" layoutY="148.0" prefHeight="21.0" prefWidth="155.0" text="Proyecto" AnchorPane.rightAnchor="49.0" />
-      <Label layoutX="501.0" layoutY="192.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="259.0" />
-      <Label fx:id="stateLabel" layoutX="605.0" layoutY="192.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="49.0" />
-      <Button layoutX="501.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleFilter" style="-fx-background-color: black; -fx-border-color: black;" text="Filtro" />
+      <Label fx:id="firstNameLabel" layoutX="506.0" layoutY="32.0" prefHeight="21.0" prefWidth="260.0" styleClass="label-bright" text="Nombre" AnchorPane.rightAnchor="38.0" />
+      <Label fx:id="contextLabel" layoutX="616.0" layoutY="220.0" prefHeight="21.0" prefWidth="155.0" text="Contexto" AnchorPane.rightAnchor="38.0" />
+      <Label fx:id="deadlineLabel" layoutX="616.0" layoutY="312.0" prefHeight="21.0" prefWidth="155.0" text="Deadline" AnchorPane.rightAnchor="38.0" />
+      <Label layoutX="506.0" layoutY="312.0" prefHeight="21.0" prefWidth="61.0" text="Deadline" AnchorPane.rightAnchor="236.0" />
+      <Label layoutX="506.0" layoutY="220.0" text="Contexto" AnchorPane.rightAnchor="237.0" />
+      <Label layoutX="506.0" layoutY="268.0" prefHeight="17.0" prefWidth="49.0" text="Inicio" AnchorPane.rightAnchor="249.0" />
+      <Label fx:id="inicioLabel" layoutX="616.0" layoutY="268.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="38.0" />
+      <Label layoutX="506.0" layoutY="139.0" prefHeight="21.0" prefWidth="62.0" text="Proyecto" AnchorPane.rightAnchor="236.0" />
+      <Label fx:id="projectLabel" layoutX="616.0" layoutY="139.0" prefHeight="21.0" prefWidth="155.0" text="Proyecto" AnchorPane.rightAnchor="38.0" />
+      <Label layoutX="506.0" layoutY="183.0" prefHeight="17.0" prefWidth="49.0" text="Estado" AnchorPane.rightAnchor="249.0" />
+      <Label fx:id="stateLabel" layoutX="616.0" layoutY="183.0" prefHeight="21.0" prefWidth="155.0" AnchorPane.rightAnchor="38.0" />
+      <Button layoutX="511.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleFilter" prefHeight="33.0" prefWidth="161.0" style="-fx-background-color: black; -fx-border-color: black;" text="Filtro" AnchorPane.bottomAnchor="138.0" AnchorPane.rightAnchor="137.0" />
+      <ImageView fx:id="imagen" fitHeight="80.0" fitWidth="270.0" layoutX="496.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="43.0" />
    </children>
 </AnchorPane>

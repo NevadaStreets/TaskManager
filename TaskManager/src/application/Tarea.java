@@ -104,7 +104,7 @@ public class Tarea implements Comparable<Tarea> , Serializable {
 	    }
 
 	    public String getDescription() {
-	        return description.get();
+	        return description.get(); //amska
 	    }
 
 	    public void setDescription(String street) {
@@ -202,7 +202,8 @@ public class Tarea implements Comparable<Tarea> , Serializable {
        	int Fin_de_prob= (int) Math.exp((100-f)/14.137);
 	       
 	       int b=Fin_de_prob;
-	       return b-a;
+	       return (o.context.getPriority()*3+b*7)- (this.context.getPriority()*3+a*7);
+	    //return o.context.getPriority()- this.context.getPriority();
 	   }
 
 	    public void ajust(){

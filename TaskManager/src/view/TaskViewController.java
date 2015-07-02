@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import application.Main;
 import application.Proyecto;
@@ -35,6 +38,8 @@ public class TaskViewController implements Serializable {
     private Label inicioLabel;
     @FXML
     private Label deadlineLabel;
+    @FXML
+    private ImageView imagen;
 
     // Reference to the main application.
     private Main mainApp;
@@ -46,10 +51,6 @@ public class TaskViewController implements Serializable {
     public TaskViewController() {
     }
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
@@ -57,6 +58,11 @@ public class TaskViewController implements Serializable {
         
      // borrar.
         showProjectDetails(null);
+        descriptionLabel.autosize();
+        File file = new File("Image/Amskaa.jpg");
+        Image pic = new Image(file.toURI().toString());
+        imagen.setImage(pic);
+        
 
         // Espera a ingresar cambios y mostrarlos cuando se modifique.
         proyectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showProjectDetails(newValue));
@@ -106,7 +112,8 @@ public class TaskViewController implements Serializable {
     
     @FXML
     private void handleTaskView() {
-    	
+    	mainApp.ordenarT();
+		mainApp.ordenar();
         mainApp.showTareaView();   
     }
     

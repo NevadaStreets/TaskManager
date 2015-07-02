@@ -154,6 +154,15 @@ public class DashboardController {
     	double largo = 120;
         Double llenado = 0.0;
         int count = 0;
+        /*Canvas canvitas2 = new Canvas();
+       	canvitas2.setWidth(diff*largo);
+       	canvitas2.setHeight(alto);
+       	canvitas2.setLayoutX(0);
+       	canvitas2.setLayoutY(0);
+    	GraphicsContext gc2 = canvitas2.getGraphicsContext2D();
+    	anchoa.getChildren().add(canvitas2);
+        drawShapes(gc2, diff, (LocalDate.now().getDayOfYear()-start.getDayOfYear())*largo, alto);
+        count ++;*/
         for(int k=1;k<factor;k++){
             Canvas canvitas2 = new Canvas();
            	canvitas2.setWidth(diferencia*largo);
@@ -208,7 +217,7 @@ public class DashboardController {
                 rx.setStroke(Color.DARKBLUE);
                 rectangulos.add(rx);
                 String mensaje = String.valueOf(llenado.intValue()) + " de " + String.valueOf(totaltareas.intValue()) + " tareas realizadas";
-                long iniciox = mainApp.getProyectData().get(i).getInicio().toLocalDate().compareTo(start)*120 +mainApp.getProyectData().get(i).getInicio().getHour()*5 ;
+                long iniciox = (mainApp.getProyectData().get(i).getInicio().getDayOfYear()-start.getDayOfYear() + desfasado)*120 +mainApp.getProyectData().get(i).getInicio().getHour()*5 ;
                 rx.setLayoutX(iniciox);
                 rx.setLayoutY(30*(i+1));
                 completox.setLayoutX(iniciox);
@@ -428,7 +437,7 @@ public class DashboardController {
         for(int i=1; i<=d;i++){
         	gc.strokeLine(i*120, 0, i*120, a);
         }
-        if(pintado == false){
+        //if(pintado == false){
 
             gc.setStroke(Color.RED);
             gc.setLineWidth(2);
@@ -436,7 +445,7 @@ public class DashboardController {
             gc.strokeLine(p + hora.getHour()*5, 20, p + hora.getHour()*5, a);
             sp.setHvalue(p/(d*120));
             pintado = true;
-        }
+        //}
     }
     
     @FXML

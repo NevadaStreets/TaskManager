@@ -100,7 +100,7 @@ public class BigViewController {
         	else{
         		user=Integer.parseInt(response.get());
         		ponderar();
-        		
+        		 
         	}
         
         }
@@ -321,6 +321,10 @@ public class BigViewController {
     private void ponderar(){
     	double suma = user + contx+ dead + primera+ razon;
     	mainApp.avisarPrioirdad(user/suma, contx/suma, dead/suma, primera/suma, razon/suma);
+    	for (int i=0;i<mainApp.getProyectData().size();i++){
+			mainApp.getProyectData().get(i).setInicio2();
+   			mainApp.getProyectData().get(i).setDeadline2();
+		}
     }
 
         

@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import application.Contexto;
 import application.Filtro;
 import application.Main;
@@ -40,6 +43,8 @@ public class TareaViewController {
     private Label deadlineLabel;
     @FXML
     private Label stateLabel;
+    @FXML
+    private ImageView imagen;
 
     // Reference to the main application.
     private Main mainApp;
@@ -58,6 +63,10 @@ public class TareaViewController {
         
      // borrar.
         showTaskDetails(null);
+        File file = new File("Image/Amskaa.jpg");
+        Image pic = new Image(file.toURI().toString());
+        imagen.setImage(pic);
+
 
         // Espera a ingresar cambios y mostrarlos cuando se modifique.
         taskTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showTaskDetails(newValue));
@@ -108,11 +117,10 @@ public class TareaViewController {
             projectLabel.setText("");
         }
     }
-    /**
-     * Se llama al presionar el boton de eliminar proyecto
-     */
     @FXML
     private void handleProjectView() {
+    	 mainApp.ordenarT();
+		 mainApp.ordenar();
     	 mainApp.showTaskView();   
     }
     
@@ -131,6 +139,7 @@ public class TareaViewController {
             }
     		try {
 				mainApp.sereal();
+				mainApp.ordenar(); //amska
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -148,10 +157,6 @@ public class TareaViewController {
         }
     }
     
-    /**
-     * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
-     */
     @FXML
     private void handleNewTask() {
         Tarea tempTask = new Tarea();
@@ -159,6 +164,7 @@ public class TareaViewController {
         if (okClicked) {
             mainApp.getTaskData().add(tempTask);
             mainApp.ordenarT();
+			mainApp.ordenar();
         }
 		try {
 			mainApp.sereal();
@@ -214,6 +220,7 @@ public class TareaViewController {
             if (okClicked) {
                 showTaskDetails(selectedPerson);
                 mainApp.ordenarT();
+				mainApp.ordenar();
         		try {
     				mainApp.sereal();
     			} catch (FileNotFoundException e) {
@@ -259,6 +266,8 @@ public class TareaViewController {
             //mainApp.getContextData().add(tempcontext);
             try {
 				mainApp.sereal();
+				mainApp.ordenarT();
+				mainApp.ordenar();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -127,7 +127,7 @@ public class Main extends Application implements Serializable{
 		File archivo = new File("media.obj");
 		
 		this.ps = primaryStage;
-		this.ps.setTitle("Task Manager");
+		this.ps.setTitle("AMSKAA");
 		this.ps.setMinHeight(400);
 		this.ps.setMinWidth(600);
 		if(archivo.exists()){
@@ -414,7 +414,7 @@ public class Main extends Application implements Serializable{
 
 			message.setText(
 					"<head> <style> table, th, td {    border: 1px solid black;    border-collapse: collapse;}</style> </head>"+""
-							+ "Tareas que vencen hoy o mañana:<br> <br>"+ mensaje+" <br> Este email fue enviado automáticamente por <i>ProcesaTask</i>.",
+							+ "Tareas que vencen hoy o mañana:<br> <br>"+ mensaje+" <br> Este email fue enviado automáticamente por <i>AMSKAA</i>. <img src=\"https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpt1/v/t35.0-12/11639914_10206767034872706_700227046_o.jpg?oh=5d5fb235956d228dc7d5a3da73c224dd&oe=558C9D04&__gda__=1435282799_4cab6021bf29a5bf43068e8c6cf5c2d3\" />",
 					"ISO-8859-1",
 					"html");
 			
@@ -488,10 +488,16 @@ public class Main extends Application implements Serializable{
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
-	    		this.ps.setMinHeight(500);
+	    		this.ps.setMinHeight(600);
 	            // Give the controller access to the main app.
+	    		
+	    		for(int i=0;i<projectData.size();i++){
+	    			projectData.get(i).setContext();
+	    		}
+	    		
 	            TaskViewController controller = loader.getController();
 	            controller.setMainApp(this);
+	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -511,7 +517,7 @@ public class Main extends Application implements Serializable{
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
-	    		this.ps.setMinHeight(500);
+	    		this.ps.setMinHeight(600);
 	            
 	            // Give the controller access to the main app.
 	            TareaViewController controller = loader.getController();
@@ -554,8 +560,6 @@ public class Main extends Application implements Serializable{
 
 	            // Set person overview into the center of root layout.
 	            bv.setCenter(tv);
-	            this.ps.setWidth(800);
-	    		this.ps.setHeight(450);
 	    		this.ps.setMaxWidth(8000);
 	    		this.ps.setMaxHeight(8000);
 	    		this.ps.setMinWidth(800);
@@ -584,7 +588,7 @@ public class Main extends Application implements Serializable{
 	            dialogStage.setMaxWidth(350);
 	            dialogStage.setMinHeight(325);
 	            dialogStage.setMinWidth(350);
-	            dialogStage.setTitle("Editar Proyecto");
+	            dialogStage.setTitle("Editor de proyectos");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
@@ -725,7 +729,7 @@ public class Main extends Application implements Serializable{
 
 	            // Create the dialog Stage.
 	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Editar Tarea");
+	            dialogStage.setTitle("Editor de tareas");
 	            dialogStage.initModality(Modality.WINDOW_MODAL);
 	            dialogStage.initOwner(ps);
 	            Scene scene = new Scene(page);
